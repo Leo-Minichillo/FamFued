@@ -426,18 +426,16 @@ const MSG = 'thanksgivingFaceOff.msg';
 // ---------- The built-in games. Every question adds up to 100. ----------
 // Questions with a "# Source:" line get their points from real data (box office, Nielsen, polls...).
 // The rest are estimates shaped like real survey results.
-const DEFAULTS_VERSION = 5;
+const DEFAULTS_VERSION = 6;
 const DEFAULT_GAMES = [
 { name:'Thanksgiving', title:'Thanksgiving Face-Off',
-rounds:`Name a food you'd find on the Thanksgiving table.
-Turkey 44
-Mashed potatoes 17
-Stuffing 13
-Pumpkin pie 9
-Cranberry sauce 7
-Green bean casserole 5
-Corn 3
-Rolls 2
+rounds:`# Source: YouGov poll of Thanksgiving celebrants (2019), share of tables serving each dish
+Name a food you'd find on the Thanksgiving table.
+Turkey 24
+Mashed potatoes 21
+Stuffing 20
+Pumpkin pie 18
+Cranberry sauce 17
 
 Name something people do right after a big Thanksgiving dinner.
 Take a nap 47
@@ -448,33 +446,28 @@ Go for a walk 6
 Unbutton their pants 5
 Play cards 3
 
-Name something Grandma always asks you at family gatherings.
-Are you hungry? 35
-Are you dating anyone? 25
-How's school? 16
-When are you visiting again? 9
-Do you want leftovers? 7
-Do you need money? 5
-How are your parents? 3
+# Source: Dating.com survey of the most awkward questions asked at Thanksgiving
+Name something you dread relatives asking about at Thanksgiving.
+When are you getting married or having kids? 35
+Your weight 23
+Your job 22
+How much money you make 20
 
+# Source: Talker Research poll of 2,000 US adults (2024), topics people want to avoid
 Name a topic you shouldn't bring up at Thanksgiving dinner.
-Politics 55
-Religion 17
-Money 9
-Someone's weight 7
-Their love life 6
-Old family drama 4
-Work 2
+Politics 27
+Money 18
+Weight or appearance 16
+Religion 15
+Exes 13
+Mental health 11
 
+# Source: YouGov poll (Nov 2019), the one thing people are most thankful for
 Name something you're thankful for. x2
-Family 48
-Health 17
-Friends 10
-Food 7
-My home 6
-My job 5
-Freedom 4
-Pets 3
+Family 66
+Health 25
+Friends 7
+My job 2
 
 Name a reason someone shows up late to Thanksgiving dinner. x2
 Traffic 40
@@ -616,14 +609,14 @@ A giant cake 8
 Tons of security 6
 
 Name a music artist you couldn't escape in 2026. x3
-Taylor Swift 30
-Bad Bunny 18
-Ella Langley 14
-Morgan Wallen 11
-Ariana Grande 10
-BTS 7
-Lady Gaga 6
-Justin Bieber 4
+Taylor Swift 24
+Morgan Wallen 20
+Ella Langley 18
+Bad Bunny 16
+Ariana Grande 8
+BTS 6
+Olivia Dean 5
+Lady Gaga 3
 
 # Source: OpenAI/NBER "How People Use ChatGPT" (share of conversations)
 # Host tip: homework, recipes and health questions count as "Advice and how-to help"
@@ -634,14 +627,13 @@ Writing and editing 25
 Making pictures 8
 Chatting and venting 6
 Coding and tech help 5`,
-fast:`Name something people did for the Fourth of July and America's 250th birthday.
-Fireworks 38
-Barbecue 22
-Watch a parade 13
-Go to the beach or lake 10
-Wear red, white and blue 8
-Go to a concert 5
-Hang a flag 4
+fast:`# Source: Reuters/Ipsos and Mecca Bingo surveys of July 4th 2026 plans
+Name something people planned to do for the Fourth of July and America's 250th.
+Go to a cookout 36
+Watch fireworks 26
+Go to a parade 14
+Travel 12
+Make red, white and blue food 12
 
 Name something you'd see at a World Cup watch party.
 Jerseys 22
