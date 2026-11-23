@@ -360,7 +360,7 @@ body.tv.fs{cursor:none}
     <button class="hbtn ghost" data-act="fmReset">Clear Fast Money</button>
     <button class="hbtn winbtn" data-act="final">🏆 Show winner</button>
   </footer>
-  <div class="hhint">Each team picks one player. The team ahead goes first (30s), the other team goes second (40s). Type what they said, click the matching survey answer to fill in points, then Show answer → Show points.</div>
+  <div class="hhint">Each team picks one player. The team ahead goes first (30s), the other goes second (40s). Send the second player out of the room while the first one plays, then click Hide on TV before bringing them back. Both players can give the same answers.</div>
 </section>
 
 <!-- ======================= TV ======================= -->
@@ -419,250 +419,257 @@ if(MODE === 'tv') document.title = 'TV · Thanksgiving Face-Off';
 const KEY = 'thanksgivingFaceOff.v1';
 const MSG = 'thanksgivingFaceOff.msg';
 
-// ---------- The 3 built-in games. Point values are made up for fun. ----------
+// ---------- The built-in games. Point values are made up, but shaped like real survey results. ----------
+// Fast Money questions are picked so no single answer runs away with it (top answer is close to #2).
+const DEFAULTS_VERSION = 2;
 const DEFAULT_GAMES = [
 { name:'Thanksgiving', title:'Thanksgiving Face-Off',
 rounds:`Name a food you'd find on the Thanksgiving table.
-Turkey 36
-Mashed potatoes 18
-Stuffing 14
-Cranberry sauce 10
-Pumpkin pie 8
-Green bean casserole 6
-Mac and cheese 4
-Rolls 3
+Turkey 41
+Mashed potatoes 17
+Stuffing 13
+Pumpkin pie 9
+Cranberry sauce 7
+Green bean casserole 5
+Corn 3
+Rolls 2
 
-Name something people do after Thanksgiving dinner.
-Take a nap 38
-Watch football 24
-Eat more dessert 12
-Wash the dishes 9
+Name something people do right after a big Thanksgiving dinner.
+Take a nap 44
+Watch football 21
+Eat dessert 10
+Do the dishes 8
 Go for a walk 6
-Play board games 5
-Loosen their belt 3
+Unbutton their pants 5
+Play cards 3
 
-Name something Grandma always says at family gatherings.
-Have you eaten? 30
-You've gotten so big! 22
-When are you getting married? 17
-Take some leftovers 12
-Call more often 8
-Back in my day... 6
+Name something Grandma always asks you at family gatherings.
+Are you hungry? 33
+Are you dating anyone? 25
+How's school? 16
+When are you visiting again? 9
+Do you want leftovers? 7
+Do you need money? 5
+How are your parents? 3
 
-Name a topic you should NOT bring up at Thanksgiving dinner.
-Politics 45
-Religion 15
-Money 11
-Your love life 9
-Diets 6
-Old family drama 5
-Work 4
+Name a topic you shouldn't bring up at Thanksgiving dinner.
+Politics 52
+Religion 17
+Money 9
+Someone's weight 7
+Their love life 6
+Old family drama 4
+Work 2
 
 Name something you're thankful for. x2
-Family 42
-Health 19
-Friends 12
-Food 9
-A home 6
-A job 5
-Pets 4
+Family 47
+Health 17
+Friends 10
+Food 7
+My home 6
+My job 5
+Freedom 4
+Pets 3
 
-Name a reason someone shows up late to Thanksgiving. x2
-Traffic 35
-Overslept 18
-Bad weather 12
-Doing their hair 10
-The kids 9
-Stopped at the store 7
-Got lost 5
+Name a reason someone shows up late to Thanksgiving dinner. x2
+Traffic 38
+Overslept 17
+Bad weather 13
+Still cooking their dish 11
+Getting the kids ready 9
+Car trouble 6
+Got lost 4
 
 Name something people do on Black Friday. x3
-Go shopping 44
-Eat leftovers 17
-Sleep in 13
-Put up Christmas decorations 10
-Go to work 7
-Watch movies 5
+Go shopping 61
+Eat leftovers 14
+Sleep in 9
+Put up Christmas decorations 7
+Go to the movies 4
+Go to work 3
 
 Name something that can go wrong when cooking a turkey. x3
-Burn it 34
-It's undercooked 22
-Forgot to thaw it 16
-Fryer catches fire 12
-Dropped it on the floor 8
-Left the giblets inside 5`,
-fast:`Name a type of pie.
-Pumpkin 38
-Apple 26
-Pecan 12
-Cherry 7
+Burn it 33
+It's undercooked 25
+It's still frozen 15
+Fryer catches fire 10
+Drop it on the floor 7
+Leave the giblet bag inside 5
+The oven breaks 3`,
+fast:`Name something you'd bring to Thanksgiving if you can't cook.
+Wine 26
+Pie 22
+Rolls 13
+Soda 11
+Ice 8
+Chips 7
+Flowers 5
+Paper plates 4
+
+Name a type of pie.
+Pumpkin 31
+Apple 27
+Pecan 16
+Cherry 10
 Sweet potato 5
 Key lime 4
 Blueberry 3
-Chocolate cream 2
+Lemon meringue 2
 
-Name something you can stuff.
-A turkey 42
-A pillow 12
-A stocking 10
-Your face 9
-Peppers 7
-A teddy bear 5
-An envelope 4
-A suitcase 3
+Name a reason to leave a family gathering early.
+Tired 25
+Work tomorrow 21
+Long drive home 15
+Kids need to get to bed 13
+Too much drama 10
+Another party to go to 7
+Not feeling well 5
+Pets at home 3
 
-Name something you see at a Thanksgiving parade.
-Giant balloons 40
-Floats 20
-Marching bands 13
-Santa Claus 9
-Clowns 6
-Crowds 4
-Dancers 3
-Celebrities 2
+Name an NFL team people watch on Thanksgiving.
+Cowboys 33
+Lions 30
+Packers 9
+Giants 6
+Eagles 6
+Bears 5
+Chiefs 4
+Steelers 3
 
-Name a dish people bring to a potluck.
-Casserole 30
-Salad 18
-Mac and cheese 13
-Dessert 12
-Chips and dip 8
-Deviled eggs 6
-Meatballs 5
-Chili 3
-
-Name something you'd find in a cornucopia.
-Corn 28
-Apples 20
-Grapes 14
-Gourds 13
-Pears 7
-Nuts 5
-Oranges 4
-Wheat 3` },
+Name something you'd see in fall decorations.
+Pumpkins 30
+Leaves 26
+Scarecrows 12
+Hay bales 9
+Corn stalks 8
+Wreaths 6
+Candles 4
+Mums 3` },
 
 { name:'2026', title:'2026 Face-Off',
 rounds:`Name a popular New Year's resolution.
-Lose weight 34
-Save money 20
-Quit smoking 11
-Read more 9
-Travel more 8
-Less time on my phone 7
-Learn something new 5
-Drink more water 3
+Get in shape 38
+Save money 21
+Quit smoking 10
+Less time on my phone 9
+Read more 7
+Travel more 6
+Drink less 4
+Learn a new skill 3
 
-Name something that seemed to get more expensive this year.
-Groceries 34
-Gas 18
-Rent 14
-Concert tickets 9
-Eating out 8
-Coffee 7
+Name something that costs way more in 2026 than it used to.
+Groceries 36
+Gas 15
+Rent 13
+Eating out 10
+Coffee 8
+Concert tickets 7
 Car insurance 5
-Electricity 4
+Electric bill 4
 
-Name something people use AI for.
-Homework 26
-Writing emails 18
-Looking things up 15
-Making pictures 11
-Recipes 9
-Coding 8
-Planning trips 6
-Customer service 4
+Name something people ask AI chatbots to help with.
+Homework 27
+Writing emails 19
+Recipes 12
+Work stuff 11
+Health questions 9
+Planning a trip 8
+Making pictures 6
+Relationship advice 4
 
-Name a sport you'd see at the Winter Olympics.
-Skiing 35
-Figure skating 22
-Hockey 15
+Name a Winter Olympic sport.
+Skiing 31
+Figure skating 27
+Hockey 17
 Snowboarding 11
-Bobsled 7
+Bobsled 6
 Curling 5
 Luge 3
 
-Name something you'd see at a World Cup soccer game. x2
-Flags 26
-Face paint 18
-Jerseys 15
-Goals 12
-Yellow cards 9
-Noisemakers 7
-The wave 5
-Referees 3
+Name something you'd find at a Super Bowl party. x2
+Wings 30
+Pizza 20
+Chips and dip 14
+Beer 12
+A big TV 9
+The commercials 7
+Football squares 4
+Team jerseys 3
 
-Name a way people celebrated America's 250th birthday. x2
-Fireworks 46
-Parades 18
-Barbecues 13
-Concerts 8
-Waving flags 6
-Air shows 4
+Name something you'd see at a Fourth of July party for America's 250th birthday. x2
+Fireworks 48
+American flags 17
+Grilling 13
+A parade 8
+Red, white and blue outfits 6
+Watermelon 4
+Uncle Sam 2
 
-Name an app that eats up people's screen time. x3
-TikTok 40
+Name an app people spend way too much time on. x3
+TikTok 36
 Instagram 22
-Facebook 14
-YouTube 10
-Snapchat 6
-Reddit 3
+Facebook 18
+YouTube 12
+Snapchat 5
+Candy Crush 3
+X 2
 
-Name something you'd put in a 2026 time capsule. x3
-A phone 32
-Photos 20
-A newspaper 13
-A letter 10
-Coins 8
-A toy 6
-A sports jersey 4`,
-fast:`Name a streaming service.
-Netflix 42
-Hulu 14
-Disney+ 12
-Amazon Prime 10
-YouTube 8
-HBO Max 6
-Peacock 4
-Paramount+ 3
+Name something people do on their phone while watching TV. x3
+Scroll social media 38
+Text 20
+Play games 12
+Online shopping 10
+Look up the actors 9
+Check email 5
+Watch videos 3`,
+fast:`Name something you check on your phone first thing in the morning.
+Texts 25
+Social media 23
+The weather 15
+The time 14
+Email 11
+The news 6
+Calendar 3
+Bank account 2
 
-Name something you ask a smart speaker or AI to do.
-Play music 34
-Check the weather 20
-Set a timer 14
+Name something you ask a smart speaker to do.
+Play music 29
+Check the weather 26
+Set a timer 16
 Tell a joke 9
 Turn on the lights 8
 Answer a question 6
-Make a shopping list 5
-Call someone 3
-
-Name a famous soccer player.
-Messi 38
-Ronaldo 28
-Neymar 9
-Beckham 7
-Pele 6
-Mbappe 6
-Pulisic 4
-Haaland 2
+Add to the shopping list 4
+Call someone 2
 
 Name something people do on New Year's Eve.
-Watch the ball drop 30
-Kiss someone 20
-Go to a party 15
-Drink champagne 12
-Set off fireworks 9
-Stay home and sleep 6
-Make resolutions 4
-Go to a concert 2
+Watch the ball drop 27
+Party 24
+Kiss someone 17
+Drink champagne 13
+Set off fireworks 8
+Stay home 6
+Make resolutions 3
+Go out to dinner 2
+
+Name a famous athlete.
+LeBron James 22
+Michael Jordan 20
+Tom Brady 15
+Serena Williams 10
+Messi 9
+Tiger Woods 8
+Simone Biles 6
+Shohei Ohtani 4
 
 Name something that's always in your pocket or purse.
-Phone 40
-Keys 22
-Wallet 15
+Phone 31
+Keys 28
+Wallet 22
 Lip balm 7
-Gum 6
-Tissues 4
-Sunglasses 3
+Gum 5
+Tissues 3
+Sunglasses 2
 Hand sanitizer 2` },
 
 { name:'Game 3', title:'Family Face-Off',
@@ -681,7 +688,7 @@ fast:`# Fast Money for Game 3: 5 questions, same format as above.
 # Give each question up to 8 answers so you have plenty to pick from.`}
 ];
 
-let cfg = { team0:'Team Turkey', team1:'Team Pumpkin Pie', active:0,
+let cfg = { v:DEFAULTS_VERSION, team0:'Team Turkey', team1:'Team Pumpkin Pie', active:0,
             games: DEFAULT_GAMES.map(g => ({title:g.title, rounds:g.rounds, fast:g.fast})) };
 const G = i => cfg.games[i == null ? cfg.active : i];
 const playingGame = () => G(game && game.gi != null ? game.gi : cfg.active);
@@ -1164,7 +1171,11 @@ function initHost(){
     if(d.cfg){
       if(d.cfg.team0) cfg.team0 = d.cfg.team0;
       if(d.cfg.team1) cfg.team1 = d.cfg.team1;
-      if(Array.isArray(d.cfg.games) && d.cfg.games.length === 3){ cfg.games = d.cfg.games; cfg.active = d.cfg.active || 0; }
+      if(Array.isArray(d.cfg.games) && d.cfg.games.length === 3){
+        if(d.cfg.v === DEFAULTS_VERSION) cfg.games = d.cfg.games;
+        else cfg.games[2] = d.cfg.games[2];   // older save: keep your Game 3, pick up the improved Games 1 and 2
+        cfg.active = d.cfg.active || 0;
+      }
     }
     if(d.game && d.game.gi != null) game = d.game;   // ignore games saved by the older single-game version
   }

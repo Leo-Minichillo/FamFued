@@ -42,7 +42,7 @@ Each team picks one player. The team that's ahead going into Fast Money goes fir
 1. Click **💰 Fast Money**, then **Start 30s** for the first team.
 2. Type what they said. Click the matching survey answer under each question to fill in the points (or **Not on list · 0**).
 3. Click **Show answer**, then **Show points**, one row at a time.
-4. Click **Hide on TV** to hide the first team's answers and total while the second player goes, then **Start 40s**.
+4. Send the second player out of the room while the first one plays. Click **Hide on TV** before bringing them back, then **Start 40s**. Both players can give the same answers, and every Fast Money question has a close top two so going first is not a big edge.
 5. **🏆 Show winner** on the Fast Money screen announces whichever team scored more in Fast Money.
 
 ## Question format
