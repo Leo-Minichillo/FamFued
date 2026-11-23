@@ -279,7 +279,7 @@ body.tv.fs{cursor:none}
       <div class="card">
         <div class="editing" id="editingLabel"></div>
         <div class="lblrow"><h2>Main rounds</h2><span class="info" id="roundsInfo"></span></div>
-        <p class="fmt">One round per block, with a blank line between rounds. First line is the question. Add <code>x2</code> or <code>x3</code> at the end of the question for double or triple points. Then one answer per line with its points at the end, like <code>Turkey 36</code>. Up to 8 answers, auto-sorted by points. The built-in point values are made up, so tweak away.</p>
+        <p class="fmt">One round per block, with a blank line between rounds. First line is the question. Add <code>x2</code> or <code>x3</code> at the end of the question for double or triple points. Then one answer per line with its points at the end, like <code>Turkey 36</code>. Up to 8 answers, auto-sorted by points. Each question's points should add up to 100 (you'll get a warning if not). The built-in values are estimates, so tweak away.</p>
         <textarea id="cfgRounds" spellcheck="false"></textarea>
         <div class="lblrow" style="margin-top:1.4rem"><h2>Fast Money</h2><span class="info" id="fastInfo"></span></div>
         <p class="fmt">Same format, 5 questions, up to 8 answers each. The answers show up as quick-pick buttons on your host screen during Fast Money, so more answers means fewer "is that on the list?" moments.</p>
@@ -419,13 +419,13 @@ if(MODE === 'tv') document.title = 'TV · Thanksgiving Face-Off';
 const KEY = 'thanksgivingFaceOff.v1';
 const MSG = 'thanksgivingFaceOff.msg';
 
-// ---------- The built-in games. Point values are made up, but shaped like real survey results. ----------
-// Fast Money questions are picked so no single answer runs away with it (top answer is close to #2).
-const DEFAULTS_VERSION = 2;
+// ---------- The built-in games. Every question adds up to 100. ----------
+// Point values are estimates shaped like real survey results (not from an actual survey).
+const DEFAULTS_VERSION = 3;
 const DEFAULT_GAMES = [
 { name:'Thanksgiving', title:'Thanksgiving Face-Off',
 rounds:`Name a food you'd find on the Thanksgiving table.
-Turkey 41
+Turkey 44
 Mashed potatoes 17
 Stuffing 13
 Pumpkin pie 9
@@ -435,7 +435,7 @@ Corn 3
 Rolls 2
 
 Name something people do right after a big Thanksgiving dinner.
-Take a nap 44
+Take a nap 47
 Watch football 21
 Eat dessert 10
 Do the dishes 8
@@ -444,7 +444,7 @@ Unbutton their pants 5
 Play cards 3
 
 Name something Grandma always asks you at family gatherings.
-Are you hungry? 33
+Are you hungry? 35
 Are you dating anyone? 25
 How's school? 16
 When are you visiting again? 9
@@ -453,7 +453,7 @@ Do you need money? 5
 How are your parents? 3
 
 Name a topic you shouldn't bring up at Thanksgiving dinner.
-Politics 52
+Politics 55
 Religion 17
 Money 9
 Someone's weight 7
@@ -462,7 +462,7 @@ Old family drama 4
 Work 2
 
 Name something you're thankful for. x2
-Family 47
+Family 48
 Health 17
 Friends 10
 Food 7
@@ -472,7 +472,7 @@ Freedom 4
 Pets 3
 
 Name a reason someone shows up late to Thanksgiving dinner. x2
-Traffic 38
+Traffic 40
 Overslept 17
 Bad weather 13
 Still cooking their dish 11
@@ -481,7 +481,7 @@ Car trouble 6
 Got lost 4
 
 Name something people do on Black Friday. x3
-Go shopping 61
+Go shopping 63
 Eat leftovers 14
 Sleep in 9
 Put up Christmas decorations 7
@@ -489,7 +489,7 @@ Go to the movies 4
 Go to work 3
 
 Name something that can go wrong when cooking a turkey. x3
-Burn it 33
+Burn it 35
 It's undercooked 25
 It's still frozen 15
 Fryer catches fire 10
@@ -497,8 +497,8 @@ Drop it on the floor 7
 Leave the giblet bag inside 5
 The oven breaks 3`,
 fast:`Name something you'd bring to Thanksgiving if you can't cook.
-Wine 26
-Pie 22
+Wine 28
+Pie 24
 Rolls 13
 Soda 11
 Ice 8
@@ -507,17 +507,17 @@ Flowers 5
 Paper plates 4
 
 Name a type of pie.
-Pumpkin 31
-Apple 27
-Pecan 16
-Cherry 10
-Sweet potato 5
+Pumpkin 38
+Apple 24
+Pecan 15
+Cherry 9
+Sweet potato 6
 Key lime 4
-Blueberry 3
+Blueberry 2
 Lemon meringue 2
 
 Name a reason to leave a family gathering early.
-Tired 25
+Tired 26
 Work tomorrow 21
 Long drive home 15
 Kids need to get to bed 13
@@ -527,150 +527,152 @@ Not feeling well 5
 Pets at home 3
 
 Name an NFL team people watch on Thanksgiving.
-Cowboys 33
-Lions 30
+Cowboys 34
+Lions 31
 Packers 9
-Giants 6
-Eagles 6
-Bears 5
+Bears 7
+Eagles 7
+Giants 5
 Chiefs 4
 Steelers 3
 
 Name something you'd see in fall decorations.
-Pumpkins 30
-Leaves 26
+Pumpkins 36
+Leaves 21
 Scarecrows 12
 Hay bales 9
 Corn stalks 8
 Wreaths 6
-Candles 4
+Candles 5
 Mums 3` },
 
 { name:'2026', title:'2026 Face-Off',
-rounds:`Name a popular New Year's resolution.
-Get in shape 38
-Save money 21
-Quit smoking 10
-Less time on my phone 9
-Read more 7
-Travel more 6
-Drink less 4
-Learn a new skill 3
+rounds:`Name a movie people went to see in theaters this year.
+Spider-Man: Brand New Day 30
+The Odyssey 19
+Toy Story 5 16
+Michael 11
+Super Mario Galaxy Movie 9
+Devil Wears Prada 2 7
+Minions & Monsters 5
+Project Hail Mary 3
 
-Name something that costs way more in 2026 than it used to.
-Groceries 36
-Gas 15
-Rent 13
-Eating out 10
-Coffee 8
-Concert tickets 7
-Car insurance 5
-Electric bill 4
+Name a country you think of when you hear "2026 World Cup."
+USA 28
+Spain 22
+Argentina 18
+Mexico 12
+Brazil 9
+Canada 6
+England 3
+France 2
 
-Name something people ask AI chatbots to help with.
-Homework 27
-Writing emails 19
-Recipes 12
-Work stuff 11
-Health questions 9
-Planning a trip 8
-Making pictures 6
-Relationship advice 4
+Name a TV show everyone was talking about this year.
+Stranger Things 32
+The Pitt 18
+Love Is Blind 14
+Bluey 11
+Reacher 9
+Grey's Anatomy 7
+Survivor 5
+The Traitors 4
 
-Name a Winter Olympic sport.
-Skiing 31
-Figure skating 27
-Hockey 17
-Snowboarding 11
-Bobsled 6
-Curling 5
-Luge 3
+Name something you remember from the 2026 Winter Olympics.
+USA hockey winning gold 30
+Figure skating 20
+Lindsey Vonn's crash 16
+Snowboarding 10
+Mikaela Shiffrin 9
+It was in Italy 8
+Curling 4
+Bobsled 3
 
-Name something you'd find at a Super Bowl party. x2
-Wings 30
-Pizza 20
-Chips and dip 14
-Beer 12
-A big TV 9
-The commercials 7
-Football squares 4
-Team jerseys 3
+Name something people talked about after this year's Super Bowl. x2
+Bad Bunny's halftime show 41
+The commercials 25
+The Seahawks won 16
+The MVP 6
+The national anthem 5
+Ticket prices 4
+Their bets 3
 
-Name something you'd see at a Fourth of July party for America's 250th birthday. x2
-Fireworks 48
-American flags 17
-Grilling 13
-A parade 8
-Red, white and blue outfits 6
-Watermelon 4
-Uncle Sam 2
+Name something you'd expect to see at Taylor Swift and Travis Kelce's wedding. x2
+Football players 24
+Taylor singing 18
+Friendship bracelets 14
+Celebrities 13
+Jason Kelce crying 9
+Cats 8
+A giant cake 8
+Tons of security 6
 
-Name an app people spend way too much time on. x3
-TikTok 36
-Instagram 22
-Facebook 18
-YouTube 12
-Snapchat 5
-Candy Crush 3
-X 2
+Name a music artist you couldn't escape in 2026. x3
+Taylor Swift 30
+Bad Bunny 18
+Ella Langley 14
+Morgan Wallen 11
+Ariana Grande 10
+BTS 7
+Lady Gaga 6
+Justin Bieber 4
 
-Name something people do on their phone while watching TV. x3
-Scroll social media 38
-Text 20
-Play games 12
-Online shopping 10
-Look up the actors 9
-Check email 5
-Watch videos 3`,
-fast:`Name something you check on your phone first thing in the morning.
-Texts 25
-Social media 23
-The weather 15
-The time 14
-Email 11
-The news 6
-Calendar 3
-Bank account 2
+Name something people used AI for this year. x3
+Homework 25
+Writing emails 18
+Asking questions instead of Googling 15
+Making pictures and videos 13
+Recipes 10
+Work stuff 9
+Health advice 6
+Relationship advice 4`,
+fast:`Name something people did for the Fourth of July and America's 250th birthday.
+Fireworks 38
+Barbecue 22
+Watch a parade 13
+Go to the beach or lake 10
+Wear red, white and blue 8
+Go to a concert 5
+Hang a flag 4
 
-Name something you ask a smart speaker to do.
-Play music 29
-Check the weather 26
-Set a timer 16
-Tell a joke 9
-Turn on the lights 8
-Answer a question 6
-Add to the shopping list 4
-Call someone 2
+Name something you'd see at a World Cup watch party.
+Jerseys 22
+Flags 20
+Beer 18
+Face paint 12
+People yelling at the TV 11
+Snacks 9
+A big screen 5
+Crying fans 3
 
-Name something people do on New Year's Eve.
-Watch the ball drop 27
-Party 24
-Kiss someone 17
-Drink champagne 13
-Set off fireworks 8
-Stay home 6
-Make resolutions 3
-Go out to dinner 2
+Name something people are cutting back on to save money.
+Eating out 26
+Groceries 18
+Coffee shops 15
+Streaming subscriptions 12
+Clothes 11
+Gas 8
+Amazon orders 6
+Vacations 4
 
-Name a famous athlete.
-LeBron James 22
-Michael Jordan 20
-Tom Brady 15
-Serena Williams 10
-Messi 9
-Tiger Woods 8
-Simone Biles 6
-Shohei Ohtani 4
+Name a famous athlete people talked about this year.
+Shohei Ohtani 20
+Caitlin Clark 17
+Lionel Messi 15
+LeBron James 13
+Alysa Liu 11
+Travis Kelce 10
+Patrick Mahomes 8
+Lindsey Vonn 6
 
-Name something that's always in your pocket or purse.
-Phone 31
-Keys 28
-Wallet 22
-Lip balm 7
-Gum 5
-Tissues 3
-Sunglasses 2
-Hand sanitizer 2` },
+Name something that got more expensive in 2026.
+Groceries 33
+Gas 16
+Rent 14
+Concert tickets 10
+Eating out 9
+Car insurance 8
+Coffee 6
+Electric bill 4` },
 
 { name:'Game 3', title:'Family Face-Off',
 rounds:`# GAME 3 is yours to fill in. Lines starting with # are ignored.
@@ -902,8 +904,13 @@ function updateInfo(){
   if(!rounds.length){ ri.textContent = 'No rounds yet'; ri.className = 'info warn'; }
   else if(bad >= 0){ ri.textContent = `Round ${bad+1} has no answers`; ri.className = 'info warn'; }
   else { ri.textContent = `${rounds.length} round${rounds.length > 1 ? 's' : ''} ready ✓`; ri.className = 'info'; }
-  fi.textContent = fast.length >= 5 ? '5 questions ready ✓' : `${fast.length} of 5 questions`;
-  fi.className = fast.length >= 5 ? 'info' : 'info warn';
+  const sum = r => r.answers.reduce((t, a) => t + a.pts, 0);
+  const offR = rounds.findIndex(r => r.answers.length && sum(r) !== 100);
+  if(rounds.length && bad < 0 && offR >= 0){ ri.textContent = `Round ${offR+1} adds up to ${sum(rounds[offR])}, not 100`; ri.className = 'info warn'; }
+  const fast5 = fast.slice(0, 5), offF = fast5.findIndex(r => r.answers.length && sum(r) !== 100);
+  fi.textContent = fast.length < 5 ? `${fast.length} of 5 questions`
+    : offF >= 0 ? `Question ${offF+1} adds up to ${sum(fast5[offF])}, not 100` : '5 questions ready ✓';
+  fi.className = fast.length >= 5 && offF < 0 ? 'info' : 'info warn';
   $('#btnStart').disabled = !rounds.length;
 }
 function bindSetup(){

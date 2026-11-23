@@ -3,7 +3,7 @@
 A survey-style game show for the family TV, with 3 games built in:
 
 1. **Thanksgiving Face-Off** (8 rounds + Fast Money)
-2. **2026 Face-Off** (8 rounds + Fast Money)
+2. **2026 Face-Off** (8 rounds + Fast Money, built on real 2026 events: the World Cup, Super Bowl LX, the Winter Olympics, the year's big movies, shows and music)
 3. **Game 3**: an empty slot for your own questions
 
 Pick a game with the tabs on the setup screen. Each game keeps its own questions and title; team names are shared. One file, no install. Open `index.html` in Chrome or Edge.
@@ -54,7 +54,7 @@ Health 19
 Friends 12
 ```
 
-Blank line between rounds. `x2` / `x3` at the end of a question doubles or triples the points. Up to 8 answers per round, and up to 8 per Fast Money question. Lines starting with `#` are ignored. The built-in point values are made up.
+Blank line between rounds. `x2` / `x3` at the end of a question doubles or triples the points. Up to 8 answers per round, and up to 8 per Fast Money question. Lines starting with `#` are ignored. Each question's points should add up to 100; the setup screen warns you if one doesn't. The built-in point values are estimates, not from a real survey.
 
 ## Notes
 
