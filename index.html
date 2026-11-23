@@ -420,8 +420,9 @@ const KEY = 'thanksgivingFaceOff.v1';
 const MSG = 'thanksgivingFaceOff.msg';
 
 // ---------- The built-in games. Every question adds up to 100. ----------
-// Point values are estimates shaped like real survey results (not from an actual survey).
-const DEFAULTS_VERSION = 3;
+// Point values are estimates shaped like real survey results (not from an actual survey),
+// except the 2026 movie round, which uses each film's share of the 2026 US box office.
+const DEFAULTS_VERSION = 4;
 const DEFAULT_GAMES = [
 { name:'Thanksgiving', title:'Thanksgiving Face-Off',
 rounds:`Name a food you'd find on the Thanksgiving table.
@@ -548,14 +549,14 @@ Mums 3` },
 
 { name:'2026', title:'2026 Face-Off',
 rounds:`Name a movie people went to see in theaters this year.
-Spider-Man: Brand New Day 30
-The Odyssey 19
-Toy Story 5 16
-Michael 11
-Super Mario Galaxy Movie 9
-Devil Wears Prada 2 7
-Minions & Monsters 5
-Project Hail Mary 3
+Spider-Man: Brand New Day 26
+The Odyssey 17
+Toy Story 5 13
+Super Mario Galaxy Movie 12
+Michael 10
+Project Hail Mary 9
+Obsession 7
+Devil Wears Prada 2 6
 
 Name a country you think of when you hear "2026 World Cup."
 USA 28
