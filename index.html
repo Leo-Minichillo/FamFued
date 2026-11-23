@@ -426,7 +426,7 @@ const MSG = 'thanksgivingFaceOff.msg';
 // ---------- The built-in games. Every question adds up to 100. ----------
 // Questions with a "# Source:" line get their points from real data (box office, Nielsen, polls...).
 // The rest are estimates shaped like real survey results.
-const DEFAULTS_VERSION = 6;
+const DEFAULTS_VERSION = 7;
 const DEFAULT_GAMES = [
 { name:'Thanksgiving', title:'Thanksgiving Face-Off',
 rounds:`# Source: YouGov poll of Thanksgiving celebrants (2019), share of tables serving each dish
@@ -547,16 +547,16 @@ Candles 5
 Mums 3` },
 
 { name:'2026', title:'2026 Face-Off',
-rounds:`# Source: share of 2026 US box office (Box Office Mojo, Nov 2026)
+rounds:`# Source: 2026 US box office, boosted toward the biggest hits like a real survey (You Can See Everything added)
 Name a movie people went to see in theaters this year.
-Spider-Man: Brand New Day 26
-The Odyssey 17
-Toy Story 5 13
-Super Mario Galaxy Movie 12
-Michael 10
-Project Hail Mary 9
-Obsession 7
-Devil Wears Prada 2 6
+Spider-Man: Brand New Day 44
+The Odyssey 19
+Toy Story 5 11
+Super Mario Galaxy Movie 9
+Michael 6
+Project Hail Mary 6
+Obsession 3
+You Can See Everything 2
 
 Name a country you think of when you hear "2026 World Cup."
 USA 28
@@ -568,16 +568,16 @@ Canada 6
 England 3
 France 2
 
-# Source: Nielsen US streaming minutes, Jan-Jun 2026
-Name a TV show people streamed the most this year.
-Stranger Things 15
-Bluey 14
-The Pitt 13
-Grey's Anatomy 13
-The Big Bang Theory 13
+# Source: Nielsen streaming (Jan-Jun) for the top shows, estimates for later-2026 hits
+Name a TV show everyone was watching this year.
+Stranger Things 38
+The Pitt 20
+Love Is Blind 12
 Bridgerton 11
-SpongeBob 11
-Family Guy 10
+Reacher 7
+The Traitors 5
+Survivor 4
+From 3
 
 Name something you remember from the 2026 Winter Olympics.
 USA hockey winning gold 30
@@ -954,7 +954,7 @@ function renderHostBoard(){
   $('#hRound').textContent = `Round ${game.ri+1} of ${game.rounds.length}`;
   const m = $('#hMult'); m.hidden = r.mult < 2; m.textContent = r.mult === 3 ? 'Triple points' : 'Double points';
   $('#hQuestion').textContent = r.q;
-  $('#hSrc').textContent = r.source ? `📊 Points from real data: ${r.source}` : '';
+  $('#hSrc').textContent = r.source ? `📊 Points based on: ${r.source}` : '';
   const box = $('#hAnswers'); box.innerHTML = '';
   for(let i = 0; i < 8; i++){
     const a = r.answers[i], b = document.createElement('button');
