@@ -1,6 +1,12 @@
-# Thanksgiving Face-Off
+# Face-Off Game Night
 
-A survey-style game show for the family TV. One file, no install. Open `index.html` in Chrome or Edge.
+A survey-style game show for the family TV, with 3 games built in:
+
+1. **Thanksgiving Face-Off** (8 rounds + Fast Money)
+2. **2026 Face-Off** (8 rounds + Fast Money)
+3. **Game 3**: an empty slot for your own questions
+
+Pick a game with the tabs on the setup screen. Each game keeps its own questions and title; team names are shared. One file, no install. Open `index.html` in Chrome or Edge.
 
 It runs as **two tabs**:
 - **Host tab (laptop):** your control panel. Shows every answer, plus simple buttons to run the game.
@@ -29,14 +35,15 @@ If the button doesn't open a tab, open the same file in a new tab yourself and a
 
 Optional keys: `1`-`8` reveal, `X` wrong, `Q` / `P` give points, `N` next.
 
-## Fast Money
+## Fast Money (head-to-head)
 
-Click **💰 Fast Money** on the host screen.
-1. **Start 20s** for Player 1 (25s for Player 2).
+Each team picks one player. The team that's ahead going into Fast Money goes first with **30 seconds**; the other team goes second with **40 seconds**. (On a tie, use **⇄ Swap who goes first**.)
+
+1. Click **💰 Fast Money**, then **Start 30s** for the first team.
 2. Type what they said. Click the matching survey answer under each question to fill in the points (or **Not on list · 0**).
-3. Click **Show answer**, then **Show points**, one row at a time. The TV total updates live.
-4. **Hide on TV** hides Player 1's answers while Player 2 plays. **Buzzer** is for repeat answers.
-5. Hitting 200 sets off the winner screen.
+3. Click **Show answer**, then **Show points**, one row at a time.
+4. Click **Hide on TV** to hide the first team's answers and total while the second player goes, then **Start 40s**.
+5. **🏆 Show winner** on the Fast Money screen announces whichever team scored more in Fast Money.
 
 ## Question format
 
@@ -47,7 +54,7 @@ Health 19
 Friends 12
 ```
 
-Blank line between rounds. `x2` / `x3` at the end of a question doubles or triples the points. Up to 8 answers per round. The sample point values are made up.
+Blank line between rounds. `x2` / `x3` at the end of a question doubles or triples the points. Up to 8 answers per round, and up to 8 per Fast Money question. Lines starting with `#` are ignored. The built-in point values are made up.
 
 ## Notes
 

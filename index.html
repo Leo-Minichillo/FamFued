@@ -54,6 +54,11 @@ body.host .tvonly, body.tv .hostonly{display:none !important}
 .btn:hover{background:rgba(255,255,255,.14)}
 .btn.primary{background:linear-gradient(#f5a93b,#d9741c);color:var(--ink);border-color:transparent;font-size:1.2rem;text-align:center}
 .btn.primary:disabled{opacity:.4;cursor:not-allowed}
+.gametabs{display:grid;grid-template-columns:repeat(3,1fr);gap:.45rem;margin-bottom:1.2rem}
+.gtab{padding:.6rem .4rem;border-radius:.6rem;border:1px solid var(--line);background:rgba(255,255,255,.06);color:var(--cream);font-family:var(--display);font-size:1.15rem;line-height:1.1}
+.gtab small{display:block;font-family:var(--body);font-weight:800;font-size:.72rem;opacity:.75;margin-top:.2rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gtab.on{background:linear-gradient(#f5a93b,#d9741c);color:var(--ink);border-color:transparent}
+.editing{font-weight:800;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
 .lblrow{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-bottom:.4rem}
 .info{font-weight:800;font-size:.9rem;color:var(--team1)}
 .info.warn{color:#ff8a8a}
@@ -189,7 +194,10 @@ body.host .tvonly, body.tv .hostonly{display:none !important}
 .fmpts.on{background:linear-gradient(#8a2f0e,#5a1d08);border-color:var(--gold);animation:pop .35s ease-out}
 .fmpts.zero{color:#ff8a8a}
 @keyframes pop{from{transform:scale(.85)}to{transform:scale(1)}}
-.fmtotal{font-family:var(--display);font-size:3rem;text-align:center;margin-top:.4rem;grid-column:1/-1}
+.fmcol h3 small{display:block;font-family:var(--body);font-weight:800;font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cream);opacity:.7;margin-top:.2rem}
+.fmtotal{font-family:var(--display);font-size:2.6rem;text-align:center;margin-top:.6rem}
+.hfmhead h3 small{font-family:var(--body);font-weight:800;font-size:.8rem;color:var(--cream);opacity:.7;margin-left:.5rem}
+.htotal span{margin-left:1rem}
 .fmtotal b{font-weight:400;display:inline-block;min-width:7rem;background:linear-gradient(#3b1a10,#1d0c07);border:.25rem solid var(--gold);border-radius:1rem;padding:0 1.2rem;margin-left:.8rem}
 
 /* ================= TV: WAITING + OVERLAYS ================= */
@@ -238,12 +246,14 @@ body.tv.fs{cursor:none}
 <section id="setup" class="screen hscreen hostonly">
   <div class="setup-wrap">
     <div class="setup-head">
-      <h1>🦃 Thanksgiving Face-Off</h1>
+      <h1>🦃 Face-Off Game Night</h1>
       <p>This tab is your <b>host screen</b> and stays on the laptop. It shows every answer. The TV gets its own tab that only shows answers after you reveal them. Everything saves automatically, so a refresh won't wipe the scores.</p>
     </div>
     <div class="setup-grid">
       <div>
         <div class="card">
+          <h2 style="margin-bottom:.7rem">Pick a game</h2>
+          <div class="gametabs" id="gameTabs"></div>
           <label>Game title <input id="cfgTitle" maxlength="40"></label>
           <label>Left team name <input id="cfgT0" maxlength="28"></label>
           <label>Right team name <input id="cfgT1" maxlength="28"></label>
@@ -252,7 +262,7 @@ body.tv.fs{cursor:none}
             <button class="btn" id="btnResume" hidden>▶ Resume current game</button>
             <button class="btn" id="btnTV">📺 Open TV screen</button>
             <button class="btn" id="btnPrint">🖨 Print answer sheet (backup)</button>
-            <button class="btn" id="btnSample">↺ Restore sample questions</button>
+            <button class="btn" id="btnSample">↺ Reset this game's questions</button>
           </div>
         </div>
         <div class="card">
@@ -267,11 +277,12 @@ body.tv.fs{cursor:none}
         </div>
       </div>
       <div class="card">
+        <div class="editing" id="editingLabel"></div>
         <div class="lblrow"><h2>Main rounds</h2><span class="info" id="roundsInfo"></span></div>
-        <p class="fmt">One round per block, with a blank line between rounds. First line is the question. Add <code>x2</code> or <code>x3</code> at the end of the question for double or triple points. Then one answer per line with its points at the end, like <code>Turkey 36</code>. Up to 8 answers, auto-sorted by points. The sample points are made up, so tweak away.</p>
+        <p class="fmt">One round per block, with a blank line between rounds. First line is the question. Add <code>x2</code> or <code>x3</code> at the end of the question for double or triple points. Then one answer per line with its points at the end, like <code>Turkey 36</code>. Up to 8 answers, auto-sorted by points. The built-in point values are made up, so tweak away.</p>
         <textarea id="cfgRounds" spellcheck="false"></textarea>
         <div class="lblrow" style="margin-top:1.4rem"><h2>Fast Money</h2><span class="info" id="fastInfo"></span></div>
-        <p class="fmt">Same format, 5 questions. The survey answers show up as quick-pick buttons on your host screen during Fast Money.</p>
+        <p class="fmt">Same format, 5 questions, up to 8 answers each. The answers show up as quick-pick buttons on your host screen during Fast Money, so more answers means fewer "is that on the list?" moments.</p>
         <textarea id="cfgFast" class="short" spellcheck="false"></textarea>
       </div>
     </div>
@@ -334,22 +345,22 @@ body.tv.fs{cursor:none}
     </div>
   </header>
   <div class="fmctl">
-    <div class="htimer idle" id="hTimer">20</div>
-    <button class="hbtn gold" data-act="t20">Start 20s</button>
-    <button class="hbtn gold" data-act="t25">Start 25s</button>
+    <div class="htimer idle" id="hTimer">30</div>
+    <button class="hbtn gold" data-act="t30" id="hT30">Start 30s</button>
+    <button class="hbtn gold" data-act="t40" id="hT40">Start 40s</button>
     <button class="hbtn" data-act="pause" id="hPause">Pause</button>
-    <button class="hbtn red" data-act="dup">Buzzer (repeat answer)</button>
-    <div class="htotal">Total<b id="hFmTotal">0</b>/ 200</div>
+    <button class="hbtn red" data-act="dup">Buzzer</button>
+    <div class="htotal" id="hFmTotals"></div>
   </div>
   <div class="hfm">
-    <div><div class="hfmhead"><h3>Player 1</h3><button class="hbtn ghost small" data-act="hide0" id="hHide0">Hide on TV</button></div><div id="hfm0"></div></div>
-    <div><div class="hfmhead"><h3>Player 2</h3></div><div id="hfm1"></div></div>
+    <div><div class="hfmhead"><h3 id="hfmName0"></h3><button class="hbtn ghost small" data-act="hide0" id="hHide0">Hide on TV</button></div><div id="hfm0"></div></div>
+    <div><div class="hfmhead"><h3 id="hfmName1"></h3><button class="hbtn ghost small" data-act="swap">⇄ Swap who goes first</button></div><div id="hfm1"></div></div>
   </div>
   <footer class="hnav">
     <button class="hbtn ghost" data-act="fmReset">Clear Fast Money</button>
     <button class="hbtn winbtn" data-act="final">🏆 Show winner</button>
   </footer>
-  <div class="hhint">Type what they said, click the matching survey answer to fill in points, then click Show answer → Show points.</div>
+  <div class="hhint">Each team picks one player. The team ahead goes first (30s), the other team goes second (40s). Type what they said, click the matching survey answer to fill in points, then Show answer → Show points.</div>
 </section>
 
 <!-- ======================= TV ======================= -->
@@ -383,13 +394,12 @@ body.tv.fs{cursor:none}
 <section id="fast" class="screen tvonly">
   <header class="fmtop">
     <div class="brand">💰 Fast Money</div>
-    <div class="timer idle" id="fmTimer">20</div>
-    <div class="goal">Goal: 200</div>
+    <div class="timer idle" id="fmTimer">30</div>
+    <div class="goal">Head-to-head</div>
   </header>
   <div class="fmboard">
-    <div class="fmcol"><h3>Player 1</h3><div id="fmc0"></div></div>
-    <div class="fmcol"><h3>Player 2</h3><div id="fmc1"></div></div>
-    <div class="fmtotal">TOTAL<b id="fmTotal">0</b></div>
+    <div class="fmcol"><h3 id="fmName0"></h3><div id="fmc0"></div><div class="fmtotal">TOTAL<b id="fmTot0">0</b></div></div>
+    <div class="fmcol"><h3 id="fmName1"></h3><div id="fmc1"></div><div class="fmtotal">TOTAL<b id="fmTot1">0</b></div></div>
   </div>
 </section>
 
@@ -409,14 +419,17 @@ if(MODE === 'tv') document.title = 'TV · Thanksgiving Face-Off';
 const KEY = 'thanksgivingFaceOff.v1';
 const MSG = 'thanksgivingFaceOff.msg';
 
-const SAMPLE_ROUNDS = `Name a food you'd find on the Thanksgiving table.
+// ---------- The 3 built-in games. Point values are made up for fun. ----------
+const DEFAULT_GAMES = [
+{ name:'Thanksgiving', title:'Thanksgiving Face-Off',
+rounds:`Name a food you'd find on the Thanksgiving table.
 Turkey 36
 Mashed potatoes 18
 Stuffing 14
 Cranberry sauce 10
 Pumpkin pie 8
 Green bean casserole 6
-Sweet potatoes 4
+Mac and cheese 4
 Rolls 3
 
 Name something people do after Thanksgiving dinner.
@@ -425,7 +438,7 @@ Watch football 24
 Eat more dessert 12
 Wash the dishes 9
 Go for a walk 6
-Play games 5
+Play board games 5
 Loosen their belt 3
 
 Name something Grandma always says at family gatherings.
@@ -440,10 +453,10 @@ Name a topic you should NOT bring up at Thanksgiving dinner.
 Politics 45
 Religion 15
 Money 11
-Your dating life 9
-Exes 6
-Diets 5
-Old family drama 4
+Your love life 9
+Diets 6
+Old family drama 5
+Work 4
 
 Name something you're thankful for. x2
 Family 42
@@ -464,57 +477,214 @@ Stopped at the store 7
 Got lost 5
 
 Name something people do on Black Friday. x3
-Go shopping 40
-Wait in long lines 18
-Eat leftovers 13
-Fight over deals 10
-Sleep in 8
-Shop online 6
+Go shopping 44
+Eat leftovers 17
+Sleep in 13
+Put up Christmas decorations 10
+Go to work 7
+Watch movies 5
 
 Name something that can go wrong when cooking a turkey. x3
 Burn it 34
 It's undercooked 22
-It's too dry 16
-Forgot to thaw it 12
-Fryer catches fire 8
-Dropped it on the floor 4`;
-
-const SAMPLE_FAST = `Name a type of pie.
-Pumpkin 45
-Apple 28
-Pecan 14
-Sweet potato 6
-Cherry 4
+Forgot to thaw it 16
+Fryer catches fire 12
+Dropped it on the floor 8
+Left the giblets inside 5`,
+fast:`Name a type of pie.
+Pumpkin 38
+Apple 26
+Pecan 12
+Cherry 7
+Sweet potato 5
+Key lime 4
+Blueberry 3
+Chocolate cream 2
 
 Name something you can stuff.
-A turkey 50
-A pillow 15
-A stocking 12
-Your face 10
-Peppers 6
+A turkey 42
+A pillow 12
+A stocking 10
+Your face 9
+Peppers 7
+A teddy bear 5
+An envelope 4
+A suitcase 3
 
 Name something you see at a Thanksgiving parade.
-Giant balloons 48
-Floats 22
-Marching bands 14
+Giant balloons 40
+Floats 20
+Marching bands 13
 Santa Claus 9
-Clowns 4
+Clowns 6
+Crowds 4
+Dancers 3
+Celebrities 2
 
 Name a dish people bring to a potluck.
-Casserole 35
-Salad 20
-Mac and cheese 15
-Cookies 12
+Casserole 30
+Salad 18
+Mac and cheese 13
+Dessert 12
 Chips and dip 8
+Deviled eggs 6
+Meatballs 5
+Chili 3
 
 Name something you'd find in a cornucopia.
-Corn 30
-Apples 22
-Grapes 16
-Squash 14
-Pumpkins 10`;
+Corn 28
+Apples 20
+Grapes 14
+Gourds 13
+Pears 7
+Nuts 5
+Oranges 4
+Wheat 3` },
 
-let cfg = { title:'Thanksgiving Face-Off', team0:'Team Turkey', team1:'Team Pumpkin Pie', roundsText:SAMPLE_ROUNDS, fastText:SAMPLE_FAST };
+{ name:'2026', title:'2026 Face-Off',
+rounds:`Name a popular New Year's resolution.
+Lose weight 34
+Save money 20
+Quit smoking 11
+Read more 9
+Travel more 8
+Less time on my phone 7
+Learn something new 5
+Drink more water 3
+
+Name something that seemed to get more expensive this year.
+Groceries 34
+Gas 18
+Rent 14
+Concert tickets 9
+Eating out 8
+Coffee 7
+Car insurance 5
+Electricity 4
+
+Name something people use AI for.
+Homework 26
+Writing emails 18
+Looking things up 15
+Making pictures 11
+Recipes 9
+Coding 8
+Planning trips 6
+Customer service 4
+
+Name a sport you'd see at the Winter Olympics.
+Skiing 35
+Figure skating 22
+Hockey 15
+Snowboarding 11
+Bobsled 7
+Curling 5
+Luge 3
+
+Name something you'd see at a World Cup soccer game. x2
+Flags 26
+Face paint 18
+Jerseys 15
+Goals 12
+Yellow cards 9
+Noisemakers 7
+The wave 5
+Referees 3
+
+Name a way people celebrated America's 250th birthday. x2
+Fireworks 46
+Parades 18
+Barbecues 13
+Concerts 8
+Waving flags 6
+Air shows 4
+
+Name an app that eats up people's screen time. x3
+TikTok 40
+Instagram 22
+Facebook 14
+YouTube 10
+Snapchat 6
+Reddit 3
+
+Name something you'd put in a 2026 time capsule. x3
+A phone 32
+Photos 20
+A newspaper 13
+A letter 10
+Coins 8
+A toy 6
+A sports jersey 4`,
+fast:`Name a streaming service.
+Netflix 42
+Hulu 14
+Disney+ 12
+Amazon Prime 10
+YouTube 8
+HBO Max 6
+Peacock 4
+Paramount+ 3
+
+Name something you ask a smart speaker or AI to do.
+Play music 34
+Check the weather 20
+Set a timer 14
+Tell a joke 9
+Turn on the lights 8
+Answer a question 6
+Make a shopping list 5
+Call someone 3
+
+Name a famous soccer player.
+Messi 38
+Ronaldo 28
+Neymar 9
+Beckham 7
+Pele 6
+Mbappe 6
+Pulisic 4
+Haaland 2
+
+Name something people do on New Year's Eve.
+Watch the ball drop 30
+Kiss someone 20
+Go to a party 15
+Drink champagne 12
+Set off fireworks 9
+Stay home and sleep 6
+Make resolutions 4
+Go to a concert 2
+
+Name something that's always in your pocket or purse.
+Phone 40
+Keys 22
+Wallet 15
+Lip balm 7
+Gum 6
+Tissues 4
+Sunglasses 3
+Hand sanitizer 2` },
+
+{ name:'Game 3', title:'Family Face-Off',
+rounds:`# GAME 3 is yours to fill in. Lines starting with # are ignored.
+# One round per block, with a blank line between rounds.
+# First line is the question. Add x2 or x3 at the end for double or triple points.
+# Then one answer per line with its points at the end. Up to 8 answers.
+# Example (delete the # signs to use it):
+#
+# Name something Grandpa always falls asleep watching.
+# Golf 40
+# The news 25
+# Football 15
+# Westerns 10`,
+fast:`# Fast Money for Game 3: 5 questions, same format as above.
+# Give each question up to 8 answers so you have plenty to pick from.`}
+];
+
+let cfg = { team0:'Team Turkey', team1:'Team Pumpkin Pie', active:0,
+            games: DEFAULT_GAMES.map(g => ({title:g.title, rounds:g.rounds, fast:g.fast})) };
+const G = i => cfg.games[i == null ? cfg.active : i];
+const playingGame = () => G(game && game.gi != null ? game.gi : cfg.active);
 let game = null;
 let ui = { screen:'setup', winner:null, timer:{left:0, running:false, started:false} };
 let screen = null;
@@ -568,11 +738,12 @@ function parseBlocks(text, maxAns){
 
 /* ---------- game state ---------- */
 const freshRS = r => ({rev:r.answers.map(() => 0), strikes:0, awardedTo:null, awardedAmt:0});
-const freshFM = () => ({p:[0,1].map(() => Array.from({length:5}, () => ({a:'', pts:0, sa:false, sp:false}))), hide0:false, won:false});
-function newGame(){ game = {ri:0, scores:[0,0], rs:[], fm:freshFM()}; syncRounds(); }
+const freshFM = () => ({p:[0,1].map(() => Array.from({length:5}, () => ({a:'', pts:0, sa:false, sp:false}))), hide0:false, order:null, manual:false});
+function newGame(){ game = {gi:cfg.active, ri:0, scores:[0,0], rs:[], fm:freshFM()}; syncRounds(); }
 function syncRounds(){
-  game.rounds = parseBlocks(cfg.roundsText, 8);
-  game.fast = parseBlocks(cfg.fastText, 8).slice(0, 5);
+  if(game.gi == null || !cfg.games[game.gi]) game.gi = cfg.active;
+  game.rounds = parseBlocks(G(game.gi).rounds, 8);
+  game.fast = parseBlocks(G(game.gi).fast, 8).slice(0, 5);
   game.rs = game.rounds.map((r, i) => {
     const old = (game.rs && game.rs[i]) || freshRS(r);
     return Object.assign({}, old, {rev:r.answers.map((_, j) => (old.rev && old.rev[j]) || 0)});
@@ -588,7 +759,10 @@ function bankOf(ri){
   return r.answers.reduce((s, a, i) => s + (st.rev[i] === 1 ? a.pts : 0), 0) * r.mult;
 }
 const roundAmount = () => { const st = curS(); return st.awardedTo == null ? bankOf(game.ri) : st.awardedAmt; };
-const fmTotal = () => game.fm.p.flat().reduce((s, r) => s + (r.sp ? (+r.pts || 0) : 0), 0);
+// Fast Money: column 0 is the team going first, column 1 the team going second.
+const fmTotalOf = p => game.fm.p[p].reduce((s, r) => s + (r.sp ? (+r.pts || 0) : 0), 0);
+const fmOrder = () => (game.fm && game.fm.order) || [0, 1];
+const fmColor = t => t ? 'var(--team1)' : 'var(--team0)';
 
 /* ---------- sound (host tab only; plays through whatever the laptop's audio output is) ---------- */
 const sfx = (() => {
@@ -643,7 +817,7 @@ function animNum(el, to){
 
 function paintTimerEl(el){
   const t = ui.timer || {};
-  el.textContent = t.started ? t.left : 20;
+  el.textContent = t.started ? t.left : 30;
   el.classList.toggle('low', !!t.started && t.left <= 5);
   el.classList.toggle('idle', !t.running);
 }
@@ -698,16 +872,24 @@ function updateWinnerBtns(){
 
 /* --- setup --- */
 function renderSetup(){
-  $('#cfgTitle').value = cfg.title;
+  const g = G();
+  $('#gameTabs').innerHTML = cfg.games.map((x, i) =>
+    `<button class="gtab${i === cfg.active ? ' on' : ''}" data-g="${i}">Game ${i+1}<small>${esc(x.title || '')}</small></button>`).join('');
+  $$('#gameTabs .gtab').forEach(b => b.addEventListener('click', () => { cfg.active = +b.dataset.g; renderSetup(); commit(); }));
+  $('#cfgTitle').value = g.title;
   $('#cfgT0').value = cfg.team0;
   $('#cfgT1').value = cfg.team1;
-  if($('#cfgRounds').value !== cfg.roundsText) $('#cfgRounds').value = cfg.roundsText;
-  if($('#cfgFast').value !== cfg.fastText) $('#cfgFast').value = cfg.fastText;
-  $('#btnResume').hidden = !hasGame();
+  $('#cfgRounds').value = g.rounds;
+  $('#cfgFast').value = g.fast;
+  $('#editingLabel').textContent = `Editing Game ${cfg.active + 1}`;
+  const can = hasGame();
+  $('#btnResume').hidden = !can;
+  if(can) $('#btnResume').textContent = `▶ Resume Game ${game.gi + 1} (${playingGame().title}, round ${game.ri + 1})`;
+  $('#btnStart').textContent = `Start Game ${cfg.active + 1}`;
   updateInfo();
 }
 function updateInfo(){
-  const rounds = parseBlocks(cfg.roundsText, 8), fast = parseBlocks(cfg.fastText, 8);
+  const rounds = parseBlocks(G().rounds, 8), fast = parseBlocks(G().fast, 8);
   const ri = $('#roundsInfo'), fi = $('#fastInfo');
   const bad = rounds.findIndex(r => r.answers.length === 0);
   if(!rounds.length){ ri.textContent = 'No rounds yet'; ri.className = 'info warn'; }
@@ -718,27 +900,33 @@ function updateInfo(){
   $('#btnStart').disabled = !rounds.length;
 }
 function bindSetup(){
-  const bind = (sel, key) => $(sel).addEventListener('input', e => { cfg[key] = e.target.value; updateInfo(); commit(); });
-  bind('#cfgTitle','title'); bind('#cfgT0','team0'); bind('#cfgT1','team1');
-  bind('#cfgRounds','roundsText'); bind('#cfgFast','fastText');
+  $('#cfgT0').addEventListener('input', e => { cfg.team0 = e.target.value; commit(); });
+  $('#cfgT1').addEventListener('input', e => { cfg.team1 = e.target.value; commit(); });
+  $('#cfgTitle').addEventListener('input', e => {
+    G().title = e.target.value; commit();
+    const t = $('#gameTabs .gtab.on small'); if(t) t.textContent = e.target.value;
+  });
+  $('#cfgRounds').addEventListener('input', e => { G().rounds = e.target.value; updateInfo(); commit(); });
+  $('#cfgFast').addEventListener('input', e => { G().fast = e.target.value; updateInfo(); commit(); });
   $('#btnStart').addEventListener('click', () => {
-    if(hasGame() && game.scores.some(s => s) && !confirm('Start a brand new game? Scores will reset to 0.')) return;
+    if(hasGame() && game.scores.some(s => s) && !confirm(`Start Game ${cfg.active + 1}? The current scores reset to 0.`)) return;
     newGame(); ui.winner = null; showHost('board');
   });
   $('#btnResume').addEventListener('click', () => { syncRounds(); showHost('board'); });
   $('#btnTV').addEventListener('click', openTV);
   $('#btnSample').addEventListener('click', () => {
-    if(!confirm('Replace your questions with the sample Thanksgiving questions?')) return;
-    cfg.roundsText = SAMPLE_ROUNDS; cfg.fastText = SAMPLE_FAST; renderSetup(); commit();
+    const d = DEFAULT_GAMES[cfg.active];
+    if(!confirm(`Reset Game ${cfg.active + 1} back to the original ${d.name} questions? Your edits to this game will be lost.`)) return;
+    Object.assign(G(), {title:d.title, rounds:d.rounds, fast:d.fast}); renderSetup(); commit();
   });
   $('#btnPrint').addEventListener('click', printSheet);
 }
 function printSheet(){
-  const rounds = parseBlocks(cfg.roundsText, 8), fast = parseBlocks(cfg.fastText, 8).slice(0, 5);
+  const g = G(), rounds = parseBlocks(g.rounds, 8), fast = parseBlocks(g.fast, 8).slice(0, 5);
   const block = (r, i, label) => `<div class="rd"><div class="rq">${label} ${i+1}${r.mult > 1 ? ` (x${r.mult})` : ''}: ${esc(r.q)}</div><ol>${r.answers.map(a => `<li>${esc(a.text)} (${a.pts})</li>`).join('')}</ol></div>`;
-  $('#hostSheet').innerHTML = `<h1>${esc(cfg.title)} - Host Sheet</h1><div>${esc(cfg.team0)} vs ${esc(cfg.team1)}</div>
+  $('#hostSheet').innerHTML = `<h1>${esc(g.title)} - Host Sheet</h1><div>${esc(cfg.team0)} vs ${esc(cfg.team1)}</div>
     <h2>Main rounds</h2>${rounds.map((r, i) => block(r, i, 'Round')).join('')}
-    <h2>Fast Money (goal: 200)</h2>${fast.map((r, i) => block(r, i, 'Q')).join('')}`;
+    <h2>Fast Money (head-to-head)</h2>${fast.map((r, i) => block(r, i, 'Q')).join('')}`;
   window.print();
 }
 
@@ -816,11 +1004,20 @@ function editScore(t){
 function toggleWinner(force){
   const showIt = force === true ? true : !ui.winner;
   if(!showIt){ ui.winner = null; commit(); updateWinnerBtns(); return; }
-  const [a, b] = game.scores;
-  ui.winner = {
-    title: a === b ? "🦃 It's a tie! 🦃" : `🦃 ${a > b ? cfg.team0 : cfg.team1} wins! 🦃`,
-    sub: `${cfg.team0}: ${a}  ·  ${cfg.team1}: ${b}`
-  };
+  if(screen === 'fast'){
+    // Fast Money is its own head-to-head: whoever scored more in Fast Money wins it.
+    const order = fmOrder(), x = fmTotalOf(0), y = fmTotalOf(1);
+    ui.winner = {
+      title: x === y ? '💰 Fast Money tie! 💰' : `💰 ${teamName(x > y ? order[0] : order[1])} wins Fast Money! 💰`,
+      sub: `${teamName(order[0])}: ${x}  ·  ${teamName(order[1])}: ${y}`
+    };
+  } else {
+    const [a, b] = game.scores;
+    ui.winner = {
+      title: a === b ? "🦃 It's a tie! 🦃" : `🦃 ${a > b ? cfg.team0 : cfg.team1} wins! 🦃`,
+      sub: `${cfg.team0}: ${a}  ·  ${cfg.team1}: ${b}`
+    };
+  }
   commit(); send({type:'fx', fx:'confetti'}); sfx.fanfare(); updateWinnerBtns();
 }
 
@@ -860,9 +1057,24 @@ function updateHostFast(){
     b.className = 'hbtn small fstep ' + (s.sa && s.sp ? 'ghost' : 'gold');
     row.classList.toggle('shown', s.sa);
   });
-  $('#hFmTotal').textContent = fmTotal();
+  const order = fmOrder();
+  [0,1].forEach(p => {
+    const h = $('#hfmName' + p);
+    h.innerHTML = `${esc(teamName(order[p]))}<small>${p ? 'goes 2nd · 40s' : 'goes 1st · 30s'}</small>`;
+    h.style.color = fmColor(order[p]);
+  });
+  $('#hT30').textContent = `Start 30s · ${teamName(order[0])}`;
+  $('#hT40').textContent = `Start 40s · ${teamName(order[1])}`;
+  $('#hFmTotals').innerHTML = [0,1].map(p => `<span style="color:${fmColor(order[p])}">${esc(teamName(order[p]))}</span><b>${fmTotalOf(p)}</b>`).join('');
   $('#hHide0').textContent = game.fm.hide0 ? 'Show on TV again' : 'Hide on TV';
   paintHostTimer(); updateTVChips(); updateWinnerBtns();
+}
+function fmUntouched(){ return game.fm.p.flat().every(s => !s.a && !s.pts && !s.sa && !s.sp); }
+function ensureOrder(){
+  if(!game.fm.order || (fmUntouched() && !game.fm.manual)){
+    const [a, b] = game.scores;
+    game.fm.order = b > a ? [1, 0] : [0, 1];   // team that's ahead goes first (tie: left team, use Swap if needed)
+  }
 }
 function stepRow(p, i){
   const s = game.fm.p[p][i];
@@ -871,13 +1083,6 @@ function stepRow(p, i){
   else { s.sa = s.sp = false; }
   if(p === 0 && game.fm.hide0 && s.sa) game.fm.hide0 = false;
   commit(); updateHostFast();
-  if(!game.fm.won && fmTotal() >= 200){
-    game.fm.won = true;
-    setTimeout(() => {
-      ui.winner = {title:'💰 200+ points! 💰', sub:'Fast Money WINNER!'};
-      commit(); send({type:'fx', fx:'confetti'}); sfx.fanfare(); updateWinnerBtns();
-    }, 900);
-  }
 }
 function startTimer(sec){
   clearInterval(timerId);
@@ -907,19 +1112,25 @@ function paintHostTimer(){
 }
 
 const actions = {
-  setup: () => showHost('setup'), board: () => showHost('board'), fast: () => showHost('fast'),
+  setup: () => showHost('setup'), board: () => showHost('board'),
+  fast: () => { ensureOrder(); showHost('fast'); },
   opentv: () => { if(!tvConnected()) openTV(); },
   mute: () => { const m = sfx.toggle(); $$('.mutebtn').forEach(b => b.textContent = m ? '🔇 Sound off' : '🔊 Sound on'); },
   wrong, buzzonly: buzzOnly, unstrike, revealAll,
   award0: () => award(0), award1: () => award(1),
   edit0: () => editScore(0), edit1: () => editScore(1),
   prev: () => go(-1), next: () => go(1), final: () => toggleWinner(),
-  t20: () => startTimer(20), t25: () => startTimer(25), pause: togglePause,
+  t30: () => startTimer(30), t40: () => startTimer(40), pause: togglePause,
   dup: buzzOnly,
   hide0: () => { game.fm.hide0 = !game.fm.hide0; commit(); updateHostFast(); },
+  swap: () => {
+    const fm = game.fm;
+    fm.order = fmOrder().slice().reverse(); fm.p.reverse(); fm.hide0 = false; fm.manual = true;
+    buildHostFast(); commit();
+  },
   fmReset: () => {
     if(!confirm('Clear all Fast Money answers?')) return;
-    game.fm = freshFM(); clearInterval(timerId); timerId = null;
+    game.fm = freshFM(); ensureOrder(); clearInterval(timerId); timerId = null;
     ui.timer = {left:0, running:false, started:false};
     buildHostFast(); commit();
   }
@@ -949,7 +1160,14 @@ function hostMessage(msg){
 
 function initHost(){
   const d = readStore();
-  if(d){ if(d.cfg) Object.assign(cfg, d.cfg); if(d.game) game = d.game; }
+  if(d){
+    if(d.cfg){
+      if(d.cfg.team0) cfg.team0 = d.cfg.team0;
+      if(d.cfg.team1) cfg.team1 = d.cfg.team1;
+      if(Array.isArray(d.cfg.games) && d.cfg.games.length === 3){ cfg.games = d.cfg.games; cfg.active = d.cfg.active || 0; }
+    }
+    if(d.game && d.game.gi != null) game = d.game;   // ignore games saved by the older single-game version
+  }
   bindSetup();
   $$('[data-act]').forEach(b => b.addEventListener('click', e => {
     e.currentTarget.blur();
@@ -998,7 +1216,7 @@ function applyState(d){
 }
 
 function renderWaiting(){
-  $('#wTitle').textContent = cfg.title;
+  $('#wTitle').textContent = (hasGame() && ui.screen !== 'setup' ? playingGame() : G()).title;
   $('#wTeams').innerHTML = `<span class="a">${esc(cfg.team0)}</span> vs <span class="b">${esc(cfg.team1)}</span>`;
 }
 
@@ -1040,7 +1258,7 @@ function renderTiles(){
 function renderBoard(){
   if(!hasGame()) return;
   const r = curR(), st = curS();
-  $('#bTitle').textContent = cfg.title;
+  $('#bTitle').textContent = playingGame().title;
   $('#bRound').textContent = `Round ${game.ri+1} of ${game.rounds.length}`;
   const m = $('#bMult'); m.hidden = r.mult < 2; m.textContent = r.mult === 3 ? 'Triple points' : 'Double points';
   $('#question').textContent = r.q;
@@ -1078,7 +1296,13 @@ function renderTVFast(){
       pts.textContent = sp ? (+s.pts || 0) : '';
     });
   });
-  $('#fmTotal').textContent = fmTotal();
+  const order = fmOrder();
+  [0,1].forEach(p => {
+    const h = $('#fmName' + p);
+    h.innerHTML = `${esc(teamName(order[p]))}<small>${p ? 'Goes second' : 'Goes first'}</small>`;
+    h.style.color = fmColor(order[p]);
+    $('#fmTot' + p).textContent = (p === 0 && fm.hide0) ? '?' : fmTotalOf(p);
+  });
   paintTimerEl($('#fmTimer'));
 }
 
