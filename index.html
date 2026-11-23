@@ -24,9 +24,9 @@ html{font-size:clamp(10px,min(1.1vw,1.95vh),44px)}
 *{box-sizing:border-box}
 body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% 25%,var(--bg1),var(--bg2) 75%) fixed;background-color:var(--bg2);color:var(--cream);font-family:var(--body);overflow:hidden}
 button{font:inherit;cursor:pointer}
-kbd{font-family:var(--body);font-weight:800;font-size:.8em;background:rgba(255,243,220,.14);border:1px solid rgba(255,243,220,.3);border-bottom-width:2px;border-radius:.3em;padding:0 .4em;margin-left:.35em;color:var(--cream)}
+[hidden]{display:none !important}
+body.host .tvonly, body.tv .hostonly{display:none !important}
 
-/* falling leaves */
 #leaves{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
 #leaves span{position:absolute;top:-10vh;animation:fall linear infinite}
 @keyframes fall{from{transform:translateY(-10vh) rotate(0)}to{transform:translateY(120vh) rotate(540deg)}}
@@ -34,15 +34,16 @@ kbd{font-family:var(--body);font-weight:800;font-size:.8em;background:rgba(255,2
 
 .screen{position:fixed;inset:0;display:none;flex-direction:column;z-index:1}
 .screen.active{display:flex}
+.hscreen{overflow:auto}
 
-/* ---------- SETUP ---------- */
-#setup{overflow:auto}
+/* ================= HOST: SETUP ================= */
 #setup.active{display:block}
 .setup-wrap{max-width:96rem;margin:0 auto;padding:2.5rem 2rem 4rem}
 .setup-head h1{font-family:var(--display);font-weight:400;font-size:3.4rem;margin:0;color:var(--gold);text-shadow:0 .2rem 0 var(--rust)}
 .setup-head p{margin:.4rem 0 1.6rem;font-size:1.05rem;opacity:.85;max-width:60rem;line-height:1.5}
-.setup-grid{display:grid;grid-template-columns:24rem 1fr;gap:1.6rem;align-items:start}
+.setup-grid{display:grid;grid-template-columns:26rem 1fr;gap:1.6rem;align-items:start}
 .card{background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:1rem;padding:1.4rem}
+.card + .card{margin-top:1.2rem}
 .card h2{font-family:var(--display);font-weight:400;font-size:1.5rem;margin:0;color:var(--gold)}
 .card label{display:block;font-weight:800;font-size:.95rem;margin-bottom:1rem}
 .card input{display:block;width:100%;margin-top:.35rem;font:inherit;font-size:1.05rem;padding:.6rem .8rem;border-radius:.5rem;border:1px solid var(--line);background:rgba(255,255,255,.08);color:var(--cream)}
@@ -53,25 +54,89 @@ kbd{font-family:var(--body);font-weight:800;font-size:.8em;background:rgba(255,2
 .btn:hover{background:rgba(255,255,255,.14)}
 .btn.primary{background:linear-gradient(#f5a93b,#d9741c);color:var(--ink);border-color:transparent;font-size:1.2rem;text-align:center}
 .btn.primary:disabled{opacity:.4;cursor:not-allowed}
-.btn[hidden]{display:none}
 .lblrow{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-bottom:.4rem}
 .info{font-weight:800;font-size:.9rem;color:var(--team1)}
 .info.warn{color:#ff8a8a}
 .fmt{font-size:.9rem;opacity:.8;margin:.2rem 0 .7rem;line-height:1.5}
 .fmt code{background:rgba(255,255,255,.1);padding:.05rem .35rem;border-radius:.3rem}
-.keylist{margin-top:1.4rem;font-size:.9rem;line-height:1.9;opacity:.9}
-.keylist h3{font-family:var(--display);font-weight:400;font-size:1.15rem;margin:0 0 .3rem;color:var(--gold)}
-.keylist kbd{margin:0 .3rem 0 0}
+.steps{margin:.6rem 0 0;padding-left:1.3rem;line-height:1.55;font-size:.95rem}
+.steps li{margin-bottom:.45rem}
+.linkbtn{background:none;border:0;color:var(--cream);opacity:.65;text-decoration:underline;font-size:.85rem;padding:0;margin-top:.6rem}
 
-/* ---------- BOARD ---------- */
+/* ================= HOST: PANELS ================= */
+.hbar{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.6rem .4rem;gap:1rem;flex-wrap:wrap}
+.hround{font-family:var(--display);font-size:1.7rem;color:var(--gold);display:flex;align-items:center;gap:.7rem}
+.hbar-right{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap}
+.tvchip{font-weight:800;font-size:.9rem;padding:.45rem .9rem;border-radius:99rem;border:1px solid var(--line);background:rgba(255,255,255,.06);color:var(--cream)}
+.tvchip.on{background:rgba(76,195,176,.18);border-color:var(--team1);color:#9ff0e2;cursor:default}
+.tvchip.off{background:rgba(215,38,61,.2);border-color:var(--cranberry);color:#ffc2ca}
+.hq{font-family:var(--display);font-size:2.1rem;padding:.2rem 1.6rem .9rem;line-height:1.2}
+.hmain{flex:1;display:grid;grid-template-columns:minmax(0,1fr) 22rem;gap:1.2rem;padding:0 1.6rem;min-height:0}
+.hanswers{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(4,minmax(4.6rem,1fr));grid-auto-flow:column;gap:.7rem;max-height:32rem}
+.hans{display:grid;grid-template-columns:2.6rem minmax(0,1fr) auto;align-items:center;column-gap:.9rem;text-align:left;padding:.5rem 1.1rem .5rem .8rem;border-radius:.8rem;border:.15rem dashed rgba(242,181,68,.55);background:rgba(0,0,0,.35);color:var(--cream)}
+.hans:hover{background:rgba(255,255,255,.08)}
+.hn{grid-row:1/3;font-family:var(--display);font-size:1.5rem;background:rgba(242,181,68,.2);border-radius:50%;width:2.6rem;height:2.6rem;display:flex;align-items:center;justify-content:center}
+.ht{grid-column:2;grid-row:1;font-family:var(--display);font-size:1.5rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hs{grid-column:2;grid-row:2;font-size:.75rem;font-weight:800;opacity:.7;text-transform:uppercase;letter-spacing:.08em}
+.hp{grid-column:3;grid-row:1/3;font-family:var(--display);font-size:1.8rem}
+.hans.open{background:linear-gradient(#fff7e6,#f4d48f);color:var(--ink);border:.15rem solid var(--gold)}
+.hans.open .hn{background:var(--rust);color:var(--cream)}
+.hans.empty{visibility:hidden}
+.hside{display:flex;flex-direction:column;gap:.8rem}
+.hcard{background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:.9rem;padding:.8rem 1rem;display:flex;flex-direction:column;gap:.5rem}
+.hlabel{font-size:.78rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;opacity:.75}
+.hbankrow{display:flex;align-items:baseline;justify-content:space-between;gap:.6rem}
+.hbank{font-family:var(--display);font-size:3rem;line-height:1}
+.hnote{font-size:.85rem;font-weight:800;opacity:.8;text-align:right}
+.hstrikes{display:flex;gap:.4rem}
+.hstrikes span{font-family:var(--display);font-size:1.8rem;line-height:1;color:var(--cranberry)}
+.hstrikes span.off{color:rgba(255,255,255,.14)}
+.hrow{display:flex;gap:.5rem}
+.hrow > *{flex:1}
+.hbtn{font-weight:800;font-size:1rem;padding:.7rem 1rem;border-radius:.6rem;border:1px solid var(--line);background:rgba(255,255,255,.08);color:var(--cream)}
+.hbtn:hover{filter:brightness(1.18)}
+.hbtn.big{font-size:1.2rem;padding:.9rem 1rem}
+.hbtn.small{font-size:.85rem;padding:.42rem .7rem}
+.hbtn.red{background:var(--cranberry);border-color:transparent;color:#fff}
+.hbtn.gold{background:linear-gradient(#f5a93b,#d9741c);color:var(--ink);border-color:transparent}
+.hbtn.team0{background:rgba(243,154,46,.18);border:.15rem solid var(--team0)}
+.hbtn.team1{background:rgba(76,195,176,.18);border:.15rem solid var(--team1)}
+.hbtn.done{box-shadow:0 0 0 .2rem var(--gold) inset}
+.hbtn.ghost{background:transparent}
+.hscores{flex-direction:row;justify-content:space-around;text-align:center}
+.hsname{display:block;font-weight:800;font-size:.9rem}
+.hscore[data-team="0"] .hsname{color:var(--team0)}
+.hscore[data-team="1"] .hsname{color:var(--team1)}
+.hsval{display:block;font-family:var(--display);font-size:2.3rem;font-weight:400;line-height:1.1}
+.hlink{background:none;border:0;color:var(--cream);opacity:.55;text-decoration:underline;font-size:.8rem;padding:0}
+.hnav{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;padding:1rem 1.6rem .4rem}
+.hhint{text-align:center;font-size:.8rem;opacity:.5;padding:0 1rem 1rem}
+
+.fmctl{display:flex;align-items:center;gap:.7rem;padding:.2rem 1.6rem 1rem;flex-wrap:wrap}
+.htimer{font-family:var(--display);font-size:2.6rem;min-width:5.5rem;text-align:center;background:#1d0c07;border:.2rem solid var(--gold);border-radius:.8rem;line-height:1.3}
+.htimer.low,.timer.low{color:var(--cranberry);border-color:var(--cranberry)}
+.htotal{margin-left:auto;font-family:var(--display);font-size:1.5rem}
+.htotal b{font-weight:400;font-size:2.4rem;color:var(--gold);margin:0 .3rem}
+.hfm{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;padding:0 1.6rem}
+.hfmhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem;gap:.6rem}
+.hfmhead h3{font-family:var(--display);font-weight:400;font-size:1.5rem;margin:0;color:var(--gold)}
+.hfrow{background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:.8rem;padding:.55rem .8rem;margin-bottom:.55rem}
+.hfrow.shown{border-color:var(--gold)}
+.hfq{font-size:.85rem;font-weight:800;opacity:.75;margin-bottom:.35rem}
+.hfin{display:grid;grid-template-columns:minmax(0,1fr) 4.8rem 8.5rem;gap:.45rem}
+.hfin input{font:inherit;font-size:1.05rem;padding:.45rem .6rem;border-radius:.45rem;border:1px solid var(--line);background:rgba(255,255,255,.08);color:var(--cream);min-width:0}
+.chips{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.45rem}
+.chip{font-size:.78rem;font-weight:800;padding:.18rem .55rem;border-radius:99rem;border:1px solid rgba(242,181,68,.4);background:rgba(242,181,68,.1);color:var(--cream)}
+.chip:hover{background:rgba(242,181,68,.25)}
+.chip.zero{border-color:rgba(215,38,61,.6);background:rgba(215,38,61,.12)}
+
+/* ================= TV: BOARD ================= */
 .top{display:flex;align-items:center;justify-content:space-between;padding:1.2rem 2.2rem .2rem;gap:1rem}
 .brand{font-family:var(--display);font-size:2.1rem;color:var(--gold);letter-spacing:.03em;text-shadow:0 .15rem 0 var(--rust);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .roundpill{display:flex;gap:.6rem;align-items:center;font-family:var(--display);font-size:1.35rem;background:var(--panel);border:1px solid rgba(242,181,68,.35);padding:.35rem 1.1rem;border-radius:99rem;white-space:nowrap}
-.mult{background:var(--cranberry);color:#fff;padding:.1rem .8rem;border-radius:99rem;font-size:1.15rem;animation:pulse 1.6s ease-in-out infinite}
-.mult[hidden]{display:none}
+.mult{background:var(--cranberry);color:#fff;padding:.1rem .8rem;border-radius:99rem;font-size:1.15rem;font-family:var(--display);animation:pulse 1.6s ease-in-out infinite}
 @keyframes pulse{50%{box-shadow:0 0 1.2rem rgba(215,38,61,.9)}}
-
-.stage{flex:1;display:grid;grid-template-columns:14rem minmax(0,1fr) 14rem;gap:1.8rem;padding:0 2.2rem;align-items:center;min-height:0}
+.stage{flex:1;display:grid;grid-template-columns:14rem minmax(0,1fr) 14rem;gap:1.8rem;padding:0 2.2rem 2rem;align-items:center;min-height:0}
 .center{display:flex;flex-direction:column;align-items:center;gap:.9rem;min-width:0}
 .bank{display:flex;flex-direction:column;align-items:center;gap:.3rem}
 .banklabel{font-weight:800;font-size:.95rem;letter-spacing:.2em;text-transform:uppercase;opacity:.8;min-height:1.3rem}
@@ -82,9 +147,7 @@ kbd{font-family:var(--body);font-weight:800;font-size:.8em;background:rgba(255,2
 .question{font-family:var(--display);font-size:2.5rem;text-align:center;line-height:1.15;max-width:62rem;min-height:5.9rem;display:flex;align-items:center;justify-content:center;text-wrap:balance;text-shadow:0 .2rem .6rem rgba(0,0,0,.6)}
 .boardframe{width:100%;max-width:68rem;padding:1rem;border-radius:1.4rem;background:linear-gradient(145deg,#5a2a12,#2c130a);border:.3rem solid var(--gold);box-shadow:0 1.2rem 3rem rgba(0,0,0,.6),inset 0 0 2rem rgba(0,0,0,.5)}
 .grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(4,4.7rem);grid-auto-flow:column;gap:.75rem}
-
-.tile{perspective:60rem;cursor:pointer;min-width:0}
-.tile.empty{cursor:default}
+.tile{perspective:60rem;min-width:0}
 .flip{position:relative;width:100%;height:100%;transition:transform .7s cubic-bezier(.3,1.35,.5,1);transform-style:preserve-3d}
 .tile.open .flip{transform:rotateX(180deg)}
 .tile.noanim .flip{transition:none}
@@ -97,21 +160,13 @@ kbd{font-family:var(--body);font-weight:800;font-size:.8em;background:rgba(255,2
 .ans.xlong{font-size:1.2rem}
 .pts{font-family:var(--display);font-size:2.3rem;background:linear-gradient(#8a2f0e,#5a1d08);color:var(--cream);align-self:stretch;display:flex;align-items:center;justify-content:center;min-width:5.2rem;border-left:.2rem solid var(--gold)}
 .plate{height:100%;border-radius:.6rem;background:rgba(0,0,0,.35);border:.2rem solid rgba(242,181,68,.2)}
-
-.team{--tc:var(--team0);display:flex;flex-direction:column;align-items:center;gap:.5rem;padding:1.4rem .8rem;border-radius:1.2rem;background:var(--panel);border:.22rem solid var(--tc);cursor:pointer;box-shadow:0 0 1.5rem rgba(0,0,0,.4)}
+.team{--tc:var(--team0);display:flex;flex-direction:column;align-items:center;gap:.5rem;padding:1.4rem .8rem;border-radius:1.2rem;background:var(--panel);border:.22rem solid var(--tc);box-shadow:0 0 1.5rem rgba(0,0,0,.4)}
 #t1{--tc:var(--team1)}
 .tname{font-family:var(--display);font-size:1.55rem;color:var(--tc);text-align:center;line-height:1.1;overflow-wrap:anywhere}
 .tscore{font-family:var(--display);font-size:4.6rem;line-height:1}
 .team.flash{animation:flash 1.2s ease-out}
 @keyframes flash{0%{transform:scale(1)}20%{transform:scale(1.12);box-shadow:0 0 3.5rem var(--tc)}100%{transform:scale(1)}}
 
-.controls{display:flex;flex-wrap:wrap;gap:.45rem;justify-content:center;padding:.6rem 1rem 1rem}
-.controls button{font-weight:800;font-size:.82rem;padding:.42rem .75rem;border-radius:.5rem;border:1px solid var(--line);background:rgba(255,255,255,.07);color:var(--cream)}
-.controls button:hover{background:rgba(255,255,255,.16)}
-.controls .sep{width:1px;background:var(--line);margin:0 .3rem}
-body.nocontrols .controls{visibility:hidden}
-
-/* strike overlay */
 #xOverlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;gap:2.5rem;pointer-events:none;z-index:50;opacity:0;transition:opacity .25s;background:rgba(0,0,0,.35)}
 #xOverlay.show{opacity:1}
 #xOverlay span{font-family:var(--display);font-size:19rem;line-height:1;color:var(--cranberry);-webkit-text-stroke:.45rem #fff;text-shadow:0 0 3rem rgba(215,38,61,.85);animation:xpop .4s cubic-bezier(.3,1.7,.5,1) both}
@@ -119,16 +174,15 @@ body.nocontrols .controls{visibility:hidden}
 #xOverlay span:nth-child(3){animation-delay:.16s}
 @keyframes xpop{from{transform:scale(.2) rotate(-20deg);opacity:0}to{transform:scale(1) rotate(0);opacity:1}}
 
-/* ---------- FAST MONEY ---------- */
+/* ================= TV: FAST MONEY ================= */
 .fmtop{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:1.2rem 2.2rem .2rem}
 .timer{font-family:var(--display);font-size:3.6rem;min-width:8rem;text-align:center;background:linear-gradient(#3b1a10,#1d0c07);border:.25rem solid var(--gold);border-radius:1rem;padding:0 1.4rem;line-height:1.25}
-.timer.low{color:var(--cranberry);border-color:var(--cranberry)}
-.timer.idle{opacity:.45}
+.timer.idle,.htimer.idle{opacity:.5}
 .goal{justify-self:end;font-family:var(--display);font-size:1.5rem;opacity:.85}
-.fmboard{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:2.4rem;padding:1rem 3rem;max-width:84rem;margin:0 auto;width:100%;align-content:center}
+.fmboard{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:2.4rem;padding:1rem 3rem 2.5rem;max-width:84rem;margin:0 auto;width:100%;align-content:center}
 .fmcol h3{font-family:var(--display);font-weight:400;font-size:1.6rem;margin:0 0 .7rem;text-align:center;color:var(--gold)}
-.fmrow{display:grid;grid-template-columns:minmax(0,1fr) 6.2rem;gap:.55rem;margin-bottom:.7rem;height:4.4rem;cursor:pointer}
-.fmans,.fmpts{border-radius:.6rem;display:flex;align-items:center;font-family:var(--display);font-size:2rem;background:linear-gradient(#7a2d0c,#4a1a07);border:.2rem solid var(--gold-dk);padding:0 1rem;color:var(--cream);text-transform:uppercase;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;min-width:0}
+.fmrow{display:grid;grid-template-columns:minmax(0,1fr) 6.2rem;gap:.55rem;margin-bottom:.7rem;height:4.4rem}
+.fmans,.fmpts{border-radius:.6rem;display:flex;align-items:center;font-family:var(--display);font-size:2rem;background:linear-gradient(#7a2d0c,#4a1a07);border:.2rem solid var(--gold-dk);padding:0 1rem;color:var(--cream);text-transform:uppercase;overflow:hidden;white-space:nowrap;min-width:0}
 .fmans span{overflow:hidden;text-overflow:ellipsis}
 .fmpts{justify-content:center;padding:0}
 .fmans.on{background:linear-gradient(#fff7e6,#f4d48f);color:var(--ink);border-color:var(--gold);animation:pop .35s ease-out}
@@ -138,33 +192,30 @@ body.nocontrols .controls{visibility:hidden}
 .fmtotal{font-family:var(--display);font-size:3rem;text-align:center;margin-top:.4rem;grid-column:1/-1}
 .fmtotal b{font-weight:400;display:inline-block;min-width:7rem;background:linear-gradient(#3b1a10,#1d0c07);border:.25rem solid var(--gold);border-radius:1rem;padding:0 1.2rem;margin-left:.8rem}
 
-/* ---------- OVERLAYS ---------- */
-.modal{position:fixed;inset:0;background:rgba(10,4,12,.9);display:none;align-items:center;justify-content:center;z-index:60;padding:2rem}
-.modal.open{display:flex}
-.modalbox{background:#24121f;border:.2rem solid var(--gold);border-radius:1.2rem;padding:1.8rem 2rem;max-width:56rem;width:100%;max-height:92vh;overflow:auto;box-shadow:0 2rem 5rem rgba(0,0,0,.7)}
-.modalbox h2{font-family:var(--display);font-weight:400;font-size:2rem;margin:0 0 .4rem;color:var(--gold)}
-.modalbox p{margin:.2rem 0 1rem;opacity:.85;line-height:1.5}
-.erow{display:grid;grid-template-columns:minmax(0,1fr) 7rem;gap:.6rem;margin-bottom:.9rem}
-.erow .q{grid-column:1/-1;font-weight:800;font-size:.9rem;opacity:.75;margin-bottom:-.3rem}
-.erow input{font:inherit;font-size:1.15rem;padding:.55rem .8rem;border-radius:.5rem;border:1px solid var(--line);background:rgba(255,255,255,.08);color:var(--cream);min-width:0}
-.mbtns{display:flex;gap:.7rem;justify-content:flex-end;margin-top:1rem}
-.mbtns .btn{text-align:center}
-.helpgrid{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem}
-.helpgrid h3{font-family:var(--display);font-weight:400;color:var(--gold);margin:0 0 .5rem;font-size:1.3rem}
-.helpgrid div{line-height:2;font-size:1rem}
-.helpgrid kbd{margin:0 .4rem 0 0}
+/* ================= TV: WAITING + OVERLAYS ================= */
+#waiting{align-items:center;justify-content:center;text-align:center;gap:1rem}
+.wemoji{font-size:9rem;line-height:1;animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-1rem) rotate(-4deg)}}
+.wtitle{font-family:var(--display);font-size:6rem;color:var(--gold);text-shadow:0 .35rem 0 var(--rust);line-height:1.05;padding:0 2rem}
+.wteams{font-family:var(--display);font-size:2.4rem}
+.wteams .a{color:var(--team0)} .wteams .b{color:var(--team1)}
+.wsub{font-size:1.4rem;opacity:.7;font-weight:800}
 
-#winner{flex-direction:column;text-align:center;gap:1rem;cursor:pointer}
+#winner{position:fixed;inset:0;background:rgba(10,4,12,.88);display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:1rem;z-index:60;padding:2rem}
+#winner.open{display:flex}
 #winner .big{font-family:var(--display);font-size:6rem;line-height:1.05;color:var(--gold);text-shadow:0 .35rem 0 var(--rust),0 0 3rem rgba(242,181,68,.5);animation:xpop .6s cubic-bezier(.3,1.6,.5,1) both}
 #winner .sub{font-family:var(--display);font-size:2.4rem}
-#winner .small{opacity:.6;font-size:1rem}
 .confetti{position:fixed;top:-5vh;width:.9rem;height:1.4rem;z-index:70;pointer-events:none;animation:conf linear forwards;border-radius:.15rem}
 @keyframes conf{to{transform:translateY(115vh) rotate(900deg)}}
+
+#fsChip{position:fixed;bottom:1.2rem;left:50%;transform:translateX(-50%);z-index:90;background:rgba(0,0,0,.8);border:1px solid var(--gold);padding:.6rem 1.3rem;border-radius:99rem;font-weight:800;font-size:1rem;white-space:nowrap}
+body.fs #fsChip{display:none}
+body.tv.fs{cursor:none}
 
 #hostSheet{display:none}
 @media print{
   body{background:#fff !important;color:#000;overflow:visible}
-  .screen,.modal,#leaves,#xOverlay{display:none !important}
+  .screen,#leaves,#xOverlay,#winner,#fsChip{display:none !important}
   #hostSheet{display:block;font-family:Georgia,serif;font-size:11pt;color:#000}
   #hostSheet h1{font-size:18pt;margin:0 0 4pt}
   #hostSheet h2{font-size:13pt;margin:14pt 0 4pt;border-bottom:1px solid #999}
@@ -173,45 +224,46 @@ body.nocontrols .controls{visibility:hidden}
   #hostSheet ol{margin:0;padding-left:20pt;columns:2}
 }
 
-@media (max-width:760px){
+@media (max-width:860px){
   html{font-size:9px}
-  body{overflow:auto}
-  .stage{grid-template-columns:1fr 1fr;padding:0 1rem}
-  .center{grid-column:1/-1;order:-1}
-  .setup-grid,.helpgrid{grid-template-columns:1fr}
-  .fmboard{grid-template-columns:1fr;padding:1rem}
+  .setup-grid,.hmain,.hfm{grid-template-columns:1fr}
+  .hanswers{max-height:none}
 }
 </style>
 </head>
 <body>
 <div id="leaves" aria-hidden="true"></div>
 
-<!-- ================= SETUP ================= -->
-<section id="setup" class="screen active">
+<!-- ======================= HOST (laptop) ======================= -->
+<section id="setup" class="screen hscreen hostonly">
   <div class="setup-wrap">
     <div class="setup-head">
       <h1>🦃 Thanksgiving Face-Off</h1>
-      <p>Set things up here before the family is watching (this screen shows all the answers). Then plug into the TV, hit <b>Start</b>, and press <kbd>F</kbd> for fullscreen. Everything saves automatically in this browser, so a refresh won't wipe the scores.</p>
+      <p>This tab is your <b>host screen</b> and stays on the laptop. It shows every answer. The TV gets its own tab that only shows answers after you reveal them. Everything saves automatically, so a refresh won't wipe the scores.</p>
     </div>
     <div class="setup-grid">
-      <div class="card">
-        <label>Game title <input id="cfgTitle" maxlength="40"></label>
-        <label>Left team name <input id="cfgT0" maxlength="28"></label>
-        <label>Right team name <input id="cfgT1" maxlength="28"></label>
-        <div class="btns">
-          <button class="btn primary" id="btnStart">Start new game</button>
-          <button class="btn" id="btnResume" hidden>▶ Resume current game</button>
-          <button class="btn" id="btnPrint">🖨 Print host answer sheet</button>
-          <button class="btn" id="btnSample">↺ Restore sample questions</button>
+      <div>
+        <div class="card">
+          <label>Game title <input id="cfgTitle" maxlength="40"></label>
+          <label>Left team name <input id="cfgT0" maxlength="28"></label>
+          <label>Right team name <input id="cfgT1" maxlength="28"></label>
+          <div class="btns">
+            <button class="btn primary" id="btnStart">Start new game</button>
+            <button class="btn" id="btnResume" hidden>▶ Resume current game</button>
+            <button class="btn" id="btnTV">📺 Open TV screen</button>
+            <button class="btn" id="btnPrint">🖨 Print answer sheet (backup)</button>
+            <button class="btn" id="btnSample">↺ Restore sample questions</button>
+          </div>
         </div>
-        <div class="keylist">
-          <h3>Main keys</h3>
-          <kbd>1</kbd>–<kbd>8</kbd> reveal an answer<br>
-          <kbd>X</kbd> strike &nbsp; <kbd>Z</kbd> undo strike<br>
-          <kbd>B</kbd> buzzer only (face-offs)<br>
-          <kbd>Q</kbd> points to left team<br>
-          <kbd>P</kbd> points to right team<br>
-          <kbd>N</kbd> next round &nbsp; <kbd>?</kbd> all keys
+        <div class="card">
+          <h2>TV setup</h2>
+          <ol class="steps">
+            <li>Plug in the TV and set the display to <b>Extend</b>, not mirror. (Windows: <b>Win + P</b> → Extend. Mac: System Settings → Displays → set the TV as an extended display.)</li>
+            <li>Click <b>📺 Open TV screen</b>. Drag that new tab out of this window and onto the TV.</li>
+            <li>Click once anywhere on the TV screen to make it fullscreen.</li>
+            <li>Come back to this tab on the laptop and run the game from here.</li>
+          </ol>
+          <p class="fmt" style="margin-top:.8rem">Button didn't open a tab? Open this same file in a new tab yourself and add <code>#tv</code> to the end of the address.</p>
         </div>
       </div>
       <div class="card">
@@ -219,21 +271,102 @@ body.nocontrols .controls{visibility:hidden}
         <p class="fmt">One round per block, with a blank line between rounds. First line is the question. Add <code>x2</code> or <code>x3</code> at the end of the question for double or triple points. Then one answer per line with its points at the end, like <code>Turkey 36</code>. Up to 8 answers, auto-sorted by points. The sample points are made up, so tweak away.</p>
         <textarea id="cfgRounds" spellcheck="false"></textarea>
         <div class="lblrow" style="margin-top:1.4rem"><h2>Fast Money</h2><span class="info" id="fastInfo"></span></div>
-        <p class="fmt">Same format, 5 questions. These only show on your host sheet and the answer entry screen, not on the TV board.</p>
+        <p class="fmt">Same format, 5 questions. The survey answers show up as quick-pick buttons on your host screen during Fast Money.</p>
         <textarea id="cfgFast" class="short" spellcheck="false"></textarea>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================= MAIN BOARD ================= -->
-<section id="board" class="screen">
+<section id="hostBoard" class="screen hscreen hostonly">
+  <header class="hbar">
+    <div class="hround"><span id="hRound"></span><span id="hMult" class="mult" hidden></span></div>
+    <div class="hbar-right">
+      <button class="tvchip" data-act="opentv"></button>
+      <button class="hbtn ghost small mutebtn" data-act="mute">🔊 Sound on</button>
+      <button class="hbtn ghost small" data-act="setup">⚙ Setup</button>
+    </div>
+  </header>
+  <div class="hq" id="hQuestion"></div>
+  <div class="hmain">
+    <div class="hanswers" id="hAnswers"></div>
+    <aside class="hside">
+      <div class="hcard">
+        <div class="hlabel">Round points</div>
+        <div class="hbankrow"><div class="hbank" id="hBank">0</div><div class="hnote" id="hNote"></div></div>
+      </div>
+      <div class="hcard">
+        <div class="hbankrow"><div class="hlabel">Strikes</div><div class="hstrikes" id="hStrikes"></div></div>
+        <button class="hbtn red big" data-act="wrong">✕ Wrong answer</button>
+        <div class="hrow">
+          <button class="hbtn small" data-act="buzzonly" title="Shows one X without counting a strike. Use for face-off misses.">Face-off miss</button>
+          <button class="hbtn small ghost" data-act="unstrike">Undo strike</button>
+        </div>
+      </div>
+      <div class="hcard">
+        <div class="hlabel">Give round points to</div>
+        <button class="hbtn team0 big" data-act="award0" id="hAw0"></button>
+        <button class="hbtn team1 big" data-act="award1" id="hAw1"></button>
+      </div>
+      <div class="hcard hscores">
+        <div class="hscore" data-team="0"><span class="hsname"></span><b class="hsval">0</b><button class="hlink" data-act="edit0">edit</button></div>
+        <div class="hscore" data-team="1"><span class="hsname"></span><b class="hsval">0</b><button class="hlink" data-act="edit1">edit</button></div>
+      </div>
+    </aside>
+  </div>
+  <footer class="hnav">
+    <button class="hbtn" data-act="prev">◀ Previous round</button>
+    <button class="hbtn" data-act="revealAll">Show the rest</button>
+    <button class="hbtn gold big" data-act="next" id="hNext">Next round ▶</button>
+    <button class="hbtn" data-act="fast">💰 Fast Money</button>
+    <button class="hbtn winbtn" data-act="final">🏆 Show winner</button>
+  </footer>
+  <div class="hhint">Click an answer to reveal it on the TV (click again to hide). Optional keys: 1–8 reveal · X wrong · Q / P give points · N next</div>
+</section>
+
+<section id="hostFast" class="screen hscreen hostonly">
+  <header class="hbar">
+    <div class="hround">💰 Fast Money</div>
+    <div class="hbar-right">
+      <button class="tvchip" data-act="opentv"></button>
+      <button class="hbtn ghost small mutebtn" data-act="mute">🔊 Sound on</button>
+      <button class="hbtn ghost small" data-act="board">◀ Back to main board</button>
+    </div>
+  </header>
+  <div class="fmctl">
+    <div class="htimer idle" id="hTimer">20</div>
+    <button class="hbtn gold" data-act="t20">Start 20s</button>
+    <button class="hbtn gold" data-act="t25">Start 25s</button>
+    <button class="hbtn" data-act="pause" id="hPause">Pause</button>
+    <button class="hbtn red" data-act="dup">Buzzer (repeat answer)</button>
+    <div class="htotal">Total<b id="hFmTotal">0</b>/ 200</div>
+  </div>
+  <div class="hfm">
+    <div><div class="hfmhead"><h3>Player 1</h3><button class="hbtn ghost small" data-act="hide0" id="hHide0">Hide on TV</button></div><div id="hfm0"></div></div>
+    <div><div class="hfmhead"><h3>Player 2</h3></div><div id="hfm1"></div></div>
+  </div>
+  <footer class="hnav">
+    <button class="hbtn ghost" data-act="fmReset">Clear Fast Money</button>
+    <button class="hbtn winbtn" data-act="final">🏆 Show winner</button>
+  </footer>
+  <div class="hhint">Type what they said, click the matching survey answer to fill in points, then click Show answer → Show points.</div>
+</section>
+
+<!-- ======================= TV ======================= -->
+<section id="waiting" class="screen tvonly">
+  <div class="wemoji">🦃</div>
+  <div class="wtitle" id="wTitle"></div>
+  <div class="wteams" id="wTeams"></div>
+  <div class="wsub">Game starting soon...</div>
+</section>
+
+<section id="board" class="screen tvonly">
   <header class="top">
     <div class="brand" id="bTitle"></div>
     <div class="roundpill"><span id="bRound"></span><span id="bMult" class="mult" hidden></span></div>
   </header>
   <div class="stage">
-    <div class="team" id="t0" title="Click to edit score"><div class="tname"></div><div class="tscore">0</div></div>
+    <div class="team" id="t0"><div class="tname"></div><div class="tscore">0</div></div>
     <main class="center">
       <div class="bank">
         <div class="banklabel" id="bankLabel">Points</div>
@@ -243,32 +376,11 @@ body.nocontrols .controls{visibility:hidden}
       <div class="question" id="question"></div>
       <div class="boardframe"><div class="grid" id="grid"></div></div>
     </main>
-    <div class="team" id="t1" title="Click to edit score"><div class="tname"></div><div class="tscore">0</div></div>
+    <div class="team" id="t1"><div class="tname"></div><div class="tscore">0</div></div>
   </div>
-  <nav class="controls">
-    <button data-act="strike">✕ Strike<kbd>X</kbd></button>
-    <button data-act="unstrike">Undo strike<kbd>Z</kbd></button>
-    <button data-act="buzz">Buzzer<kbd>B</kbd></button>
-    <span class="sep"></span>
-    <button data-act="award0" id="aw0">◀ Points to left<kbd>Q</kbd></button>
-    <button data-act="award1" id="aw1">Points to right ▶<kbd>P</kbd></button>
-    <button data-act="revealAll">Reveal rest<kbd>R</kbd></button>
-    <span class="sep"></span>
-    <button data-act="prev">◀ Prev<kbd>←</kbd></button>
-    <button data-act="next">Next round ▶<kbd>N</kbd></button>
-    <button data-act="fast">Fast Money<kbd>G</kbd></button>
-    <button data-act="final">Final scores<kbd>W</kbd></button>
-    <span class="sep"></span>
-    <button data-act="full">Fullscreen<kbd>F</kbd></button>
-    <button data-act="mute" class="mutebtn">Sound on<kbd>M</kbd></button>
-    <button data-act="hidebar">Hide bar<kbd>H</kbd></button>
-    <button data-act="help">Keys<kbd>?</kbd></button>
-    <button data-act="setup">Setup<kbd>S</kbd></button>
-  </nav>
 </section>
 
-<!-- ================= FAST MONEY ================= -->
-<section id="fast" class="screen">
+<section id="fast" class="screen tvonly">
   <header class="fmtop">
     <div class="brand">💰 Fast Money</div>
     <div class="timer idle" id="fmTimer">20</div>
@@ -279,84 +391,23 @@ body.nocontrols .controls{visibility:hidden}
     <div class="fmcol"><h3>Player 2</h3><div id="fmc1"></div></div>
     <div class="fmtotal">TOTAL<b id="fmTotal">0</b></div>
   </div>
-  <nav class="controls">
-    <button data-act="enter0">Type P1 answers<kbd>E</kbd></button>
-    <button data-act="enter1">Type P2 answers<kbd>R</kbd></button>
-    <button data-act="hide0" id="hide0btn">Hide P1 answers<kbd>V</kbd></button>
-    <span class="sep"></span>
-    <button data-act="t20">20s timer<kbd>T</kbd></button>
-    <button data-act="t25">25s timer<kbd>Y</kbd></button>
-    <button data-act="pause">Pause / resume<kbd>Space</kbd></button>
-    <button data-act="buzz">Buzzer<kbd>X</kbd></button>
-    <span class="sep"></span>
-    <button data-act="fmReset">Clear Fast Money</button>
-    <button data-act="board">Back to board<kbd>G</kbd></button>
-    <button data-act="full">Fullscreen<kbd>F</kbd></button>
-    <button data-act="mute" class="mutebtn">Sound on<kbd>M</kbd></button>
-    <button data-act="hidebar">Hide bar<kbd>H</kbd></button>
-    <button data-act="help">Keys<kbd>?</kbd></button>
-  </nav>
 </section>
 
-<!-- ================= OVERLAYS ================= -->
-<div id="xOverlay" aria-hidden="true"></div>
-
-<div class="modal" id="entry">
-  <div class="modalbox">
-    <h2 id="entryTitle">Player 1 answers</h2>
-    <p>Type what they said and the points from your host sheet (0 if it's not on the board). Nothing shows on the board until you click a row or press its number key.</p>
-    <div id="entryRows"></div>
-    <div class="mbtns">
-      <button class="btn" id="entryCancel">Cancel</button>
-      <button class="btn primary" id="entrySave">Save answers</button>
-    </div>
-  </div>
-</div>
-
-<div class="modal" id="help">
-  <div class="modalbox">
-    <h2>Host keys</h2>
-    <div class="helpgrid">
-      <div>
-        <h3>Main board</h3>
-        <kbd>1</kbd>–<kbd>8</kbd> reveal answer (or click the tile)<br>
-        <kbd>Shift</kbd>+<kbd>1</kbd>–<kbd>8</kbd> hide it again<br>
-        <kbd>X</kbd> add a strike &nbsp; <kbd>Z</kbd> remove one<br>
-        <kbd>B</kbd> buzzer + single X (face-off miss, failed steal)<br>
-        <kbd>Q</kbd> give round points to left team<br>
-        <kbd>P</kbd> give round points to right team<br>
-        <kbd>R</kbd> reveal the rest (no points added)<br>
-        <kbd>N</kbd> or <kbd>→</kbd> next round &nbsp; <kbd>←</kbd> previous<br>
-        <kbd>W</kbd> final scores / winner<br>
-        Click a team's score to fix it by hand
-      </div>
-      <div>
-        <h3>Fast Money</h3>
-        <kbd>G</kbd> switch between board and Fast Money<br>
-        <kbd>E</kbd> / <kbd>R</kbd> type Player 1 / Player 2 answers<br>
-        <kbd>1</kbd>–<kbd>5</kbd> Player 1 rows: press once for the answer, again for points<br>
-        <kbd>6</kbd>–<kbd>0</kbd> Player 2 rows, same idea<br>
-        <kbd>V</kbd> hide / show Player 1's answers<br>
-        <kbd>T</kbd> 20s timer &nbsp; <kbd>Y</kbd> 25s timer &nbsp; <kbd>Space</kbd> pause<br>
-        <kbd>X</kbd> buzzer (duplicate answer)
-        <h3 style="margin-top:1rem">Anywhere</h3>
-        <kbd>F</kbd> fullscreen &nbsp; <kbd>M</kbd> mute &nbsp; <kbd>H</kbd> hide buttons<br>
-        <kbd>S</kbd> back to setup &nbsp; <kbd>Esc</kbd> close popups
-      </div>
-    </div>
-    <div class="mbtns"><button class="btn primary" id="helpClose">Got it</button></div>
-  </div>
-</div>
-
-<div class="modal" id="winner"></div>
-
+<div id="xOverlay" class="tvonly" aria-hidden="true"></div>
+<div id="winner" class="tvonly"></div>
+<div id="fsChip" class="tvonly">🖱 Click anywhere on this screen to go fullscreen</div>
 <div id="hostSheet"></div>
 
 <script>
 (() => {
 'use strict';
 
+const MODE = location.hash.toLowerCase() === '#tv' ? 'tv' : 'host';
+document.body.classList.add(MODE);
+if(MODE === 'tv') document.title = 'TV · Thanksgiving Face-Off';
+
 const KEY = 'thanksgivingFaceOff.v1';
+const MSG = 'thanksgivingFaceOff.msg';
 
 const SAMPLE_ROUNDS = `Name a food you'd find on the Thanksgiving table.
 Turkey 36
@@ -465,25 +516,42 @@ Pumpkins 10`;
 
 let cfg = { title:'Thanksgiving Face-Off', team0:'Team Turkey', team1:'Team Pumpkin Pie', roundsText:SAMPLE_ROUNDS, fastText:SAMPLE_FAST };
 let game = null;
-let screen = 'setup';
+let ui = { screen:'setup', winner:null, timer:{left:0, running:false, started:false} };
+let screen = null;
 
 const $ = s => document.querySelector(s);
 const $$ = s => Array.from(document.querySelectorAll(s));
 const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const teamName = t => t ? cfg.team1 : cfg.team0;
 
-/* ---------- storage ---------- */
-function load(){
-  try{
-    const raw = localStorage.getItem(KEY);
-    if(raw){ const d = JSON.parse(raw); if(d && d.cfg) Object.assign(cfg, d.cfg); if(d && d.game) game = d.game; }
-  }catch(e){}
+/* ---------- storage + tab-to-tab messaging ---------- */
+function readStore(){ try{ const raw = localStorage.getItem(KEY); return raw ? JSON.parse(raw) : null; }catch(e){ return null; } }
+function persist(){ try{ localStorage.setItem(KEY, JSON.stringify({cfg, game, ui})); }catch(e){} }
+
+const chan = (() => { try{ return new BroadcastChannel('thanksgivingFaceOff'); }catch(e){ return null; } })();
+const seen = [];
+function send(msg){
+  msg.id = Date.now().toString(36) + Math.random().toString(36).slice(2);
+  msg.from = MODE;
+  try{ if(chan) chan.postMessage(msg); }catch(e){}
+  try{ localStorage.setItem(MSG, JSON.stringify(msg)); }catch(e){}
 }
-function save(){ try{ localStorage.setItem(KEY, JSON.stringify({cfg, game})); }catch(e){} }
+function receive(msg){
+  if(!msg || msg.from === MODE || seen.includes(msg.id)) return;
+  seen.push(msg.id); if(seen.length > 200) seen.shift();
+  MODE === 'host' ? hostMessage(msg) : tvMessage(msg);
+}
+if(chan) chan.onmessage = e => receive(e.data);
+window.addEventListener('storage', e => {
+  if(e.key === MSG && e.newValue){ try{ receive(JSON.parse(e.newValue)); }catch(_){} }
+  else if(e.key === KEY && MODE === 'tv'){ applyState(readStore()); }
+});
+function commit(){ if(MODE !== 'host') return; persist(); send({type:'state', data:{cfg, game, ui}}); }
 
 /* ---------- parsing ---------- */
 function parseBlocks(text, maxAns){
   const out = [];
-  for(const block of String(text||'').replace(/\r/g,'').split(/\n\s*\n/)){
+  for(const block of String(text || '').replace(/\r/g, '').split(/\n\s*\n/)){
     const lines = block.split('\n').map(s => s.trim()).filter(s => s && !s.startsWith('#'));
     if(!lines.length) continue;
     let q = lines[0], mult = 1;
@@ -492,7 +560,7 @@ function parseBlocks(text, maxAns){
     const answers = lines.slice(1).map(l => {
       const mm = l.match(/^(.*\S)[\s,:;|=\-–—]+(\d{1,3})$/);
       return mm ? {text:mm[1].trim(), pts:+mm[2]} : {text:l, pts:0};
-    }).sort((a,b) => b.pts - a.pts).slice(0, maxAns);
+    }).sort((a, b) => b.pts - a.pts).slice(0, maxAns);
     out.push({q, mult, answers});
   }
   return out;
@@ -501,12 +569,7 @@ function parseBlocks(text, maxAns){
 /* ---------- game state ---------- */
 const freshRS = r => ({rev:r.answers.map(() => 0), strikes:0, awardedTo:null, awardedAmt:0});
 const freshFM = () => ({p:[0,1].map(() => Array.from({length:5}, () => ({a:'', pts:0, sa:false, sp:false}))), hide0:false, won:false});
-
-function newGame(){
-  game = {ri:0, scores:[0,0], rs:[], fm:freshFM()};
-  syncRounds();
-  save();
-}
+function newGame(){ game = {ri:0, scores:[0,0], rs:[], fm:freshFM()}; syncRounds(); }
 function syncRounds(){
   game.rounds = parseBlocks(cfg.roundsText, 8);
   game.fast = parseBlocks(cfg.fastText, 8).slice(0, 5);
@@ -517,33 +580,34 @@ function syncRounds(){
   if(game.ri >= game.rounds.length) game.ri = Math.max(0, game.rounds.length - 1);
   if(!game.fm) game.fm = freshFM();
 }
+const hasGame = () => !!(game && game.rounds && game.rounds.length);
 const curR = () => game.rounds[game.ri];
 const curS = () => game.rs[game.ri];
 function bankOf(ri){
   const r = game.rounds[ri], st = game.rs[ri];
   return r.answers.reduce((s, a, i) => s + (st.rev[i] === 1 ? a.pts : 0), 0) * r.mult;
 }
+const roundAmount = () => { const st = curS(); return st.awardedTo == null ? bankOf(game.ri) : st.awardedAmt; };
+const fmTotal = () => game.fm.p.flat().reduce((s, r) => s + (r.sp ? (+r.pts || 0) : 0), 0);
 
-/* ---------- sound (synthesized, works offline) ---------- */
+/* ---------- sound (host tab only; plays through whatever the laptop's audio output is) ---------- */
 const sfx = (() => {
   let ctx = null, muted = false;
   function ac(){
+    if(MODE !== 'host') return null;
     if(!ctx){ const C = window.AudioContext || window.webkitAudioContext; if(!C) return null; ctx = new C(); }
     if(ctx.state === 'suspended') ctx.resume();
     return ctx;
   }
-  function tone(freq, start, dur, type, vol, endFreq){
-    const c = ac(); if(!c || muted) return;
-    const t = c.currentTime + start;
-    const o = c.createOscillator(), g = c.createGain();
-    o.type = type || 'sine';
-    o.frequency.setValueAtTime(freq, t);
-    if(endFreq) o.frequency.exponentialRampToValueAtTime(endFreq, t + dur);
+  function tone(freq, start, dur, type, vol){
+    if(muted) return;
+    const c = ac(); if(!c) return;
+    const t = c.currentTime + start, o = c.createOscillator(), g = c.createGain();
+    o.type = type || 'sine'; o.frequency.setValueAtTime(freq, t);
     g.gain.setValueAtTime(0.0001, t);
     g.gain.exponentialRampToValueAtTime(vol || .2, t + .012);
     g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
-    o.connect(g); g.connect(c.destination);
-    o.start(t); o.stop(t + dur + .05);
+    o.connect(g); g.connect(c.destination); o.start(t); o.stop(t + dur + .05);
   }
   return {
     unlock(){ ac(); },
@@ -551,202 +615,39 @@ const sfx = (() => {
     soft(){ tone(784,0,.35,'sine',.08); },
     buzz(){ tone(92,0,.95,'sawtooth',.22); tone(97,0,.95,'square',.12); tone(184,0,.95,'sawtooth',.06); },
     tick(){ tone(1250,0,.07,'square',.06); },
-    award(){ [523.25,659.25,783.99,1046.5].forEach((f,i) => tone(f, i*.09, .3, 'triangle', .2)); tone(1318.5,.36,.7,'triangle',.18); },
+    award(){ [523.25,659.25,783.99,1046.5].forEach((f, i) => tone(f, i*.09, .3, 'triangle', .2)); tone(1318.5,.36,.7,'triangle',.18); },
     fanfare(){
-      [[523.25,0],[523.25,.16],[523.25,.32],[659.25,.48],[783.99,.72],[659.25,.96],[783.99,1.12]].forEach(([f,t]) => tone(f, t, .22, 'square', .09));
+      [[523.25,0],[523.25,.16],[523.25,.32],[659.25,.48],[783.99,.72],[659.25,.96],[783.99,1.12]].forEach(([f, t]) => tone(f, t, .22, 'square', .09));
       [523.25,659.25,783.99,1046.5].forEach(f => tone(f, 1.36, 1.6, 'triangle', .12));
     },
-    toggle(){ muted = !muted; return muted; },
-    get muted(){ return muted; }
+    toggle(){ muted = !muted; return muted; }
   };
 })();
 
 /* ---------- animated numbers ---------- */
 const shownNum = new WeakMap();
 function animNum(el, to){
-  const from = shownNum.has(el) ? shownNum.get(el) : to;
+  if(!shownNum.has(el)){ shownNum.set(el, to); el.textContent = to; return; }
+  const from = shownNum.get(el);
+  if(from === to) return;
   shownNum.set(el, to);
-  if(from === to){ el.textContent = to; return; }
   const t0 = performance.now(), d = 900;
   const step = t => {
     if(shownNum.get(el) !== to) return;
-    const p = Math.min(1, (t - t0) / d), e = 1 - Math.pow(1 - p, 3);
+    const p = Math.min(1, Math.max(0, (t - t0) / d)), e = 1 - Math.pow(1 - p, 3);
     el.textContent = Math.round(from + (to - from) * e);
     if(p < 1) requestAnimationFrame(step);
   };
   requestAnimationFrame(step);
 }
 
-/* ---------- screens ---------- */
-function show(id){
-  screen = id;
-  $$('.screen').forEach(s => s.classList.toggle('active', s.id === id));
-  if(id === 'setup') renderSetup();
-  if(id === 'board'){ buildGrid(); renderBoard(); }
-  if(id === 'fast') renderFast();
+function paintTimerEl(el){
+  const t = ui.timer || {};
+  el.textContent = t.started ? t.left : 20;
+  el.classList.toggle('low', !!t.started && t.left <= 5);
+  el.classList.toggle('idle', !t.running);
 }
 
-/* ---------- setup ---------- */
-function renderSetup(){
-  $('#cfgTitle').value = cfg.title;
-  $('#cfgT0').value = cfg.team0;
-  $('#cfgT1').value = cfg.team1;
-  if($('#cfgRounds').value !== cfg.roundsText) $('#cfgRounds').value = cfg.roundsText;
-  if($('#cfgFast').value !== cfg.fastText) $('#cfgFast').value = cfg.fastText;
-  $('#btnResume').hidden = !(game && game.rounds && game.rounds.length);
-  updateInfo();
-}
-function updateInfo(){
-  const rounds = parseBlocks(cfg.roundsText, 8), fast = parseBlocks(cfg.fastText, 8);
-  const ri = $('#roundsInfo'), fi = $('#fastInfo');
-  const bad = rounds.findIndex(r => r.answers.length === 0);
-  if(!rounds.length){ ri.textContent = 'No rounds yet'; ri.className = 'info warn'; }
-  else if(bad >= 0){ ri.textContent = `Round ${bad+1} has no answers`; ri.className = 'info warn'; }
-  else { ri.textContent = `${rounds.length} round${rounds.length>1?'s':''} ready ✓`; ri.className = 'info'; }
-  fi.textContent = fast.length >= 5 ? '5 questions ready ✓' : `${fast.length} of 5 questions`;
-  fi.className = fast.length >= 5 ? 'info' : 'info warn';
-  $('#btnStart').disabled = !rounds.length;
-}
-function bindSetup(){
-  const bind = (sel, key) => $(sel).addEventListener('input', e => { cfg[key] = e.target.value; save(); updateInfo(); });
-  bind('#cfgTitle','title'); bind('#cfgT0','team0'); bind('#cfgT1','team1');
-  bind('#cfgRounds','roundsText'); bind('#cfgFast','fastText');
-  $('#btnStart').addEventListener('click', () => {
-    if(game && game.rounds && game.scores.some(s => s) && !confirm('Start a brand new game? Scores will reset to 0.')) return;
-    sfx.unlock(); newGame(); show('board');
-  });
-  $('#btnResume').addEventListener('click', () => { sfx.unlock(); syncRounds(); save(); show('board'); });
-  $('#btnSample').addEventListener('click', () => {
-    if(!confirm('Replace your questions with the sample Thanksgiving questions?')) return;
-    cfg.roundsText = SAMPLE_ROUNDS; cfg.fastText = SAMPLE_FAST; save(); renderSetup();
-  });
-  $('#btnPrint').addEventListener('click', printSheet);
-}
-
-function printSheet(){
-  const rounds = parseBlocks(cfg.roundsText, 8), fast = parseBlocks(cfg.fastText, 8).slice(0, 5);
-  const block = (r, i, label) => `<div class="rd"><div class="rq">${label} ${i+1}${r.mult>1?` (x${r.mult})`:''}: ${esc(r.q)}</div><ol>${r.answers.map(a => `<li>${esc(a.text)} (${a.pts})</li>`).join('')}</ol></div>`;
-  $('#hostSheet').innerHTML = `<h1>${esc(cfg.title)} - Host Sheet</h1>
-    <div>${esc(cfg.team0)} vs ${esc(cfg.team1)}</div>
-    <h2>Main rounds</h2>${rounds.map((r,i) => block(r,i,'Round')).join('')}
-    <h2>Fast Money (goal: 200)</h2>${fast.map((r,i) => block(r,i,'Q')).join('')}`;
-  window.print();
-}
-
-/* ---------- main board ---------- */
-function buildGrid(){
-  const g = $('#grid'); g.innerHTML = '';
-  if(!game || !game.rounds.length) return;
-  const r = curR(), st = curS();
-  for(let i = 0; i < 8; i++){
-    const a = r.answers[i], d = document.createElement('div');
-    if(!a){ d.className = 'tile empty'; d.innerHTML = '<div class="plate"></div>'; }
-    else{
-      const len = a.text.length;
-      d.className = 'tile noanim' + (st.rev[i] ? ' open' : '');
-      d.innerHTML = `<div class="flip"><div class="face front"><span class="num">${i+1}</span></div><div class="face back"><span class="ans${len>26?' xlong':len>17?' long':''}">${esc(a.text)}</span><span class="pts">${a.pts}</span></div></div>`;
-      d.addEventListener('click', () => { sfx.unlock(); curS().rev[i] ? null : reveal(i); });
-    }
-    g.appendChild(d);
-  }
-  requestAnimationFrame(() => requestAnimationFrame(() => g.querySelectorAll('.noanim').forEach(t => t.classList.remove('noanim'))));
-}
-function renderBoard(){
-  if(!game || !game.rounds.length) return;
-  const r = curR(), st = curS();
-  $('#bTitle').textContent = cfg.title;
-  $('#bRound').textContent = `Round ${game.ri+1} of ${game.rounds.length}`;
-  const m = $('#bMult'); m.hidden = r.mult < 2; m.textContent = r.mult === 3 ? 'Triple points' : 'Double points';
-  $('#question').textContent = r.q;
-  $$('#grid .tile').forEach((t, i) => { if(!t.classList.contains('empty')) t.classList.toggle('open', !!st.rev[i]); });
-  renderBank(); renderStrikes(); renderScores();
-}
-function renderBank(){
-  const st = curS();
-  const amt = st.awardedTo == null ? bankOf(game.ri) : st.awardedAmt;
-  animNum($('#bank'), amt);
-  $('#bankLabel').textContent = st.awardedTo == null ? 'Points' : `Went to ${st.awardedTo ? cfg.team1 : cfg.team0}`;
-}
-function renderStrikes(){
-  const n = curS().strikes;
-  $('#strikeDots').innerHTML = [0,1,2].map(i => `<span class="${i < n ? '' : 'off'}">X</span>`).join('');
-}
-function renderScores(){
-  [0,1].forEach(t => {
-    const el = $('#t'+t);
-    el.querySelector('.tname').textContent = t ? cfg.team1 : cfg.team0;
-    animNum(el.querySelector('.tscore'), game.scores[t]);
-  });
-  $('#aw0').firstChild.textContent = `◀ Points to ${cfg.team0}`;
-  $('#aw1').firstChild.textContent = `Points to ${cfg.team1} ▶`;
-}
-
-function reveal(i){
-  const r = curR(), st = curS();
-  if(i >= r.answers.length || st.rev[i]) return;
-  st.rev[i] = st.awardedTo == null ? 1 : 2;
-  sfx.ding(); renderBoard(); save();
-}
-function unreveal(i){
-  const st = curS();
-  if(!st.rev[i]) return;
-  st.rev[i] = 0; renderBoard(); save();
-}
-function revealAll(){
-  const r = curR(), st = curS();
-  const hidden = r.answers.map((_, i) => i).filter(i => !st.rev[i]);
-  const ri = game.ri;
-  hidden.forEach((i, k) => setTimeout(() => {
-    if(game.ri !== ri || st.rev[i]) return;
-    st.rev[i] = 2; sfx.soft(); renderBoard(); save();
-  }, k * 450));
-}
-function strike(){
-  const st = curS(); let n;
-  if(st.strikes < 3){ st.strikes++; n = st.strikes; } else n = 1;
-  showX(n); renderStrikes(); save();
-}
-function unstrike(){ const st = curS(); if(st.strikes > 0){ st.strikes--; renderStrikes(); save(); } }
-let xTimer = null;
-function showX(n){
-  const o = $('#xOverlay');
-  o.innerHTML = '<span>X</span>'.repeat(n);
-  o.classList.add('show'); sfx.buzz();
-  clearTimeout(xTimer); xTimer = setTimeout(() => o.classList.remove('show'), 1400);
-}
-function award(t){
-  const st = curS(), amt = bankOf(game.ri);
-  if(st.awardedTo === t) return;
-  if(st.awardedTo != null) game.scores[st.awardedTo] -= st.awardedAmt;
-  game.scores[t] += amt;
-  st.awardedTo = t; st.awardedAmt = amt;
-  sfx.award();
-  const el = $('#t'+t); el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash');
-  renderBoard(); save();
-}
-function go(delta){
-  const n = game.ri + delta;
-  if(n < 0) return;
-  if(n >= game.rounds.length){ showWinner(); return; }
-  game.ri = n; save(); buildGrid(); renderBoard();
-}
-function editScore(t){
-  const name = t ? cfg.team1 : cfg.team0;
-  const v = prompt(`Set score for ${name}:`, game.scores[t]);
-  if(v === null) return;
-  const n = parseInt(v, 10);
-  if(!isNaN(n)){ game.scores[t] = n; renderScores(); save(); }
-}
-
-/* ---------- winner ---------- */
-function showWinner(){
-  const [a, b] = game.scores, w = $('#winner');
-  const head = a === b ? "It's a tie!" : `${esc(a > b ? cfg.team0 : cfg.team1)} wins!`;
-  w.innerHTML = `<div class="big">🦃 ${head} 🦃</div>
-    <div class="sub">${esc(cfg.team0)}: ${a} &nbsp;·&nbsp; ${esc(cfg.team1)}: ${b}</div>
-    <div class="small">Click or press Esc to close</div>`;
-  w.classList.add('open'); sfx.fanfare(); confetti();
-}
 function confetti(){
   const colors = ['#f2b544','#e2611b','#d7263d','#4cc3b0','#fff3dc','#a63d0f'];
   for(let i = 0; i < 110; i++){
@@ -761,171 +662,481 @@ function confetti(){
   }
 }
 
-/* ---------- fast money ---------- */
-function renderFast(){
-  const fm = game.fm;
+/* =====================================================================
+   HOST (laptop tab)
+   ===================================================================== */
+const HOST_SCREENS = {setup:'#setup', board:'#hostBoard', fast:'#hostFast'};
+let lastPing = 0, timerId = null, tvWin = null;
+
+function showHost(id){
+  screen = id; ui.screen = id;
+  $$('.screen').forEach(s => s.classList.remove('active'));
+  $(HOST_SCREENS[id]).classList.add('active');
+  if(id === 'setup') renderSetup();
+  if(id === 'board') renderHostBoard();
+  if(id === 'fast') buildHostFast();
+  commit();
+}
+
+function openTV(){
+  const url = location.href.split('#')[0] + '#tv';
+  if(tvWin && !tvWin.closed){ tvWin.focus(); return; }
+  tvWin = window.open(url, 'thanksgivingFaceOffTV');
+  if(!tvWin) alert('Your browser blocked the new tab. Allow pop-ups for this page, or open this same file in a new tab and click "Make that tab the TV screen".');
+}
+const tvConnected = () => Date.now() - lastPing < 5000;
+function updateTVChips(){
+  const on = tvConnected();
+  $$('.tvchip').forEach(c => {
+    c.className = 'tvchip ' + (on ? 'on' : 'off');
+    c.textContent = on ? '📺 TV screen connected' : '📺 TV screen not open · click to open';
+  });
+}
+function updateWinnerBtns(){
+  $$('.winbtn').forEach(b => b.textContent = ui.winner ? '✖ Hide winner screen' : '🏆 Show winner');
+}
+
+/* --- setup --- */
+function renderSetup(){
+  $('#cfgTitle').value = cfg.title;
+  $('#cfgT0').value = cfg.team0;
+  $('#cfgT1').value = cfg.team1;
+  if($('#cfgRounds').value !== cfg.roundsText) $('#cfgRounds').value = cfg.roundsText;
+  if($('#cfgFast').value !== cfg.fastText) $('#cfgFast').value = cfg.fastText;
+  $('#btnResume').hidden = !hasGame();
+  updateInfo();
+}
+function updateInfo(){
+  const rounds = parseBlocks(cfg.roundsText, 8), fast = parseBlocks(cfg.fastText, 8);
+  const ri = $('#roundsInfo'), fi = $('#fastInfo');
+  const bad = rounds.findIndex(r => r.answers.length === 0);
+  if(!rounds.length){ ri.textContent = 'No rounds yet'; ri.className = 'info warn'; }
+  else if(bad >= 0){ ri.textContent = `Round ${bad+1} has no answers`; ri.className = 'info warn'; }
+  else { ri.textContent = `${rounds.length} round${rounds.length > 1 ? 's' : ''} ready ✓`; ri.className = 'info'; }
+  fi.textContent = fast.length >= 5 ? '5 questions ready ✓' : `${fast.length} of 5 questions`;
+  fi.className = fast.length >= 5 ? 'info' : 'info warn';
+  $('#btnStart').disabled = !rounds.length;
+}
+function bindSetup(){
+  const bind = (sel, key) => $(sel).addEventListener('input', e => { cfg[key] = e.target.value; updateInfo(); commit(); });
+  bind('#cfgTitle','title'); bind('#cfgT0','team0'); bind('#cfgT1','team1');
+  bind('#cfgRounds','roundsText'); bind('#cfgFast','fastText');
+  $('#btnStart').addEventListener('click', () => {
+    if(hasGame() && game.scores.some(s => s) && !confirm('Start a brand new game? Scores will reset to 0.')) return;
+    newGame(); ui.winner = null; showHost('board');
+  });
+  $('#btnResume').addEventListener('click', () => { syncRounds(); showHost('board'); });
+  $('#btnTV').addEventListener('click', openTV);
+  $('#btnSample').addEventListener('click', () => {
+    if(!confirm('Replace your questions with the sample Thanksgiving questions?')) return;
+    cfg.roundsText = SAMPLE_ROUNDS; cfg.fastText = SAMPLE_FAST; renderSetup(); commit();
+  });
+  $('#btnPrint').addEventListener('click', printSheet);
+}
+function printSheet(){
+  const rounds = parseBlocks(cfg.roundsText, 8), fast = parseBlocks(cfg.fastText, 8).slice(0, 5);
+  const block = (r, i, label) => `<div class="rd"><div class="rq">${label} ${i+1}${r.mult > 1 ? ` (x${r.mult})` : ''}: ${esc(r.q)}</div><ol>${r.answers.map(a => `<li>${esc(a.text)} (${a.pts})</li>`).join('')}</ol></div>`;
+  $('#hostSheet').innerHTML = `<h1>${esc(cfg.title)} - Host Sheet</h1><div>${esc(cfg.team0)} vs ${esc(cfg.team1)}</div>
+    <h2>Main rounds</h2>${rounds.map((r, i) => block(r, i, 'Round')).join('')}
+    <h2>Fast Money (goal: 200)</h2>${fast.map((r, i) => block(r, i, 'Q')).join('')}`;
+  window.print();
+}
+
+/* --- main board (host) --- */
+function renderHostBoard(){
+  if(!hasGame()) return;
+  const r = curR(), st = curS();
+  $('#hRound').textContent = `Round ${game.ri+1} of ${game.rounds.length}`;
+  const m = $('#hMult'); m.hidden = r.mult < 2; m.textContent = r.mult === 3 ? 'Triple points' : 'Double points';
+  $('#hQuestion').textContent = r.q;
+  const box = $('#hAnswers'); box.innerHTML = '';
+  for(let i = 0; i < 8; i++){
+    const a = r.answers[i], b = document.createElement('button');
+    if(!a){ b.className = 'hans empty'; b.tabIndex = -1; box.appendChild(b); continue; }
+    const open = !!st.rev[i];
+    b.className = 'hans' + (open ? ' open' : '');
+    b.innerHTML = `<span class="hn">${i+1}</span><span class="ht">${esc(a.text)}</span><span class="hs">${open ? '✓ On the TV · click to hide' : 'Hidden · click to reveal'}</span><span class="hp">${a.pts}</span>`;
+    b.addEventListener('click', () => { toggleAnswer(i); b.blur(); });
+    box.appendChild(b);
+  }
+  animNum($('#hBank'), roundAmount());
+  $('#hNote').textContent = st.awardedTo != null ? `✓ Given to ${teamName(st.awardedTo)}` : (r.mult > 1 ? `already x${r.mult}` : '');
+  $('#hStrikes').innerHTML = [0,1,2].map(i => `<span class="${i < st.strikes ? '' : 'off'}">X</span>`).join('');
+  [0,1].forEach(t => {
+    const b = $('#hAw' + t);
+    b.textContent = teamName(t) + (st.awardedTo === t ? ' ✓' : '');
+    b.classList.toggle('done', st.awardedTo === t);
+    const s = $(`.hscore[data-team="${t}"]`);
+    s.querySelector('.hsname').textContent = teamName(t);
+    animNum(s.querySelector('.hsval'), game.scores[t]);
+  });
+  $('#hNext').textContent = game.ri >= game.rounds.length - 1 ? 'Finish → winner 🏆' : 'Next round ▶';
+  updateTVChips(); updateWinnerBtns();
+}
+function toggleAnswer(i){
+  const r = curR(), st = curS();
+  if(i >= r.answers.length) return;
+  if(st.rev[i]) st.rev[i] = 0;
+  else { st.rev[i] = st.awardedTo == null ? 1 : 2; sfx.ding(); }
+  commit(); renderHostBoard();
+}
+function revealAll(){
+  const r = curR(), st = curS(), ri = game.ri;
+  r.answers.map((_, i) => i).filter(i => !st.rev[i]).forEach((i, k) => setTimeout(() => {
+    if(game.ri !== ri || st.rev[i]) return;
+    st.rev[i] = 2; sfx.soft(); commit(); renderHostBoard();
+  }, k * 450));
+}
+function wrong(){
+  const st = curS(); let n;
+  if(st.strikes < 3){ st.strikes++; n = st.strikes; } else n = 1;
+  sfx.buzz(); commit(); send({type:'fx', fx:'x', n}); renderHostBoard();
+}
+function buzzOnly(){ sfx.buzz(); send({type:'fx', fx:'x', n:1}); }
+function unstrike(){ const st = curS(); if(st.strikes > 0){ st.strikes--; commit(); renderHostBoard(); } }
+function award(t){
+  const st = curS(), amt = bankOf(game.ri);
+  if(st.awardedTo === t) return;
+  if(st.awardedTo != null) game.scores[st.awardedTo] -= st.awardedAmt;
+  game.scores[t] += amt; st.awardedTo = t; st.awardedAmt = amt;
+  sfx.award(); commit(); send({type:'fx', fx:'flash', t}); renderHostBoard();
+}
+function go(delta){
+  const n = game.ri + delta;
+  if(n < 0) return;
+  if(n >= game.rounds.length){ toggleWinner(true); return; }
+  game.ri = n; commit(); renderHostBoard();
+}
+function editScore(t){
+  const v = prompt(`Set score for ${teamName(t)}:`, game.scores[t]);
+  if(v === null) return;
+  const n = parseInt(v, 10);
+  if(!isNaN(n)){ game.scores[t] = n; commit(); renderHostBoard(); }
+}
+function toggleWinner(force){
+  const showIt = force === true ? true : !ui.winner;
+  if(!showIt){ ui.winner = null; commit(); updateWinnerBtns(); return; }
+  const [a, b] = game.scores;
+  ui.winner = {
+    title: a === b ? "🦃 It's a tie! 🦃" : `🦃 ${a > b ? cfg.team0 : cfg.team1} wins! 🦃`,
+    sub: `${cfg.team0}: ${a}  ·  ${cfg.team1}: ${b}`
+  };
+  commit(); send({type:'fx', fx:'confetti'}); sfx.fanfare(); updateWinnerBtns();
+}
+
+/* --- fast money (host) --- */
+function buildHostFast(){
+  if(!hasGame()) return;
+  const qs = game.fast || [];
   [0,1].forEach(p => {
-    const col = $('#fmc'+p);
-    col.innerHTML = fm.p[p].map((s, i) => {
-      const hide = p === 0 && fm.hide0;
-      const sa = s.sa && !hide, sp = s.sp && !hide;
-      return `<div class="fmrow" data-p="${p}" data-i="${i}">
-        <div class="fmans${sa?' on':''}"><span>${sa ? esc(s.a || '—') : ''}</span></div>
-        <div class="fmpts${sp?' on':''}${sp && !s.pts ? ' zero' : ''}">${sp ? s.pts : ''}</div></div>`;
+    $('#hfm' + p).innerHTML = game.fm.p[p].map((s, i) => {
+      const q = qs[i];
+      const chips = q ? q.answers.map(a => `<button class="chip" data-t="${esc(a.text)}" data-p="${a.pts}">${esc(a.text)} ${a.pts}</button>`).join('')
+        + '<button class="chip zero" data-t="" data-p="0">Not on list · 0</button>' : '';
+      return `<div class="hfrow" data-p="${p}" data-i="${i}">
+        <div class="hfq">${i+1}. ${esc(q ? q.q : 'Question ' + (i+1))}</div>
+        <div class="hfin"><input class="fa" placeholder="What they said" value="${esc(s.a)}"><input class="fp" type="number" min="0" max="999" placeholder="Pts" value="${s.pts || ''}"><button class="hbtn small fstep"></button></div>
+        <div class="chips">${chips}</div></div>`;
     }).join('');
   });
-  $$('.fmrow').forEach(r => r.addEventListener('click', e => {
-    sfx.unlock(); stepRow(+r.dataset.p, +r.dataset.i, e.shiftKey);
-  }));
-  $('#fmTotal').textContent = fmTotal();
-  $('#hide0btn').firstChild.textContent = fm.hide0 ? 'Show P1 answers' : 'Hide P1 answers';
+  $$('.hfrow').forEach(row => {
+    const p = +row.dataset.p, i = +row.dataset.i, s = () => game.fm.p[p][i];
+    const fa = row.querySelector('.fa'), fp = row.querySelector('.fp');
+    fa.addEventListener('input', () => { s().a = fa.value.trim(); commit(); });
+    fp.addEventListener('input', () => { s().pts = Math.max(0, parseInt(fp.value, 10) || 0); commit(); updateHostFast(); });
+    row.querySelector('.fstep').addEventListener('click', e => { e.currentTarget.blur(); stepRow(p, i); });
+    row.querySelectorAll('.chip').forEach(c => c.addEventListener('click', () => {
+      s().pts = +c.dataset.p; fp.value = c.dataset.p;
+      if(!fa.value.trim() && c.dataset.t){ fa.value = c.dataset.t; s().a = c.dataset.t; }
+      commit(); updateHostFast();
+    }));
+  });
+  updateHostFast();
 }
-const fmTotal = () => game.fm.p.flat().reduce((s, r) => s + (r.sp ? (+r.pts || 0) : 0), 0);
-function stepRow(p, i, reset){
+function updateHostFast(){
+  $$('.hfrow').forEach(row => {
+    const s = game.fm.p[+row.dataset.p][+row.dataset.i], b = row.querySelector('.fstep');
+    b.textContent = !s.sa ? 'Show answer' : !s.sp ? 'Show points' : 'Hide';
+    b.className = 'hbtn small fstep ' + (s.sa && s.sp ? 'ghost' : 'gold');
+    row.classList.toggle('shown', s.sa);
+  });
+  $('#hFmTotal').textContent = fmTotal();
+  $('#hHide0').textContent = game.fm.hide0 ? 'Show on TV again' : 'Hide on TV';
+  paintHostTimer(); updateTVChips(); updateWinnerBtns();
+}
+function stepRow(p, i){
   const s = game.fm.p[p][i];
-  if(reset){ s.sa = s.sp = false; }
-  else if(!s.sa){ s.sa = true; sfx.soft(); }
+  if(!s.sa){ s.sa = true; sfx.soft(); }
   else if(!s.sp){ s.sp = true; (+s.pts > 0) ? sfx.ding() : sfx.buzz(); }
-  else return;
-  if(p === 0 && game.fm.hide0 && !reset) game.fm.hide0 = false;
-  renderFast(); save();
+  else { s.sa = s.sp = false; }
+  if(p === 0 && game.fm.hide0 && s.sa) game.fm.hide0 = false;
+  commit(); updateHostFast();
   if(!game.fm.won && fmTotal() >= 200){
-    game.fm.won = true; save();
+    game.fm.won = true;
     setTimeout(() => {
-      const w = $('#winner');
-      w.innerHTML = `<div class="big">💰 200+ points! 💰</div><div class="sub">Fast Money WINNER!</div><div class="small">Click or press Esc to close</div>`;
-      w.classList.add('open'); sfx.fanfare(); confetti();
+      ui.winner = {title:'💰 200+ points! 💰', sub:'Fast Money WINNER!'};
+      commit(); send({type:'fx', fx:'confetti'}); sfx.fanfare(); updateWinnerBtns();
     }, 900);
   }
 }
-let entryP = 0;
-function openEntry(p){
-  entryP = p;
-  $('#entryTitle').textContent = `Player ${p+1} answers`;
-  const qs = game.fast || [];
-  $('#entryRows').innerHTML = game.fm.p[p].map((s, i) => `<div class="erow">
-      <div class="q">${i+1}. ${esc(qs[i] ? qs[i].q : 'Question ' + (i+1))}</div>
-      <input class="ea" data-i="${i}" placeholder="Their answer" value="${esc(s.a)}">
-      <input class="ep" data-i="${i}" type="number" min="0" max="999" placeholder="Pts" value="${s.pts || ''}">
-    </div>`).join('');
-  $('#entry').classList.add('open');
-  setTimeout(() => { const f = $('#entryRows .ea'); if(f) f.focus(); }, 50);
-}
-function saveEntry(){
-  $$('#entryRows .ea').forEach(inp => { game.fm.p[entryP][+inp.dataset.i].a = inp.value.trim(); });
-  $$('#entryRows .ep').forEach(inp => { game.fm.p[entryP][+inp.dataset.i].pts = Math.max(0, parseInt(inp.value, 10) || 0); });
-  $('#entry').classList.remove('open');
-  renderFast(); save();
-}
-
-let tState = {left:0, running:false, id:null};
 function startTimer(sec){
-  clearInterval(tState.id);
-  tState = {left:sec, running:true, id:null};
-  paintTimer();
-  tState.id = setInterval(tickTimer, 1000);
+  clearInterval(timerId);
+  ui.timer = {left:sec, running:true, started:true};
+  timerId = setInterval(tick, 1000);
+  commit(); paintHostTimer();
 }
-function tickTimer(){
-  if(!tState.running) return;
-  tState.left--;
-  paintTimer();
-  if(tState.left <= 0){ clearInterval(tState.id); tState.running = false; sfx.buzz(); paintTimer(); }
-  else if(tState.left <= 5) sfx.tick();
+function tick(){
+  const t = ui.timer;
+  if(!t.running) return;
+  t.left--;
+  if(t.left <= 0){ t.left = 0; t.running = false; clearInterval(timerId); timerId = null; sfx.buzz(); }
+  else if(t.left <= 5) sfx.tick();
+  commit(); paintHostTimer();
 }
 function togglePause(){
-  if(tState.left <= 0) return;
-  tState.running = !tState.running;
-  if(tState.running && !tState.id){ tState.id = setInterval(tickTimer, 1000); }
-  paintTimer();
+  const t = ui.timer;
+  if(!t.started || t.left <= 0) return;
+  t.running = !t.running;
+  if(t.running && !timerId) timerId = setInterval(tick, 1000);
+  commit(); paintHostTimer();
 }
-function paintTimer(){
-  const el = $('#fmTimer');
-  el.textContent = tState.left > 0 || tState.id ? Math.max(0, tState.left) : 20;
-  el.classList.toggle('low', tState.left > 0 && tState.left <= 5);
-  el.classList.toggle('idle', !tState.running);
-}
-
-/* ---------- misc ---------- */
-function toggleFull(){
-  if(document.fullscreenElement) document.exitFullscreen && document.exitFullscreen();
-  else { const el = document.documentElement; (el.requestFullscreen || el.webkitRequestFullscreen || (() => {})).call(el); }
-}
-function toggleMute(){
-  const m = sfx.toggle();
-  $$('.mutebtn').forEach(b => b.firstChild.textContent = m ? 'Sound off' : 'Sound on');
-}
-function closeOverlays(){
-  let closed = false;
-  ['#help', '#winner', '#entry'].forEach(s => { if($(s).classList.contains('open')){ $(s).classList.remove('open'); closed = true; } });
-  return closed;
+function paintHostTimer(){
+  paintTimerEl($('#hTimer'));
+  const t = ui.timer;
+  $('#hPause').textContent = t.started && !t.running && t.left > 0 ? 'Resume' : 'Pause';
 }
 
 const actions = {
-  strike, unstrike, buzz: () => screen === 'fast' ? sfx.buzz() : showX(1),
-  award0: () => award(0), award1: () => award(1), revealAll,
-  prev: () => go(-1), next: () => go(1), final: showWinner,
-  fast: () => show('fast'), board: () => show('board'), setup: () => show('setup'),
-  full: toggleFull, mute: toggleMute, help: () => $('#help').classList.add('open'),
-  hidebar: () => document.body.classList.toggle('nocontrols'),
-  enter0: () => openEntry(0), enter1: () => openEntry(1),
-  hide0: () => { game.fm.hide0 = !game.fm.hide0; renderFast(); save(); },
+  setup: () => showHost('setup'), board: () => showHost('board'), fast: () => showHost('fast'),
+  opentv: () => { if(!tvConnected()) openTV(); },
+  mute: () => { const m = sfx.toggle(); $$('.mutebtn').forEach(b => b.textContent = m ? '🔇 Sound off' : '🔊 Sound on'); },
+  wrong, buzzonly: buzzOnly, unstrike, revealAll,
+  award0: () => award(0), award1: () => award(1),
+  edit0: () => editScore(0), edit1: () => editScore(1),
+  prev: () => go(-1), next: () => go(1), final: () => toggleWinner(),
   t20: () => startTimer(20), t25: () => startTimer(25), pause: togglePause,
-  fmReset: () => { if(confirm('Clear all Fast Money answers?')){ game.fm = freshFM(); clearInterval(tState.id); tState = {left:0,running:false,id:null}; paintTimer(); renderFast(); save(); } }
+  dup: buzzOnly,
+  hide0: () => { game.fm.hide0 = !game.fm.hide0; commit(); updateHostFast(); },
+  fmReset: () => {
+    if(!confirm('Clear all Fast Money answers?')) return;
+    game.fm = freshFM(); clearInterval(timerId); timerId = null;
+    ui.timer = {left:0, running:false, started:false};
+    buildHostFast(); commit();
+  }
 };
 
-function bindControls(){
+function handleHostKey(e){
+  const k = (e.key || '').toLowerCase();
+  if(k === 'escape'){ if(ui.winner) toggleWinner(); return true; }
+  if(screen === 'board' && hasGame()){
+    const dm = (e.code || '').match(/^(?:Digit|Numpad)([1-8])$/);
+    if(dm){ toggleAnswer(+dm[1] - 1); return true; }
+    const map = {x:wrong, b:buzzOnly, z:unstrike, q:() => award(0), p:() => award(1),
+                 n:() => go(1), arrowright:() => go(1), arrowleft:() => go(-1)};
+    if(map[k]){ map[k](); return true; }
+  } else if(screen === 'fast' && k === ' '){ togglePause(); return true; }
+  return false;
+}
+
+function hostMessage(msg){
+  if(msg.type === 'ping'){
+    const was = tvConnected();
+    lastPing = Date.now();
+    if(!was || msg.need){ commit(); updateTVChips(); }
+  } else if(msg.type === 'bye'){ lastPing = 0; updateTVChips(); }
+  else if(msg.type === 'key'){ handleHostKey(msg); }
+}
+
+function initHost(){
+  const d = readStore();
+  if(d){ if(d.cfg) Object.assign(cfg, d.cfg); if(d.game) game = d.game; }
+  bindSetup();
   $$('[data-act]').forEach(b => b.addEventListener('click', e => {
-    sfx.unlock(); e.currentTarget.blur();
+    e.currentTarget.blur();
     const fn = actions[b.dataset.act]; if(fn) fn();
   }));
-  $('#t0').addEventListener('click', () => editScore(0));
-  $('#t1').addEventListener('click', () => editScore(1));
-  $('#helpClose').addEventListener('click', () => $('#help').classList.remove('open'));
-  $('#winner').addEventListener('click', () => $('#winner').classList.remove('open'));
-  $('#entrySave').addEventListener('click', saveEntry);
-  $('#entryCancel').addEventListener('click', () => $('#entry').classList.remove('open'));
-  $('#entry').addEventListener('keydown', e => {
-    if(e.key === 'Enter'){ e.preventDefault(); saveEntry(); }
-    if(e.key === 'Escape'){ e.preventDefault(); $('#entry').classList.remove('open'); }
+  document.addEventListener('pointerdown', () => sfx.unlock(), true);
+  document.addEventListener('keydown', e => {
+    if(e.target.matches('input, textarea, select')) return;
+    if(e.metaKey || e.ctrlKey || e.altKey) return;
+    sfx.unlock();
+    if(handleHostKey(e)) e.preventDefault();
+  });
+  setInterval(updateTVChips, 1000);
+  showHost('setup');
+}
+
+/* =====================================================================
+   TV tab
+   ===================================================================== */
+const TV_SCREENS = {waiting:'#waiting', board:'#board', fast:'#fast'};
+let gotState = false;
+
+function showTV(id){
+  screen = id;
+  $$('.screen').forEach(s => s.classList.remove('active'));
+  $(TV_SCREENS[id]).classList.add('active');
+  if(id === 'board'){ buildGrid(); renderBoard(); }
+  if(id === 'fast'){ buildTVFast(); renderTVFast(); }
+  if(id === 'waiting') renderWaiting();
+}
+const boardKey = () => hasGame() && game.rounds[game.ri] ? game.ri + '|' + JSON.stringify(game.rounds[game.ri]) : '';
+
+function applyState(d){
+  if(!d) return;
+  gotState = true;
+  const prevKey = boardKey();
+  if(d.cfg) cfg = d.cfg;
+  game = d.game || null;
+  if(d.ui) ui = d.ui;
+  const target = (!hasGame() || ui.screen === 'setup') ? 'waiting' : ui.screen;
+  if(target !== screen) showTV(target);
+  else if(target === 'board'){ if(boardKey() !== prevKey) buildGrid(); renderBoard(); }
+  else if(target === 'fast') renderTVFast();
+  else renderWaiting();
+  renderWinner();
+}
+
+function renderWaiting(){
+  $('#wTitle').textContent = cfg.title;
+  $('#wTeams').innerHTML = `<span class="a">${esc(cfg.team0)}</span> vs <span class="b">${esc(cfg.team1)}</span>`;
+}
+
+function buildGrid(){
+  const g = $('#grid'); g.innerHTML = '';
+  if(!hasGame()) return;
+  const r = curR();
+  for(let i = 0; i < 8; i++){
+    const d = document.createElement('div');
+    if(!r.answers[i]){ d.className = 'tile empty'; d.innerHTML = '<div class="plate"></div>'; }
+    else {
+      d.className = 'tile noanim';
+      d.innerHTML = `<div class="flip"><div class="face front"><span class="num">${i+1}</span></div><div class="face back"><span class="ans"></span><span class="pts"></span></div></div>`;
+    }
+    g.appendChild(d);
+  }
+  renderTiles();
+  requestAnimationFrame(() => requestAnimationFrame(() => g.querySelectorAll('.noanim').forEach(t => t.classList.remove('noanim'))));
+}
+function renderTiles(){
+  const r = curR(), st = curS();
+  $$('#grid .tile').forEach((t, i) => {
+    if(t.classList.contains('empty')) return;
+    const a = r.answers[i], open = !!st.rev[i];
+    const ans = t.querySelector('.ans'), pts = t.querySelector('.pts');
+    if(open){
+      // The answer text only exists on the TV page once it has been revealed.
+      if(ans.textContent !== a.text){
+        const len = a.text.length;
+        ans.textContent = a.text; pts.textContent = a.pts;
+        ans.className = 'ans' + (len > 26 ? ' xlong' : len > 17 ? ' long' : '');
+      }
+    } else if(ans.textContent){
+      setTimeout(() => { if(!t.classList.contains('open')){ ans.textContent = ''; pts.textContent = ''; } }, 800);
+    }
+    t.classList.toggle('open', open);
+  });
+}
+function renderBoard(){
+  if(!hasGame()) return;
+  const r = curR(), st = curS();
+  $('#bTitle').textContent = cfg.title;
+  $('#bRound').textContent = `Round ${game.ri+1} of ${game.rounds.length}`;
+  const m = $('#bMult'); m.hidden = r.mult < 2; m.textContent = r.mult === 3 ? 'Triple points' : 'Double points';
+  $('#question').textContent = r.q;
+  renderTiles();
+  animNum($('#bank'), roundAmount());
+  $('#bankLabel').textContent = st.awardedTo == null ? 'Points' : `Went to ${teamName(st.awardedTo)}`;
+  $('#strikeDots').innerHTML = [0,1,2].map(i => `<span class="${i < st.strikes ? '' : 'off'}">X</span>`).join('');
+  [0,1].forEach(t => {
+    const el = $('#t' + t);
+    el.querySelector('.tname').textContent = teamName(t);
+    animNum(el.querySelector('.tscore'), game.scores[t]);
   });
 }
 
-document.addEventListener('keydown', e => {
-  sfx.unlock();
-  if(e.target.matches('input, textarea, select')) return;
-  if(e.metaKey || e.ctrlKey || e.altKey) return;
-  const k = e.key.toLowerCase();
-  if(k === 'escape'){ closeOverlays(); return; }
-  if($('.modal.open')){ if(k === 'enter' || k === '?'){ closeOverlays(); } return; }
-  if(screen === 'setup') return;
+function buildTVFast(){
+  [0,1].forEach(p => {
+    $('#fmc' + p).innerHTML = Array.from({length:5}, () =>
+      '<div class="fmrow"><div class="fmans"><span></span></div><div class="fmpts"></div></div>').join('');
+  });
+}
+function renderTVFast(){
+  if(!hasGame()) return;
+  const fm = game.fm;
+  [0,1].forEach(p => {
+    const rows = $$(`#fmc${p} .fmrow`);
+    fm.p[p].forEach((s, i) => {
+      const row = rows[i]; if(!row) return;
+      const hide = p === 0 && fm.hide0;
+      const sa = s.sa && !hide, sp = s.sp && !hide;
+      const ans = row.querySelector('.fmans'), pts = row.querySelector('.fmpts');
+      ans.classList.toggle('on', sa);
+      ans.firstChild.textContent = sa ? (s.a || '—') : '';
+      pts.classList.toggle('on', sp);
+      pts.classList.toggle('zero', sp && !+s.pts);
+      pts.textContent = sp ? (+s.pts || 0) : '';
+    });
+  });
+  $('#fmTotal').textContent = fmTotal();
+  paintTimerEl($('#fmTimer'));
+}
 
-  const dm = (e.code || '').match(/^(?:Digit|Numpad)(\d)$/);
-  const digit = dm ? +dm[1] : null;
-
-  if(k === 'f'){ toggleFull(); return; }
-  if(k === 'm'){ toggleMute(); return; }
-  if(k === 'h'){ actions.hidebar(); return; }
-  if(k === '?' || (k === '/' && e.shiftKey)){ actions.help(); return; }
-  if(k === 's'){ show('setup'); return; }
-
-  if(screen === 'board'){
-    if(digit !== null && digit >= 1 && digit <= 8){ e.shiftKey ? unreveal(digit - 1) : reveal(digit - 1); return; }
-    const map = {x:strike, z:unstrike, b:actions.buzz, q:actions.award0, p:actions.award1, r:revealAll,
-                 n:actions.next, arrowright:actions.next, arrowleft:actions.prev, g:actions.fast, w:showWinner};
-    if(map[k]){ e.preventDefault(); map[k](); }
-  } else if(screen === 'fast'){
-    if(digit !== null){
-      const idx = digit === 0 ? 9 : digit - 1;
-      stepRow(idx < 5 ? 0 : 1, idx % 5, e.shiftKey); return;
-    }
-    const map = {e:actions.enter0, r:actions.enter1, v:actions.hide0, t:actions.t20, y:actions.t25,
-                 ' ':togglePause, x:() => sfx.buzz(), g:actions.board};
-    if(map[k]){ e.preventDefault(); map[k](); }
+let winnerKey = '';
+function renderWinner(){
+  const w = $('#winner');
+  if(!ui.winner){ w.classList.remove('open'); winnerKey = ''; return; }
+  const k = ui.winner.title + '|' + ui.winner.sub;
+  if(k !== winnerKey){
+    winnerKey = k;
+    w.innerHTML = `<div class="big">${esc(ui.winner.title)}</div><div class="sub">${esc(ui.winner.sub)}</div>`;
   }
-});
+  w.classList.add('open');
+}
+
+let xTimer = null;
+function showX(n){
+  const o = $('#xOverlay');
+  o.innerHTML = '<span>X</span>'.repeat(Math.max(1, Math.min(3, n)));
+  o.classList.add('show');
+  clearTimeout(xTimer); xTimer = setTimeout(() => o.classList.remove('show'), 1400);
+}
+function flashTeam(t){ const el = $('#t' + t); el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash'); }
+
+function tvMessage(msg){
+  if(msg.type === 'state') applyState(msg.data);
+  else if(msg.type === 'fx'){
+    if(msg.fx === 'x') showX(msg.n);
+    else if(msg.fx === 'flash') flashTeam(msg.t);
+    else if(msg.fx === 'confetti') confetti();
+  }
+}
+
+function goFull(){
+  if(document.fullscreenElement) return;
+  const el = document.documentElement;
+  const fn = el.requestFullscreen || el.webkitRequestFullscreen;
+  if(fn){ try{ const p = fn.call(el); if(p && p.catch) p.catch(() => {}); }catch(e){} }
+}
+
+function initTV(){
+  showTV('waiting');
+  applyState(readStore());
+  document.addEventListener('click', goFull);
+  document.addEventListener('fullscreenchange', () => document.body.classList.toggle('fs', !!document.fullscreenElement));
+  document.addEventListener('keydown', e => {
+    if(e.metaKey || e.ctrlKey || e.altKey) return;
+    if(e.key.toLowerCase() === 'f'){ goFull(); return; }
+    if([' ', 'ArrowLeft', 'ArrowRight'].includes(e.key)) e.preventDefault();
+    send({type:'key', key:e.key, code:e.code});   // so keys pressed while the TV tab has focus still work
+  });
+  const ping = () => send({type:'ping', need:!gotState});
+  ping(); setInterval(ping, 1500);
+  window.addEventListener('pagehide', () => send({type:'bye'}));
+}
 
 /* ---------- leaves ---------- */
-function leaves(){
+(function leaves(){
   const box = $('#leaves'), em = ['🍂','🍁','🍃','🍂','🍁'];
   for(let i = 0; i < 16; i++){
     const s = document.createElement('span');
@@ -938,13 +1149,9 @@ function leaves(){
     s.style.animationDelay = (-Math.random()*dur) + 's';
     box.appendChild(s);
   }
-}
+})();
 
-load();
-bindSetup();
-bindControls();
-leaves();
-show('setup');
+MODE === 'host' ? initHost() : initTV();
 })();
 </script>
 </body>

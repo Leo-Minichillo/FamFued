@@ -1,38 +1,42 @@
 # Thanksgiving Face-Off
 
-A survey-style game show board for the family TV. One file, no install: open `index.html` in Chrome or Edge on a laptop connected to the TV.
+A survey-style game show for the family TV. One file, no install. Open `index.html` in Chrome or Edge.
 
-## Running the game
+It runs as **two tabs**:
+- **Host tab (laptop):** your control panel. Shows every answer, plus simple buttons to run the game.
+- **TV tab:** just the game board. Answers only appear after you reveal them.
 
-1. Open `index.html` and edit the questions and team names on the setup screen (do this before people are watching, since the answers are visible here).
-2. Click **Print host answer sheet** so you can see the answers while the TV shows the board.
-3. Click **Start new game**, then press `F` for fullscreen and `H` to hide the button bar.
+## Setup (do this before the family is watching)
 
-Everything saves in the browser, so a refresh or a closed tab won't lose the scores. Hit **Resume** on the setup screen.
+1. Plug in the TV and set the display to **Extend**, not mirror.
+   - Windows: `Win + P` → Extend
+   - Mac: System Settings → Displays → use the TV as an extended display
+2. Open `index.html` on the laptop. Edit team names and questions if you want.
+3. Click **📺 Open TV screen**. Drag that new tab out of the window and onto the TV.
+4. Click once on the TV screen to make it fullscreen.
+5. Back on the laptop, click **Start new game**. The host screen shows "📺 TV screen connected" in green when the two tabs are talking.
 
-## Host keys (main board)
+If the button doesn't open a tab, open the same file in a new tab yourself and add `#tv` to the end of the address.
 
-| Key | Does |
-|---|---|
-| `1`-`8` | Reveal an answer (`Shift` + number hides it again) |
-| `X` / `Z` | Add / remove a strike |
-| `B` | Buzzer + single X, no strike counted (face-off misses, failed steals) |
-| `Q` / `P` | Give the round's points to the left / right team |
-| `R` | Reveal the rest of the board (no points added) |
-| `N` or `→` / `←` | Next / previous round |
-| `W` | Final scores and winner screen |
-| `G` | Switch to Fast Money and back |
-| `F` `M` `H` `?` `S` | Fullscreen, mute, hide buttons, help, setup |
+## Running a round (laptop)
 
-Click a team's score to fix it by hand. Pressing `Q` then `P` moves the points to the other team (handy after a steal).
+- Click an answer to reveal it on the TV (click again to hide it).
+- **✕ Wrong answer** adds a strike and shows the big X. **Face-off miss** shows one X without counting a strike.
+- **Give round points to** a team. If the other team steals, just click their button and the points move over.
+- **Next round ▶** when you're done. Rounds can be double or triple points.
+- **🏆 Show winner** puts the winner screen on the TV.
+- Click **edit** under a score to fix it by hand.
+
+Optional keys: `1`-`8` reveal, `X` wrong, `Q` / `P` give points, `N` next.
 
 ## Fast Money
 
-- `T` starts a 20s timer, `Y` a 25s timer, `Space` pauses.
-- `E` / `R` opens the screen to type Player 1 / Player 2 answers and their points from the host sheet.
-- `1`-`5` reveal Player 1's rows (press once for the answer, again for the points), `6`-`0` for Player 2.
-- `V` hides Player 1's answers while Player 2 plays. `X` plays the buzzer for a duplicate answer.
-- Hitting 200 total triggers the winner celebration.
+Click **💰 Fast Money** on the host screen.
+1. **Start 20s** for Player 1 (25s for Player 2).
+2. Type what they said. Click the matching survey answer under each question to fill in the points (or **Not on list · 0**).
+3. Click **Show answer**, then **Show points**, one row at a time. The TV total updates live.
+4. **Hide on TV** hides Player 1's answers while Player 2 plays. **Buzzer** is for repeat answers.
+5. Hitting 200 sets off the winner screen.
 
 ## Question format
 
@@ -43,4 +47,10 @@ Health 19
 Friends 12
 ```
 
-Blank line between rounds. `x2` / `x3` at the end of a question doubles or triples the points. Up to 8 answers per round.
+Blank line between rounds. `x2` / `x3` at the end of a question doubles or triples the points. Up to 8 answers per round. The sample point values are made up.
+
+## Notes
+
+- Sounds play from the laptop tab, through whatever the laptop's audio output is. With HDMI that's usually the TV.
+- Everything saves in the browser, so refreshing either tab is safe.
+- The fun font needs internet; offline it falls back to a plain bold font.
