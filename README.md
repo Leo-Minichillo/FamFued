@@ -54,7 +54,7 @@ Health 19
 Friends 12
 ```
 
-Blank line between rounds. `x2` / `x3` at the end of a question doubles or triples the points. Up to 8 answers per round, and up to 8 per Fast Money question. Lines starting with `#` are ignored. Each question's points should add up to 100; the setup screen warns you if one doesn't. The built-in point values are estimates, not from a real survey.
+Blank line between rounds. `x2` / `x3` at the end of a question doubles or triples the points. Up to 8 answers per round, and up to 8 per Fast Money question. Lines starting with `#` are ignored. Each question's points should add up to 100; the setup screen warns you if one doesn't. Questions with a `# Source:` line get their points from real data (box office, Nielsen ratings, polls, game history) and the host screen shows that source. The rest are estimates.
 
 ## Notes
 

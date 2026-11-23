@@ -76,6 +76,9 @@ body.host .tvonly, body.tv .hostonly{display:none !important}
 .tvchip.on{background:rgba(76,195,176,.18);border-color:var(--team1);color:#9ff0e2;cursor:default}
 .tvchip.off{background:rgba(215,38,61,.2);border-color:var(--cranberry);color:#ffc2ca}
 .hq{font-family:var(--display);font-size:2.1rem;padding:.2rem 1.6rem .9rem;line-height:1.2}
+.hsrc{font-size:.85rem;font-weight:800;color:var(--team1);padding:0 1.6rem .8rem;margin-top:-.5rem}
+.hsrc:empty{display:none}
+.hfsrc{display:block;font-size:.75rem;color:var(--team1);opacity:1;margin-top:.15rem}
 .hmain{flex:1;display:grid;grid-template-columns:minmax(0,1fr) 22rem;gap:1.2rem;padding:0 1.6rem;min-height:0}
 .hanswers{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(4,minmax(4.6rem,1fr));grid-auto-flow:column;gap:.7rem;max-height:32rem}
 .hans{display:grid;grid-template-columns:2.6rem minmax(0,1fr) auto;align-items:center;column-gap:.9rem;text-align:left;padding:.5rem 1.1rem .5rem .8rem;border-radius:.8rem;border:.15rem dashed rgba(242,181,68,.55);background:rgba(0,0,0,.35);color:var(--cream)}
@@ -299,6 +302,7 @@ body.tv.fs{cursor:none}
     </div>
   </header>
   <div class="hq" id="hQuestion"></div>
+  <div class="hsrc" id="hSrc"></div>
   <div class="hmain">
     <div class="hanswers" id="hAnswers"></div>
     <aside class="hside">
@@ -420,9 +424,9 @@ const KEY = 'thanksgivingFaceOff.v1';
 const MSG = 'thanksgivingFaceOff.msg';
 
 // ---------- The built-in games. Every question adds up to 100. ----------
-// Point values are estimates shaped like real survey results (not from an actual survey),
-// except the 2026 movie round, which uses each film's share of the 2026 US box office.
-const DEFAULTS_VERSION = 4;
+// Questions with a "# Source:" line get their points from real data (box office, Nielsen, polls...).
+// The rest are estimates shaped like real survey results.
+const DEFAULTS_VERSION = 5;
 const DEFAULT_GAMES = [
 { name:'Thanksgiving', title:'Thanksgiving Face-Off',
 rounds:`Name a food you'd find on the Thanksgiving table.
@@ -507,15 +511,16 @@ Chips 7
 Flowers 5
 Paper plates 4
 
-Name a type of pie.
-Pumpkin 38
-Apple 24
-Pecan 15
-Cherry 9
-Sweet potato 6
+# Source: YouGov poll of 1,000 US adults (Nov 2022), favorite Thanksgiving pie
+Name your favorite Thanksgiving pie.
+Pumpkin 30
+Pecan 18
+Apple 16
+Sweet potato 10
+Chocolate 8
+Cherry 7
+Blueberry 7
 Key lime 4
-Blueberry 2
-Lemon meringue 2
 
 Name a reason to leave a family gathering early.
 Tired 26
@@ -527,15 +532,16 @@ Another party to go to 7
 Not feeling well 5
 Pets at home 3
 
-Name an NFL team people watch on Thanksgiving.
-Cowboys 34
-Lions 31
-Packers 9
-Bears 7
-Eagles 7
-Giants 5
+# Source: share of all-time NFL Thanksgiving Day games played (through 2025)
+Name an NFL team that has played on Thanksgiving.
+Lions 33
+Cowboys 22
+Bears 14
+Packers 14
+Giants 7
 Chiefs 4
-Steelers 3
+Raiders 3
+Eagles 3
 
 Name something you'd see in fall decorations.
 Pumpkins 36
@@ -548,7 +554,8 @@ Candles 5
 Mums 3` },
 
 { name:'2026', title:'2026 Face-Off',
-rounds:`Name a movie people went to see in theaters this year.
+rounds:`# Source: share of 2026 US box office (Box Office Mojo, Nov 2026)
+Name a movie people went to see in theaters this year.
 Spider-Man: Brand New Day 26
 The Odyssey 17
 Toy Story 5 13
@@ -568,15 +575,16 @@ Canada 6
 England 3
 France 2
 
-Name a TV show everyone was talking about this year.
-Stranger Things 32
-The Pitt 18
-Love Is Blind 14
-Bluey 11
-Reacher 9
-Grey's Anatomy 7
-Survivor 5
-The Traitors 4
+# Source: Nielsen US streaming minutes, Jan-Jun 2026
+Name a TV show people streamed the most this year.
+Stranger Things 15
+Bluey 14
+The Pitt 13
+Grey's Anatomy 13
+The Big Bang Theory 13
+Bridgerton 11
+SpongeBob 11
+Family Guy 10
 
 Name something you remember from the 2026 Winter Olympics.
 USA hockey winning gold 30
@@ -617,15 +625,15 @@ BTS 7
 Lady Gaga 6
 Justin Bieber 4
 
-Name something people used AI for this year. x3
-Homework 25
-Writing emails 18
-Asking questions instead of Googling 15
-Making pictures and videos 13
-Recipes 10
-Work stuff 9
-Health advice 6
-Relationship advice 4`,
+# Source: OpenAI/NBER "How People Use ChatGPT" (share of conversations)
+# Host tip: homework, recipes and health questions count as "Advice and how-to help"
+Name something people use ChatGPT for. x3
+Advice and how-to help 31
+Looking things up 25
+Writing and editing 25
+Making pictures 8
+Chatting and venting 6
+Coding and tech help 5`,
 fast:`Name something people did for the Fourth of July and America's 250th birthday.
 Fireworks 38
 Barbecue 22
@@ -734,6 +742,8 @@ function parseBlocks(text, maxAns){
   for(const block of String(text || '').replace(/\r/g, '').split(/\n\s*\n/)){
     const lines = block.split('\n').map(s => s.trim()).filter(s => s && !s.startsWith('#'));
     if(!lines.length) continue;
+    const srcLine = block.split('\n').map(l => l.trim()).find(l => /^#\s*source:/i.test(l));
+    const source = srcLine ? srcLine.replace(/^#\s*source:\s*/i, '') : '';
     let q = lines[0], mult = 1;
     const m = q.match(/\s*[\[(]?\s*x\s*([123])\s*[\])]?\s*$/i);
     if(m){ mult = +m[1]; q = q.slice(0, m.index).trim(); }
@@ -741,7 +751,7 @@ function parseBlocks(text, maxAns){
       const mm = l.match(/^(.*\S)[\s,:;|=\-–—]+(\d{1,3})$/);
       return mm ? {text:mm[1].trim(), pts:+mm[2]} : {text:l, pts:0};
     }).sort((a, b) => b.pts - a.pts).slice(0, maxAns);
-    out.push({q, mult, answers});
+    out.push({q, mult, answers, source});
   }
   return out;
 }
@@ -938,7 +948,7 @@ function bindSetup(){
 }
 function printSheet(){
   const g = G(), rounds = parseBlocks(g.rounds, 8), fast = parseBlocks(g.fast, 8).slice(0, 5);
-  const block = (r, i, label) => `<div class="rd"><div class="rq">${label} ${i+1}${r.mult > 1 ? ` (x${r.mult})` : ''}: ${esc(r.q)}</div><ol>${r.answers.map(a => `<li>${esc(a.text)} (${a.pts})</li>`).join('')}</ol></div>`;
+  const block = (r, i, label) => `<div class="rd"><div class="rq">${label} ${i+1}${r.mult > 1 ? ` (x${r.mult})` : ''}: ${esc(r.q)}${r.source ? ` <i style="font-weight:normal">(data: ${esc(r.source)})</i>` : ''}</div><ol>${r.answers.map(a => `<li>${esc(a.text)} (${a.pts})</li>`).join('')}</ol></div>`;
   $('#hostSheet').innerHTML = `<h1>${esc(g.title)} - Host Sheet</h1><div>${esc(cfg.team0)} vs ${esc(cfg.team1)}</div>
     <h2>Main rounds</h2>${rounds.map((r, i) => block(r, i, 'Round')).join('')}
     <h2>Fast Money (head-to-head)</h2>${fast.map((r, i) => block(r, i, 'Q')).join('')}`;
@@ -952,6 +962,7 @@ function renderHostBoard(){
   $('#hRound').textContent = `Round ${game.ri+1} of ${game.rounds.length}`;
   const m = $('#hMult'); m.hidden = r.mult < 2; m.textContent = r.mult === 3 ? 'Triple points' : 'Double points';
   $('#hQuestion').textContent = r.q;
+  $('#hSrc').textContent = r.source ? `📊 Points from real data: ${r.source}` : '';
   const box = $('#hAnswers'); box.innerHTML = '';
   for(let i = 0; i < 8; i++){
     const a = r.answers[i], b = document.createElement('button');
@@ -1046,7 +1057,7 @@ function buildHostFast(){
       const chips = q ? q.answers.map(a => `<button class="chip" data-t="${esc(a.text)}" data-p="${a.pts}">${esc(a.text)} ${a.pts}</button>`).join('')
         + '<button class="chip zero" data-t="" data-p="0">Not on list · 0</button>' : '';
       return `<div class="hfrow" data-p="${p}" data-i="${i}">
-        <div class="hfq">${i+1}. ${esc(q ? q.q : 'Question ' + (i+1))}</div>
+        <div class="hfq">${i+1}. ${esc(q ? q.q : 'Question ' + (i+1))}${q && q.source ? `<span class="hfsrc">📊 ${esc(q.source)}</span>` : ''}</div>
         <div class="hfin"><input class="fa" placeholder="What they said" value="${esc(s.a)}"><input class="fp" type="number" min="0" max="999" placeholder="Pts" value="${s.pts || ''}"><button class="hbtn small fstep"></button></div>
         <div class="chips">${chips}</div></div>`;
     }).join('');
