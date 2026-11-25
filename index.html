@@ -437,7 +437,7 @@ const MSG = 'thanksgivingFaceOff.msg';
 // ---------- The built-in games. Every question adds up to 100. ----------
 // Questions with a "# Source:" line get their points from real data (box office, Nielsen, polls...).
 // The rest are estimates shaped like real survey results.
-const DEFAULTS_VERSION = 10;
+const DEFAULTS_VERSION = 12;
 const DEFAULT_GAMES = [
 { name:'Thanksgiving', title:'Thanksgiving Face-Off',
 rounds:`Name something people do right after a big Thanksgiving dinner.
@@ -457,6 +457,15 @@ Money 15
 Your weight 13
 Religion 12
 Old family drama 10
+
+# Host tip: any NFL game (Lions, Cowboys...) counts as "Football"; any holiday movie counts as "Christmas movies"
+Name something people watch on TV on Thanksgiving Day.
+Football 44
+Macy's Parade 27
+The National Dog Show 12
+Christmas movies 8
+A Charlie Brown Thanksgiving 5
+Planes, Trains and Automobiles 4
 
 Name something people do on Black Friday.
 Go shopping 63
@@ -566,7 +575,7 @@ Mikaela Shiffrin 9
 It was in Italy 8
 Curling 4
 
-Name something people talked about after this year's Super Bowl. x2
+Name something people talked about after this year's Super Bowl.
 Bad Bunny's halftime show 41
 The commercials 25
 The Seahawks won 16
@@ -575,7 +584,7 @@ The national anthem 5
 Ticket prices 4
 Their bets 3
 
-Name something you'd expect to see at Taylor Swift and Travis Kelce's wedding. x2
+Name something you'd expect to see at Taylor Swift and Travis Kelce's wedding.
 Football players 24
 Taylor singing 18
 Friendship bracelets 14
@@ -585,7 +594,7 @@ Cats 8
 A giant cake 8
 Tons of security 6
 
-Name a music artist you couldn't escape in 2026. x3
+Name a music artist you couldn't escape in 2026.
 Taylor Swift 25
 Morgan Wallen 21
 Ella Langley 19
@@ -596,7 +605,7 @@ Olivia Dean 5
 
 # Source: OpenAI/NBER "How People Use ChatGPT" (share of conversations)
 # Host tip: homework, recipes and health questions count as "Advice and how-to help"
-Name something people use ChatGPT for. x3
+Name something people use ChatGPT for.
 Advice and how-to help 31
 Looking things up 25
 Writing and editing 25

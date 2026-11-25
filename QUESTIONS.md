@@ -38,7 +38,21 @@ To change anything: edit the text boxes on the game's setup screen (format: `Ans
 | 6 | Old family drama | 10 |
 | | **Total** | **100** |
 
-### Round 3: Name something people do on Black Friday.
+### Round 3: Name something people watch on TV on Thanksgiving Day.
+✏️ **Estimate**
+💡 Host tip: any NFL game (Lions, Cowboys...) counts as "Football"; any holiday movie counts as "Christmas movies"
+
+| # | Answer | Pts |
+|---|---|---|
+| 1 | Football | 44 |
+| 2 | Macy's Parade | 27 |
+| 3 | The National Dog Show | 12 |
+| 4 | Christmas movies | 8 |
+| 5 | A Charlie Brown Thanksgiving | 5 |
+| 6 | Planes, Trains and Automobiles | 4 |
+| | **Total** | **100** |
+
+### Round 4: Name something people do on Black Friday.
 ✏️ **Estimate**
 
 | # | Answer | Pts |
@@ -51,7 +65,7 @@ To change anything: edit the text boxes on the game's setup screen (format: `Ans
 | 6 | Go to work | 3 |
 | | **Total** | **100** |
 
-### Round 4: Name something that can go wrong when cooking a turkey.
+### Round 5: Name something that can go wrong when cooking a turkey.
 ✏️ **Estimate**
 💡 Host tip: "still frozen" or "raw in the middle" counts as "It's undercooked"
 
@@ -213,7 +227,7 @@ Bench: From, His & Hers (No. 2 show of the 2025-26 TV season per Nielsen), Love 
 
 Bench: Bobsled (Elana Meyers Taylor's monobob gold at 41)
 
-### Round 5 (x2 points): Name something people talked about after this year's Super Bowl.
+### Round 5: Name something people talked about after this year's Super Bowl.
 ✏️ **Estimate**
 
 | # | Answer | Pts |
@@ -227,7 +241,7 @@ Bench: Bobsled (Elana Meyers Taylor's monobob gold at 41)
 | 7 | Their bets | 3 |
 | | **Total** | **100** |
 
-### Round 6 (x2 points): Name something you'd expect to see at Taylor Swift and Travis Kelce's wedding.
+### Round 6: Name something you'd expect to see at Taylor Swift and Travis Kelce's wedding.
 ✏️ **Estimate**
 
 | # | Answer | Pts |
@@ -242,7 +256,7 @@ Bench: Bobsled (Elana Meyers Taylor's monobob gold at 41)
 | 8 | Tons of security | 6 |
 | | **Total** | **100** |
 
-### Round 7 (x3 points): Name a music artist you couldn't escape in 2026.
+### Round 7: Name a music artist you couldn't escape in 2026.
 ✏️ **Estimate**
 
 | # | Answer | Pts |
@@ -258,7 +272,7 @@ Bench: Bobsled (Elana Meyers Taylor's monobob gold at 41)
 
 Bench: Lady Gaga, Justin Bieber
 
-### Round 8 (x3 points): Name something people use ChatGPT for.
+### Round 8: Name something people use ChatGPT for.
 📊 **Data:** OpenAI/NBER "How People Use ChatGPT" (share of conversations)
 💡 Host tip: homework, recipes and health questions count as "Advice and how-to help"
 
@@ -354,4 +368,4 @@ Empty slot for your own questions. Fill it in on the setup screen (Game 3 tab).
 
 ---
 
-7 of 22 questions in Games 1-2 are data-backed.
+7 of 23 questions in Games 1-2 are data-backed.
