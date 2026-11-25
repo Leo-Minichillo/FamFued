@@ -437,7 +437,7 @@ const MSG = 'thanksgivingFaceOff.msg';
 // ---------- The built-in games. Every question adds up to 100. ----------
 // Questions with a "# Source:" line get their points from real data (box office, Nielsen, polls...).
 // The rest are estimates shaped like real survey results.
-const DEFAULTS_VERSION = 16;
+const DEFAULTS_VERSION = 17;
 const DEFAULT_GAMES = [
 { name:'Thanksgiving', title:'Thanksgiving Face-Off',
 rounds:`Name something people do right after a big Thanksgiving dinner.
@@ -749,12 +749,16 @@ Blue 10
 Silver 7
 Red 7
 
-# Source: YouGov poll, favorite Halloween candy
+# Source: YouGov poll for Reese's, Snickers, Kit Kat and M&M's; Twix, Hershey's, Skittles and Butterfinger are estimates
 Name a favorite Halloween candy.
-Reese's 32
-Snickers 24
-Kit Kat 22
-M&M's 22` }
+Reese's 22
+Snickers 17
+Kit Kat 16
+M&M's 16
+Twix 10
+Hershey's 7
+Skittles 7
+Butterfinger 5` }
 ];
 
 let cfg = { v:DEFAULTS_VERSION, team0:'Team Turkey', team1:'Team Pumpkin Pie', active:0,

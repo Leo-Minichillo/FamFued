@@ -482,14 +482,18 @@ Bench: Bobsled (Elana Meyers Taylor's monobob gold at 41)
 | | **Total** | **100** |
 
 ### Q 5: Name a favorite Halloween candy.
-📊 **Data:** YouGov poll, favorite Halloween candy
+📊 **Data:** YouGov poll for Reese's, Snickers, Kit Kat and M&M's; Twix, Hershey's, Skittles and Butterfinger are estimates
 
 | # | Answer | Pts |
 |---|---|---|
-| 1 | Reese's | 32 |
-| 2 | Snickers | 24 |
-| 3 | Kit Kat | 22 |
-| 4 | M&M's | 22 |
+| 1 | Reese's | 22 |
+| 2 | Snickers | 17 |
+| 3 | Kit Kat | 16 |
+| 4 | M&M's | 16 |
+| 5 | Twix | 10 |
+| 6 | Hershey's | 7 |
+| 7 | Skittles | 7 |
+| 8 | Butterfinger | 5 |
 | | **Total** | **100** |
 
 ---
