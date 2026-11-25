@@ -38,7 +38,7 @@ To change anything: edit the text boxes on the game's setup screen (format: `Ans
 | 6 | Old family drama | 10 |
 | | **Total** | **100** |
 
-### Round 3 (x2 points): Name something people do on Black Friday.
+### Round 3: Name something people do on Black Friday.
 ✏️ **Estimate**
 
 | # | Answer | Pts |
@@ -51,7 +51,7 @@ To change anything: edit the text boxes on the game's setup screen (format: `Ans
 | 6 | Go to work | 3 |
 | | **Total** | **100** |
 
-### Round 4 (x3 points): Name something that can go wrong when cooking a turkey.
+### Round 4: Name something that can go wrong when cooking a turkey.
 ✏️ **Estimate**
 💡 Host tip: "still frozen" or "raw in the middle" counts as "It's undercooked"
 

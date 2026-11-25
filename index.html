@@ -361,9 +361,9 @@ body.tv.fs{cursor:none}
   </header>
   <div class="fmctl">
     <div class="htimer idle" id="hTimer">30</div>
-    <button class="hbtn gold" data-act="t30" id="hT30">Start 30s</button>
-    <button class="hbtn gold" data-act="t40" id="hT40">Start 40s</button>
-    <button class="hbtn" data-act="pause" id="hPause">Pause</button>
+    <button class="hbtn" data-act="t30" id="hT30">Set 30s</button>
+    <button class="hbtn" data-act="t40" id="hT40">Set 40s</button>
+    <button class="hbtn gold big" data-act="pause" id="hPause">▶ Start</button>
     <button class="hbtn red" data-act="dup">Buzzer</button>
     <div class="htotal" id="hFmTotals"></div>
   </div>
@@ -437,7 +437,7 @@ const MSG = 'thanksgivingFaceOff.msg';
 // ---------- The built-in games. Every question adds up to 100. ----------
 // Questions with a "# Source:" line get their points from real data (box office, Nielsen, polls...).
 // The rest are estimates shaped like real survey results.
-const DEFAULTS_VERSION = 9;
+const DEFAULTS_VERSION = 10;
 const DEFAULT_GAMES = [
 { name:'Thanksgiving', title:'Thanksgiving Face-Off',
 rounds:`Name something people do right after a big Thanksgiving dinner.
@@ -458,7 +458,7 @@ Your weight 13
 Religion 12
 Old family drama 10
 
-Name something people do on Black Friday. x2
+Name something people do on Black Friday.
 Go shopping 63
 Eat leftovers 14
 Sleep in 9
@@ -467,7 +467,7 @@ Go to the movies 4
 Go to work 3
 
 # Host tip: "still frozen" or "raw in the middle" counts as "It's undercooked"
-Name something that can go wrong when cooking a turkey. x3
+Name something that can go wrong when cooking a turkey.
 Burn it 32
 It's undercooked 24
 Fryer catches fire 13
@@ -1065,8 +1065,8 @@ function updateHostFast(){
     h.innerHTML = `${esc(teamName(order[p]))}<small>${p ? 'goes 2nd · 40s' : 'goes 1st · 30s'}</small>`;
     h.style.color = fmColor(order[p]);
   });
-  $('#hT30').textContent = `Start 30s · ${teamName(order[0])}`;
-  $('#hT40').textContent = `Start 40s · ${teamName(order[1])}`;
+  $('#hT30').textContent = `Set 30s · ${teamName(order[0])}`;
+  $('#hT40').textContent = `Set 40s · ${teamName(order[1])}`;
   $('#hFmTotals').innerHTML = [0,1].map(p => `<span style="color:${fmColor(order[p])}">${esc(teamName(order[p]))}</span><b>${fmTotalOf(p)}</b>`).join('');
   $('#hHide0').textContent = game.fm.hide0 ? 'Show on TV again' : 'Hide on TV';
   paintHostTimer(); updateTVChips(); updateWinnerBtns();
@@ -1086,10 +1086,10 @@ function stepRow(p, i){
   if(p === 0 && game.fm.hide0 && s.sa) game.fm.hide0 = false;
   commit(); updateHostFast();
 }
-function startTimer(sec){
-  clearInterval(timerId);
-  ui.timer = {left:sec, running:true, started:true};
-  timerId = setInterval(tick, 1000);
+// Set a time on the clock (shown on the TV) without starting it.
+function setTimer(sec){
+  clearInterval(timerId); timerId = null;
+  ui.timer = {left:sec, total:sec, running:false, started:true};
   commit(); paintHostTimer();
 }
 function tick(){
@@ -1100,17 +1100,22 @@ function tick(){
   else if(t.left <= 5) sfx.tick();
   commit(); paintHostTimer();
 }
+// Start / pause / resume. Starting with nothing set uses 30s; starting at 0 restarts the last time set.
 function togglePause(){
   const t = ui.timer;
-  if(!t.started || t.left <= 0) return;
-  t.running = !t.running;
-  if(t.running && !timerId) timerId = setInterval(tick, 1000);
+  if(!t.started){ setTimer(30); }
+  else if(t.left <= 0){ setTimer(t.total || 30); }
+  const tt = ui.timer;
+  tt.running = !tt.running;
+  if(tt.running){ clearInterval(timerId); timerId = setInterval(tick, 1000); }
+  else { clearInterval(timerId); timerId = null; }
   commit(); paintHostTimer();
 }
 function paintHostTimer(){
   paintTimerEl($('#hTimer'));
   const t = ui.timer;
-  $('#hPause').textContent = t.started && !t.running && t.left > 0 ? 'Resume' : 'Pause';
+  const fresh = !t.started || t.left <= 0 || t.left === t.total;
+  $('#hPause').textContent = t.running ? '⏸ Pause' : (fresh ? '▶ Start' : '▶ Resume');
 }
 
 const actions = {
@@ -1123,7 +1128,7 @@ const actions = {
   award0: () => award(0), award1: () => award(1),
   edit0: () => editScore(0), edit1: () => editScore(1),
   prev: () => go(-1), next: () => go(1), final: () => toggleWinner(),
-  t30: () => startTimer(30), t40: () => startTimer(40), pause: togglePause,
+  t30: () => setTimer(30), t40: () => setTimer(40), pause: togglePause,
   dup: buzzOnly,
   hide0: () => { game.fm.hide0 = !game.fm.hide0; commit(); updateHostFast(); },
   swap: () => {
@@ -1134,7 +1139,7 @@ const actions = {
   fmReset: () => {
     if(!confirm('Clear all Fast Money answers?')) return;
     game.fm = freshFM(); ensureOrder(); clearInterval(timerId); timerId = null;
-    ui.timer = {left:0, running:false, started:false};
+    ui.timer = {left:0, total:0, running:false, started:false};
     buildHostFast(); commit();
   }
 };

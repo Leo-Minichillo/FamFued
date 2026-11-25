@@ -40,10 +40,10 @@ Optional keys: `1`-`8` reveal, `X` wrong, `Q` / `P` give points, `N` next.
 
 Each team picks one player. The team that's ahead going into Fast Money goes first with **30 seconds**; the other team goes second with **40 seconds**. (On a tie, use **⇄ Swap who goes first**.)
 
-1. Click **💰 Fast Money**, then **Start 30s** for the first team.
+1. Click **💰 Fast Money**, then **Set 30s** for the first team. That puts 30 on the TV without starting it. Press **▶ Start** (or `Space`) when the player is ready; the same button pauses and resumes.
 2. Type what they said. Click the matching survey answer under each question to fill in the points (or **Not on list · 0**).
 3. Click **Show answer**, then **Show points**, one row at a time.
-4. Send the second player out of the room while the first one plays. Click **Hide on TV** before bringing them back, then **Start 40s**. Both players can give the same answers, and every Fast Money question has a close top two so going first is not a big edge.
+4. Send the second player out of the room while the first one plays. Click **Hide on TV** before bringing them back, then **Set 40s** and **▶ Start**. Both players can give the same answers, and every Fast Money question has a close top two so going first is not a big edge.
 5. **🏆 Show winner** on the Fast Money screen announces whichever team scored more in Fast Money.
 
 ## Question format
