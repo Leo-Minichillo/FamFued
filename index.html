@@ -437,11 +437,11 @@ const MSG = 'thanksgivingFaceOff.msg';
 // ---------- The built-in games. Every question adds up to 100. ----------
 // Questions with a "# Source:" line get their points from real data (box office, Nielsen, polls...).
 // The rest are shaped like real survey results.
-const DEFAULTS_VERSION = 20;
+const DEFAULTS_VERSION = 21;
 const DEFAULT_GAMES = [
 { name:'Thanksgiving', title:'Thanksgiving Face-Off',
 rounds:`# Source: per Data for Progress and Meyocks surveys
-Name something people do right after a big Thanksgiving dinner.
+Name something people do on Thanksgiving after the big meal.
 Watch football 30
 Take a nap 24
 Go for a walk 22
@@ -451,7 +451,7 @@ Unbutton their pants 4
 Play cards 2
 
 # Source: per Talker Research and Dating.com polls
-Name a topic you hope doesn't come up at Thanksgiving dinner.
+Name a topic people hope doesn't come up at Thanksgiving dinner.
 Politics 30
 Your love life 20
 Money 15
@@ -461,7 +461,7 @@ Old family drama 10
 
 # Source: per Nielsen
 # Host tip: any NFL game (Lions, Cowboys...) counts as "Football"; any holiday movie counts as "Christmas movies"
-Name something people watch on TV on Thanksgiving Day.
+Name something millions of people watch on TV on Thanksgiving Day.
 Football 41
 Macy's Parade 31
 The National Dog Show 11
@@ -488,15 +488,15 @@ Go to the movies 4
 Go to work 3
 
 # Source: per Omaha Steaks survey
-# Host tip: "still frozen" or "raw in the middle" counts as "It's undercooked"; running late counts as "Not done in time"
-Name something that can go wrong when cooking a turkey.
-Not done in time 28
-Burn it 24
-It's undercooked 23
-Fryer catches fire 9
-Drop it on the floor 7
-Leave the giblet bag inside 5
-The dog gets it 4`,
+# Host tip: "still frozen" or "raw in the middle" counts as "Undercooked turkey"; running late counts as "Food's not ready on time"
+Name something that goes wrong when cooking Thanksgiving dinner.
+Food's not ready on time 28
+Burnt turkey 24
+Undercooked turkey 23
+Turkey fryer fire 9
+Dropped the turkey 7
+Left the giblet bag inside 5
+The dog steals food 4`,
 fast:`Name something you'd bring to Thanksgiving if you can't cook.
 Wine 28
 Pie 24
@@ -508,7 +508,7 @@ Flowers 5
 Paper plates 4
 
 # Source: per YouGov
-Name your favorite Thanksgiving pie.
+Name Americans' favorite Thanksgiving pie.
 Pumpkin 30
 Pecan 18
 Apple 16
@@ -529,7 +529,7 @@ Not feeling well 5
 Pets at home 3
 
 # Source: per NFL game history
-Name an NFL team that has played on Thanksgiving.
+Name an NFL team that has played the most games on Thanksgiving.
 Lions 33
 Cowboys 22
 Bears 14
@@ -551,7 +551,7 @@ Mums 3` },
 
 { name:'2026', title:'2026 Face-Off',
 rounds:`# Source: per US box office
-Name a movie people went to see in theaters this year.
+Name one of the biggest movies at the box office this year.
 Spider-Man: Brand New Day 44
 The Odyssey 19
 Toy Story 5 11
@@ -572,7 +572,7 @@ England 4
 France 3
 
 # Source: per Nielsen
-Name a TV show everyone was watching this year.
+Name one of the most-streamed TV shows this year.
 Stranger Things 39
 The Pitt 21
 Love Is Blind 13
@@ -593,7 +593,7 @@ Curling drama 4
 A 41-year-old bobsled champ 4
 
 # Source: per Billboard and Spotify
-Name a music artist who had a No. 1 song in 2026.
+Name one of the biggest music artists of 2026.
 Ella Langley 35
 Taylor Swift 16
 Bruno Mars 13
@@ -605,7 +605,7 @@ BTS 3
 
 # Source: per Nielsen ratings
 # Host tip: Spain = World Cup, Indiana = college football, Team USA = Olympic hockey, Knicks = NBA, Brewers = World Series, Hurricanes = Stanley Cup, Valkyries = WNBA
-Name a team that won a big championship in 2026.
+Name a 2026 champion whose title game millions of Americans watched.
 Seahawks 43
 Spain 22
 Indiana 10
@@ -615,25 +615,30 @@ Brewers 5
 Hurricanes 2
 Valkyries 1`,
 fast:`# Source: per the official medal count
-Name a country that won a lot of medals at the 2026 Winter Olympics.
-Norway 27
-USA 22
-Italy 20
-Germany 17
-Netherlands 14
+Name a country that won the most medals at the 2026 Winter Olympics.
+Norway 19
+USA 16
+Italy 14
+Germany 12
+Japan 11
+Canada 10
+Netherlands 9
+Austria 9
 
-# Source: per 2026 sales data
-# Host tip: F-150 or "Ford truck" = Ford F-Series; "Chevy truck" = Silverado; "Dodge Ram" = Ram pickup
-Name a best-selling car or truck in America this year.
-Ford F-Series 26
-Chevy Silverado 19
-Honda CR-V 16
-Ram pickup 15
-Tesla Model Y 12
-Toyota RAV4 12
+# Source: per Social Security
+# Host tip: these are 2025 births, the latest year released
+Name one of the most popular baby names in America right now.
+Liam 17
+Noah 17
+Oliver 12
+Olivia 11
+Charlotte 11
+Theodore 11
+Emma 11
+Amelia 10
 
 # Source: per QSR Magazine
-Name a fast food or coffee chain.
+Name a fast food or coffee chain where Americans spend the most money.
 McDonald's 32
 Starbucks 18
 Chick-fil-A 14
@@ -645,34 +650,42 @@ Subway 5
 
 # Source: per NRF survey
 Name a popular Halloween costume for adults this year.
-Witch 35
-Vampire 30
-Batman 14
-Spider-Man 11
-Ghost 10
+Witch 28
+Vampire 25
+Batman 12
+Spider-Man 9
+Ghost 8
+Clown 7
+Superman 6
+Pirate 5
 
 # Source: per Nielsen
 # Host tip: Hulu or ESPN+ counts as "Disney+ & Hulu"
-Name a streaming service people watch on their TV.
-YouTube 45
-Netflix 22
-Disney+ & Hulu 14
-Prime Video 12
-Paramount+ 7` },
+Name a streaming service Americans spend the most time watching.
+YouTube 38
+Netflix 19
+Disney+ & Hulu 12
+Prime Video 10
+Roku Channel 6
+Paramount+ 6
+Tubi 5
+Peacock 4` },
 
 { name:'Variety', title:'Variety Face-Off',
-rounds:`# Source: per CareerBuilder
-# Host tip: oversleeping or being tired counts as "Not enough sleep"; bus or train delays count as "Public transit problems"
-Name a reason people show up late to work.
-Traffic 49
-Not enough sleep 24
-Public transit problems 10
-Bad weather 9
-Dropping off the kids 8
+rounds:`# Source: per Pew Research
+Name a social media app lots of American adults use.
+YouTube 24
+Facebook 21
+Instagram 14
+TikTok 11
+WhatsApp 9
+Snapchat 8
+Reddit 7
+X (Twitter) 6
 
 # Source: per YouGov
 # Host tip: plain cheese counts as "Extra cheese"
-Name one of Americans' favorite pizza toppings.
+Name one of Americans' top 3 favorite pizza toppings.
 Pepperoni 30
 Sausage 19
 Mushrooms 17
@@ -683,7 +696,7 @@ Chicken 5
 
 # Source: per YouGov
 # Host tip: disease or germs count as "Getting sick"; elevators or closets count as "Small spaces"
-Name something a lot of people are afraid of.
+Name something lots of Americans say they're afraid of.
 Snakes 18
 Heights 17
 Spiders 14
@@ -694,7 +707,7 @@ Crowds 10
 Flying 5
 
 # Source: per YouGov
-Name a favorite ice cream flavor.
+Name Americans' favorite ice cream flavor.
 Vanilla 20
 Chocolate 18
 Mint chocolate chip 15
@@ -705,14 +718,14 @@ Caramel 5
 Neapolitan 4
 
 # Source: per Marist poll
-If you could have one superpower, name what it would be.
+If you could have one superpower, what would it be?
 Time travel 31
 Reading minds 22
 Flying 18
 Teleporting 16
 Invisibility 13`,
 fast:`# Source: per US Census
-Name a common last name in America.
+Name one of the most common last names in America.
 Smith 20
 Johnson 16
 Williams 13
@@ -724,16 +737,17 @@ Davis 9
 
 # Source: per APPA survey
 # Host tip: hamster, guinea pig or rabbit = "Small animals"; snake, lizard or turtle = "Reptiles"
-Name a pet American households own.
-Dog 47
-Cat 34
-Fish 7
+Name a pet lots of American households own.
+Dog 46
+Cat 33
+Fish 8
 Small animals 4
 Reptiles 4
 Bird 4
+Horse 1
 
 # Source: per National Park Service
-Name a popular national park in the western US.
+Name one of the most-visited national parks in the western US.
 Zion 15
 Yellowstone 14
 Grand Canyon 13
@@ -744,16 +758,18 @@ Olympic 11
 Glacier 9
 
 # Source: per Axalta
-Name a popular car color.
-White 30
-Black 24
+Name one of the most popular colors for new cars.
+White 28
+Black 23
 Gray 22
 Blue 10
 Silver 7
 Red 7
+Green 2
+Beige 1
 
 # Source: per YouGov
-Name a favorite Halloween candy.
+Name Americans' favorite Halloween candy.
 Reese's 22
 Snickers 17
 Kit Kat 16
