@@ -4,7 +4,7 @@ A survey-style game show for the family TV, with 3 games built in:
 
 1. **Thanksgiving Face-Off** (8 rounds + Fast Money)
 2. **2026 Face-Off** (8 rounds + Fast Money, built on real 2026 events: the World Cup, Super Bowl LX, the Winter Olympics, the year's big movies, shows and music)
-3. **Game 3**: an empty slot for your own questions
+3. **Variety Face-Off** (5 rounds + Fast Money, all scored from published surveys and statistics: Gallup, YouGov, Marist, Census, Park Service and more)
 
 Pick a game with the tabs on the setup screen. Each game keeps its own questions and title; team names are shared. One file, no install. Open `index.html` in Chrome or Edge.
 

@@ -437,7 +437,7 @@ const MSG = 'thanksgivingFaceOff.msg';
 // ---------- The built-in games. Every question adds up to 100. ----------
 // Questions with a "# Source:" line get their points from real data (box office, Nielsen, polls...).
 // The rest are estimates shaped like real survey results.
-const DEFAULTS_VERSION = 14;
+const DEFAULTS_VERSION = 15;
 const DEFAULT_GAMES = [
 { name:'Thanksgiving', title:'Thanksgiving Face-Off',
 rounds:`Name something people do right after a big Thanksgiving dinner.
@@ -658,20 +658,95 @@ Disney+ & Hulu 14
 Prime Video 12
 Paramount+ 7` },
 
-{ name:'Game 3', title:'Family Face-Off',
-rounds:`# GAME 3 is yours to fill in. Lines starting with # are ignored.
-# One round per block, with a blank line between rounds.
-# First line is the question. Add x2 or x3 at the end for double or triple points.
-# Then one answer per line with its points at the end. Up to 8 answers.
-# Example (delete the # signs to use it):
-#
-# Name something Grandpa always falls asleep watching.
-# Golf 40
-# The news 25
-# Football 15
-# Westerns 10`,
-fast:`# Fast Money for Game 3: 5 questions, same format as above.
-# Give each question up to 8 answers so you have plenty to pick from.`}
+{ name:'Variety', title:'Variety Face-Off',
+rounds:`# Source: Gallup poll, August 2026 (favorite sport to watch)
+Name a sport Americans say is their favorite to watch.
+Football 48
+Basketball 17
+Baseball 15
+Soccer 14
+Hockey 6
+
+# Source: YouGov poll (share naming it one of their top 3 toppings)
+# Host tip: plain cheese counts as "Extra cheese"
+Name one of Americans' favorite pizza toppings.
+Pepperoni 33
+Sausage 21
+Mushrooms 20
+Bacon 13
+Extra cheese 13
+
+# Source: YouGov poll of US adults (2022), share who have each fear
+# Host tip: disease or germs count as "Getting sick"; elevators or closets count as "Small spaces"
+Name something a lot of people are afraid of.
+Snakes 21
+Heights 19
+Spiders 17
+Public speaking 16
+Getting sick 15
+Small spaces 12
+
+# Source: YouGov poll of 1,000 US adults (July 2022), single favorite flavor
+Name a favorite ice cream flavor.
+Vanilla 25
+Chocolate 23
+Mint chocolate chip 18
+Butter pecan 18
+Cookies and cream 16
+
+# Source: Marist poll of US adults (2018)
+If you could have one superpower, name what it would be.
+Time travel 31
+Reading minds 22
+Flying 18
+Teleporting 16
+Invisibility 13`,
+fast:`# Source: US Census Bureau, number of people with each last name (2010 Census)
+Name a common last name in America.
+Smith 20
+Johnson 16
+Williams 13
+Brown 12
+Jones 12
+Garcia 9
+Miller 9
+Davis 9
+
+# Source: APPA National Pet Owners Survey 2025 (millions of households)
+# Host tip: hamster, guinea pig or rabbit = "Small animals"; snake, lizard or turtle = "Reptiles"
+Name a pet American households own.
+Dog 47
+Cat 34
+Fish 7
+Small animals 4
+Reptiles 4
+Bird 4
+
+# Source: National Park Service, 2025 recreation visits
+Name a popular US national park.
+Great Smoky Mountains 30
+Zion 13
+Yellowstone 12
+Grand Canyon 12
+Yosemite 11
+Rocky Mountain 11
+Acadia 11
+
+# Source: Axalta 2025 automotive color report (new cars)
+Name a popular car color.
+White 30
+Black 24
+Gray 22
+Blue 10
+Silver 7
+Red 7
+
+# Source: YouGov poll, favorite Halloween candy
+Name a favorite Halloween candy.
+Reese's 32
+Snickers 24
+Kit Kat 22
+M&M's 22` }
 ];
 
 let cfg = { v:DEFAULTS_VERSION, team0:'Team Turkey', team1:'Team Pumpkin Pie', active:0,
@@ -1181,7 +1256,8 @@ function initHost(){
       if(d.cfg.team1) cfg.team1 = d.cfg.team1;
       if(Array.isArray(d.cfg.games) && d.cfg.games.length === 3){
         if(d.cfg.v === DEFAULTS_VERSION) cfg.games = d.cfg.games;
-        else cfg.games[2] = d.cfg.games[2];   // older save: keep your Game 3, pick up the improved Games 1 and 2
+        else if(d.cfg.games[2] && parseBlocks(d.cfg.games[2].rounds, 8).length && !/^\s*#\s*GAME 3 is yours/i.test(d.cfg.games[2].rounds))
+          cfg.games[2] = d.cfg.games[2];   // older save: keep a Game 3 you filled in yourself
         cfg.active = d.cfg.active || 0;
       }
     }

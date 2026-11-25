@@ -349,10 +349,142 @@ Bench: Bobsled (Elana Meyers Taylor's monobob gold at 41)
 
 ---
 
-# Game 3: Family Face-Off
+# Game 3: Variety Face-Off
 
-Empty slot for your own questions. Fill it in on the setup screen (Game 3 tab).
+## Main rounds
+
+### Round 1: Name a sport Americans say is their favorite to watch.
+📊 **Data:** Gallup poll, August 2026 (favorite sport to watch)
+
+| # | Answer | Pts |
+|---|---|---|
+| 1 | Football | 48 |
+| 2 | Basketball | 17 |
+| 3 | Baseball | 15 |
+| 4 | Soccer | 14 |
+| 5 | Hockey | 6 |
+| | **Total** | **100** |
+
+### Round 2: Name one of Americans' favorite pizza toppings.
+📊 **Data:** YouGov poll (share naming it one of their top 3 toppings)
+💡 Host tip: plain cheese counts as "Extra cheese"
+
+| # | Answer | Pts |
+|---|---|---|
+| 1 | Pepperoni | 33 |
+| 2 | Sausage | 21 |
+| 3 | Mushrooms | 20 |
+| 4 | Bacon | 13 |
+| 5 | Extra cheese | 13 |
+| | **Total** | **100** |
+
+### Round 3: Name something a lot of people are afraid of.
+📊 **Data:** YouGov poll of US adults (2022), share who have each fear
+💡 Host tip: disease or germs count as "Getting sick"; elevators or closets count as "Small spaces"
+
+| # | Answer | Pts |
+|---|---|---|
+| 1 | Snakes | 21 |
+| 2 | Heights | 19 |
+| 3 | Spiders | 17 |
+| 4 | Public speaking | 16 |
+| 5 | Getting sick | 15 |
+| 6 | Small spaces | 12 |
+| | **Total** | **100** |
+
+### Round 4: Name a favorite ice cream flavor.
+📊 **Data:** YouGov poll of 1,000 US adults (July 2022), single favorite flavor
+
+| # | Answer | Pts |
+|---|---|---|
+| 1 | Vanilla | 25 |
+| 2 | Chocolate | 23 |
+| 3 | Mint chocolate chip | 18 |
+| 4 | Butter pecan | 18 |
+| 5 | Cookies and cream | 16 |
+| | **Total** | **100** |
+
+### Round 5: If you could have one superpower, name what it would be.
+📊 **Data:** Marist poll of US adults (2018)
+
+| # | Answer | Pts |
+|---|---|---|
+| 1 | Time travel | 31 |
+| 2 | Reading minds | 22 |
+| 3 | Flying | 18 |
+| 4 | Teleporting | 16 |
+| 5 | Invisibility | 13 |
+| | **Total** | **100** |
+
+## Fast Money (head-to-head)
+
+### Q 1: Name a common last name in America.
+📊 **Data:** US Census Bureau, number of people with each last name (2010 Census)
+
+| # | Answer | Pts |
+|---|---|---|
+| 1 | Smith | 20 |
+| 2 | Johnson | 16 |
+| 3 | Williams | 13 |
+| 4 | Brown | 12 |
+| 5 | Jones | 12 |
+| 6 | Garcia | 9 |
+| 7 | Miller | 9 |
+| 8 | Davis | 9 |
+| | **Total** | **100** |
+
+### Q 2: Name a pet American households own.
+📊 **Data:** APPA National Pet Owners Survey 2025 (millions of households)
+💡 Host tip: hamster, guinea pig or rabbit = "Small animals"; snake, lizard or turtle = "Reptiles"
+
+| # | Answer | Pts |
+|---|---|---|
+| 1 | Dog | 47 |
+| 2 | Cat | 34 |
+| 3 | Fish | 7 |
+| 4 | Small animals | 4 |
+| 5 | Reptiles | 4 |
+| 6 | Bird | 4 |
+| | **Total** | **100** |
+
+### Q 3: Name a popular US national park.
+📊 **Data:** National Park Service, 2025 recreation visits
+
+| # | Answer | Pts |
+|---|---|---|
+| 1 | Great Smoky Mountains | 30 |
+| 2 | Zion | 13 |
+| 3 | Yellowstone | 12 |
+| 4 | Grand Canyon | 12 |
+| 5 | Yosemite | 11 |
+| 6 | Rocky Mountain | 11 |
+| 7 | Acadia | 11 |
+| | **Total** | **100** |
+
+### Q 4: Name a popular car color.
+📊 **Data:** Axalta 2025 automotive color report (new cars)
+
+| # | Answer | Pts |
+|---|---|---|
+| 1 | White | 30 |
+| 2 | Black | 24 |
+| 3 | Gray | 22 |
+| 4 | Blue | 10 |
+| 5 | Silver | 7 |
+| 6 | Red | 7 |
+| | **Total** | **100** |
+
+### Q 5: Name a favorite Halloween candy.
+📊 **Data:** YouGov poll, favorite Halloween candy
+
+| # | Answer | Pts |
+|---|---|---|
+| 1 | Reese's | 32 |
+| 2 | Snickers | 24 |
+| 3 | Kit Kat | 22 |
+| 4 | M&M's | 22 |
+| | **Total** | **100** |
 
 ---
 
-11 of 22 questions in Games 1-2 are data-backed.
+21 of 32 questions in Games 1-2 are data-backed.
