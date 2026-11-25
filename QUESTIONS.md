@@ -52,7 +52,22 @@ To change anything: edit the text boxes on the game's setup screen (format: `Ans
 | 6 | Planes, Trains and Automobiles | 4 |
 | | **Total** | **100** |
 
-### Round 4: Name something people do on Black Friday.
+### Round 4: Name something that comes in a can at Thanksgiving.
+✏️ **Estimate**
+💡 Host tip: pumpkin pie filling counts as "Pumpkin", sweet potatoes count as "Yams", Reddi-wip counts as "Whipped cream"
+
+| # | Answer | Pts |
+|---|---|---|
+| 1 | Cranberry sauce | 34 |
+| 2 | Pumpkin | 20 |
+| 3 | Gravy | 13 |
+| 4 | Green beans | 11 |
+| 5 | Corn | 8 |
+| 6 | Whipped cream | 8 |
+| 7 | Yams | 6 |
+| | **Total** | **100** |
+
+### Round 5: Name something people do on Black Friday.
 ✏️ **Estimate**
 
 | # | Answer | Pts |
@@ -65,7 +80,7 @@ To change anything: edit the text boxes on the game's setup screen (format: `Ans
 | 6 | Go to work | 3 |
 | | **Total** | **100** |
 
-### Round 5: Name something that can go wrong when cooking a turkey.
+### Round 6: Name something that can go wrong when cooking a turkey.
 ✏️ **Estimate**
 💡 Host tip: "still frozen" or "raw in the middle" counts as "It's undercooked"
 
@@ -368,4 +383,4 @@ Empty slot for your own questions. Fill it in on the setup screen (Game 3 tab).
 
 ---
 
-7 of 23 questions in Games 1-2 are data-backed.
+7 of 24 questions in Games 1-2 are data-backed.
