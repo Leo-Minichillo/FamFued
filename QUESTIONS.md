@@ -230,16 +230,18 @@ Bench: From, His & Hers (No. 2 show of the 2025-26 TV season per Nielsen), Love 
 
 ### Round 4: Name something you remember from the 2026 Winter Olympics.
 ✏️ **Estimate**
-💡 Host tip: figure skating counts as "Alysa Liu"
+💡 Host tip: men's or women's hockey both count; figure skating counts as "Alysa Liu"; Elana Meyers Taylor = the bobsled champ
 
 | # | Answer | Pts |
 |---|---|---|
-| 1 | USA hockey winning gold | 33 |
-| 2 | Alysa Liu | 23 |
-| 3 | Lindsey Vonn's crash | 18 |
-| 4 | Snowboarding | 11 |
-| 5 | Curling | 8 |
-| 6 | The opening ceremony | 7 |
+| 1 | USA hockey winning gold | 34 |
+| 2 | Alysa Liu | 22 |
+| 3 | Lindsey Vonn's crash | 16 |
+| 4 | Norway's record medal haul | 8 |
+| 5 | The opening ceremony | 7 |
+| 6 | Breezy Johnson's downhill gold | 5 |
+| 7 | Curling drama | 4 |
+| 8 | A 41-year-old bobsled champ | 4 |
 | | **Total** | **100** |
 
 Bench: Bobsled (Elana Meyers Taylor's monobob gold at 41)
@@ -261,7 +263,7 @@ Bench: Bobsled (Elana Meyers Taylor's monobob gold at 41)
 
 ### Round 6: Name a team that won a big championship in 2026.
 📊 **Data:** US TV audience of each title game (Nielsen, via news reports)
-💡 Host tip: Spain = World Cup, Indiana = college football, Team USA = Olympic hockey, Knicks = NBA, Brewers = World Series, Hurricanes = Stanley Cup
+💡 Host tip: Spain = World Cup, Indiana = college football, Team USA = Olympic hockey, Knicks = NBA, Brewers = World Series, Hurricanes = Stanley Cup, Valkyries = WNBA
 
 | # | Answer | Pts |
 |---|---|---|
@@ -269,9 +271,10 @@ Bench: Bobsled (Elana Meyers Taylor's monobob gold at 41)
 | 2 | Spain | 22 |
 | 3 | Indiana | 10 |
 | 4 | Team USA hockey | 9 |
-| 5 | Knicks | 9 |
+| 5 | Knicks | 8 |
 | 6 | Brewers | 5 |
 | 7 | Hurricanes | 2 |
+| 8 | Valkyries | 1 |
 | | **Total** | **100** |
 
 ## Fast Money (head-to-head)
@@ -288,19 +291,18 @@ Bench: Bobsled (Elana Meyers Taylor's monobob gold at 41)
 | 5 | Netherlands | 14 |
 | | **Total** | **100** |
 
-### Q 2: Name a social media app.
-📊 **Data:** Pew Research (2025), share of US adults who use each app
+### Q 2: Name a best-selling car or truck in America this year.
+📊 **Data:** 2026 US sales through September (Tesla Model Y is an estimate; Tesla does not report by model)
+💡 Host tip: F-150 or "Ford truck" = Ford F-Series; "Chevy truck" = Silverado; "Dodge Ram" = Ram pickup
 
 | # | Answer | Pts |
 |---|---|---|
-| 1 | YouTube | 24 |
-| 2 | Facebook | 21 |
-| 3 | Instagram | 14 |
-| 4 | TikTok | 11 |
-| 5 | WhatsApp | 9 |
-| 6 | Snapchat | 8 |
-| 7 | Reddit | 7 |
-| 8 | X (Twitter) | 6 |
+| 1 | Ford F-Series | 26 |
+| 2 | Chevy Silverado | 19 |
+| 3 | Honda CR-V | 16 |
+| 4 | Ram pickup | 15 |
+| 5 | Tesla Model Y | 12 |
+| 6 | Toyota RAV4 | 12 |
 | | **Total** | **100** |
 
 ### Q 3: Name a fast food or coffee chain.
@@ -318,20 +320,16 @@ Bench: Bobsled (Elana Meyers Taylor's monobob gold at 41)
 | 8 | Subway | 5 |
 | | **Total** | **100** |
 
-### Q 4: Name a famous athlete people talked about this year.
-✏️ **Estimate**
-💡 Host tip: estimate for now; will be replaced with Google Trends data
+### Q 4: Name a popular Halloween costume for adults this year.
+📊 **Data:** NRF 2026 Halloween survey (millions of adults planning each costume)
 
 | # | Answer | Pts |
 |---|---|---|
-| 1 | Shohei Ohtani | 20 |
-| 2 | Caitlin Clark | 17 |
-| 3 | Lionel Messi | 15 |
-| 4 | LeBron James | 13 |
-| 5 | Alysa Liu | 11 |
-| 6 | Travis Kelce | 10 |
-| 7 | Patrick Mahomes | 8 |
-| 8 | Lindsey Vonn | 6 |
+| 1 | Witch | 35 |
+| 2 | Vampire | 30 |
+| 3 | Batman | 14 |
+| 4 | Spider-Man | 11 |
+| 5 | Ghost | 10 |
 | | **Total** | **100** |
 
 ### Q 5: Name a streaming service people watch on their TV.
@@ -353,43 +351,48 @@ Bench: Bobsled (Elana Meyers Taylor's monobob gold at 41)
 
 ## Main rounds
 
-### Round 1: Name a sport Americans say is their favorite to watch.
-📊 **Data:** Gallup poll, August 2026 (favorite sport to watch)
+### Round 1: Name a reason people show up late to work.
+📊 **Data:** CareerBuilder survey of US workers on why they were late
+💡 Host tip: oversleeping or being tired counts as "Not enough sleep"; bus or train delays count as "Public transit problems"
 
 | # | Answer | Pts |
 |---|---|---|
-| 1 | Football | 48 |
-| 2 | Basketball | 17 |
-| 3 | Baseball | 15 |
-| 4 | Soccer | 14 |
-| 5 | Hockey | 6 |
+| 1 | Traffic | 49 |
+| 2 | Not enough sleep | 24 |
+| 3 | Public transit problems | 10 |
+| 4 | Bad weather | 9 |
+| 5 | Dropping off the kids | 8 |
 | | **Total** | **100** |
 
 ### Round 2: Name one of Americans' favorite pizza toppings.
-📊 **Data:** YouGov poll (share naming it one of their top 3 toppings)
+📊 **Data:** YouGov polls (share naming it one of their top 3 toppings)
 💡 Host tip: plain cheese counts as "Extra cheese"
 
 | # | Answer | Pts |
 |---|---|---|
-| 1 | Pepperoni | 33 |
-| 2 | Sausage | 21 |
-| 3 | Mushrooms | 20 |
-| 4 | Bacon | 13 |
-| 5 | Extra cheese | 13 |
+| 1 | Pepperoni | 30 |
+| 2 | Sausage | 19 |
+| 3 | Mushrooms | 17 |
+| 4 | Bacon | 11 |
+| 5 | Extra cheese | 11 |
+| 6 | Pineapple | 7 |
+| 7 | Chicken | 5 |
 | | **Total** | **100** |
 
 ### Round 3: Name something a lot of people are afraid of.
-📊 **Data:** YouGov poll of US adults (2022), share who have each fear
+📊 **Data:** YouGov poll of US adults (June 2022), share who have each fear
 💡 Host tip: disease or germs count as "Getting sick"; elevators or closets count as "Small spaces"
 
 | # | Answer | Pts |
 |---|---|---|
-| 1 | Snakes | 21 |
-| 2 | Heights | 19 |
-| 3 | Spiders | 17 |
-| 4 | Public speaking | 16 |
-| 5 | Getting sick | 15 |
-| 6 | Small spaces | 12 |
+| 1 | Snakes | 18 |
+| 2 | Heights | 17 |
+| 3 | Spiders | 14 |
+| 4 | Public speaking | 14 |
+| 5 | Getting sick | 12 |
+| 6 | Small spaces | 10 |
+| 7 | Crowds | 10 |
+| 8 | Flying | 5 |
 | | **Total** | **100** |
 
 ### Round 4: Name a favorite ice cream flavor.
@@ -397,11 +400,14 @@ Bench: Bobsled (Elana Meyers Taylor's monobob gold at 41)
 
 | # | Answer | Pts |
 |---|---|---|
-| 1 | Vanilla | 25 |
-| 2 | Chocolate | 23 |
-| 3 | Mint chocolate chip | 18 |
-| 4 | Butter pecan | 18 |
-| 5 | Cookies and cream | 16 |
+| 1 | Vanilla | 20 |
+| 2 | Chocolate | 18 |
+| 3 | Mint chocolate chip | 15 |
+| 4 | Butter pecan | 14 |
+| 5 | Cookies and cream | 13 |
+| 6 | Strawberry | 11 |
+| 7 | Caramel | 5 |
+| 8 | Neapolitan | 4 |
 | | **Total** | **100** |
 
 ### Round 5: If you could have one superpower, name what it would be.
@@ -447,18 +453,19 @@ Bench: Bobsled (Elana Meyers Taylor's monobob gold at 41)
 | 6 | Bird | 4 |
 | | **Total** | **100** |
 
-### Q 3: Name a popular US national park.
+### Q 3: Name a popular national park in the western US.
 📊 **Data:** National Park Service, 2025 recreation visits
 
 | # | Answer | Pts |
 |---|---|---|
-| 1 | Great Smoky Mountains | 30 |
-| 2 | Zion | 13 |
-| 3 | Yellowstone | 12 |
-| 4 | Grand Canyon | 12 |
-| 5 | Yosemite | 11 |
-| 6 | Rocky Mountain | 11 |
-| 7 | Acadia | 11 |
+| 1 | Zion | 15 |
+| 2 | Yellowstone | 14 |
+| 3 | Grand Canyon | 13 |
+| 4 | Yosemite | 13 |
+| 5 | Rocky Mountain | 13 |
+| 6 | Grand Teton | 12 |
+| 7 | Olympic | 11 |
+| 8 | Glacier | 9 |
 | | **Total** | **100** |
 
 ### Q 4: Name a popular car color.
@@ -487,4 +494,4 @@ Bench: Bobsled (Elana Meyers Taylor's monobob gold at 41)
 
 ---
 
-21 of 32 questions in Games 1-2 are data-backed.
+22 of 32 questions in Games 1-2 are data-backed.
