@@ -26,6 +26,7 @@ If the button doesn't open a tab, open the same file in a new tab yourself and a
 
 ## Running a round (laptop)
 
+- Each round starts with the question **hidden on the TV** (it shows "🎤 Face-off!") so you can read it out loud for the face-off. Click **🙈 Question hidden... click to show** (or press `V`) when you want it up. It also appears automatically on the first **Wrong answer** or when you give the round points to a team. **Face-off miss** doesn't reveal it.
 - Click an answer to reveal it on the TV (click again to hide it).
 - **✕ Wrong answer** adds a strike and shows the big X. **Face-off miss** shows one X without counting a strike.
 - **Give round points to** a team. If the other team steals, just click their button and the points move over.

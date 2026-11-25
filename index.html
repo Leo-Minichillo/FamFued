@@ -78,6 +78,9 @@ body.host .tvonly, body.tv .hostonly{display:none !important}
 .hq{font-family:var(--display);font-size:2.1rem;padding:.2rem 1.6rem .9rem;line-height:1.2}
 .hsrc{font-size:.85rem;font-weight:800;color:var(--team1);padding:0 1.6rem .8rem;margin-top:-.5rem}
 .hsrc:empty{display:none}
+.hqrow{padding:0 1.6rem .9rem;margin-top:-.3rem}
+#hQBtn.hidden{background:rgba(242,181,68,.18);border-color:var(--gold)}
+#hQBtn.shown{background:rgba(76,195,176,.16);border-color:var(--team1)}
 .hfsrc{display:block;font-size:.75rem;color:var(--team1);opacity:1;margin-top:.15rem}
 .hmain{flex:1;display:grid;grid-template-columns:minmax(0,1fr) 22rem;gap:1.2rem;padding:0 1.6rem;min-height:0}
 .hanswers{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(4,minmax(4.6rem,1fr));grid-auto-flow:column;gap:.7rem;max-height:32rem}
@@ -153,6 +156,10 @@ body.host .tvonly, body.tv .hostonly{display:none !important}
 .strikes span{font-family:var(--display);font-size:1.9rem;line-height:1;color:var(--cranberry);-webkit-text-stroke:.08rem #fff}
 .strikes span.off{color:rgba(255,255,255,.12);-webkit-text-stroke:0}
 .question{font-family:var(--display);font-size:2.5rem;text-align:center;line-height:1.15;max-width:62rem;min-height:5.9rem;display:flex;align-items:center;justify-content:center;text-wrap:balance;text-shadow:0 .2rem .6rem rgba(0,0,0,.6)}
+.question.qwait{color:var(--gold);opacity:.85;font-size:2.2rem;animation:pulse2 1.8s ease-in-out infinite}
+@keyframes pulse2{50%{opacity:.5}}
+.question.qpop{animation:qpop .5s cubic-bezier(.3,1.5,.5,1)}
+@keyframes qpop{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
 .boardframe{width:100%;max-width:68rem;padding:1rem;border-radius:1.4rem;background:linear-gradient(145deg,#5a2a12,#2c130a);border:.3rem solid var(--gold);box-shadow:0 1.2rem 3rem rgba(0,0,0,.6),inset 0 0 2rem rgba(0,0,0,.5)}
 .grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(4,4.7rem);grid-auto-flow:column;gap:.75rem}
 .tile{perspective:60rem;min-width:0}
@@ -303,6 +310,7 @@ body.tv.fs{cursor:none}
   </header>
   <div class="hq" id="hQuestion"></div>
   <div class="hsrc" id="hSrc"></div>
+  <div class="hqrow"><button class="hbtn small" data-act="toggleQ" id="hQBtn"></button></div>
   <div class="hmain">
     <div class="hanswers" id="hAnswers"></div>
     <aside class="hside">
@@ -336,7 +344,7 @@ body.tv.fs{cursor:none}
     <button class="hbtn" data-act="fast">💰 Fast Money</button>
     <button class="hbtn winbtn" data-act="final">🏆 Show winner</button>
   </footer>
-  <div class="hhint">Click an answer to reveal it on the TV (click again to hide). Optional keys: 1–8 reveal · X wrong · Q / P give points · N next</div>
+  <div class="hhint">Click an answer to reveal it on the TV (click again to hide). Optional keys: 1–8 reveal · V show question · X wrong · Q / P give points · N next</div>
 </section>
 
 <section id="hostFast" class="screen hscreen hostonly">
@@ -744,7 +752,8 @@ function parseBlocks(text, maxAns){
 }
 
 /* ---------- game state ---------- */
-const freshRS = r => ({rev:r.answers.map(() => 0), strikes:0, awardedTo:null, awardedAmt:0});
+const freshRS = r => ({rev:r.answers.map(() => 0), strikes:0, awardedTo:null, awardedAmt:0, qShown:false});
+const qVisible = st => !!(st.qShown || st.awardedTo != null);
 const freshFM = () => ({p:[0,1].map(() => Array.from({length:5}, () => ({a:'', pts:0, sa:false, sp:false}))), hide0:false, order:null, manual:false});
 function newGame(){ game = {gi:cfg.active, ri:0, scores:[0,0], rs:[], fm:freshFM()}; syncRounds(); }
 function syncRounds(){
@@ -950,6 +959,9 @@ function renderHostBoard(){
   const m = $('#hMult'); m.hidden = r.mult < 2; m.textContent = r.mult === 3 ? 'Triple points' : 'Double points';
   $('#hQuestion').textContent = r.q;
   $('#hSrc').textContent = r.source ? `📊 Points based on: ${r.source}` : '';
+  const qb = $('#hQBtn'), qOn = qVisible(st);
+  qb.textContent = qOn ? '👁 Question is showing on the TV · click to hide' : '🙈 Question hidden on the TV for the face-off · click to show';
+  qb.className = 'hbtn small ' + (qOn ? 'shown' : 'hidden');
   const box = $('#hAnswers'); box.innerHTML = '';
   for(let i = 0; i < 8; i++){
     const a = r.answers[i], b = document.createElement('button');
@@ -990,6 +1002,7 @@ function revealAll(){
 }
 function wrong(){
   const st = curS(); let n;
+  st.qShown = true;
   if(st.strikes < 3){ st.strikes++; n = st.strikes; } else n = 1;
   sfx.buzz(); commit(); send({type:'fx', fx:'x', n}); renderHostBoard();
 }
@@ -999,7 +1012,7 @@ function award(t){
   const st = curS(), amt = bankOf(game.ri);
   if(st.awardedTo === t) return;
   if(st.awardedTo != null) game.scores[st.awardedTo] -= st.awardedAmt;
-  game.scores[t] += amt; st.awardedTo = t; st.awardedAmt = amt;
+  game.scores[t] += amt; st.awardedTo = t; st.awardedAmt = amt; st.qShown = true;
   sfx.award(); commit(); send({type:'fx', fx:'flash', t}); renderHostBoard();
 }
 function go(delta){
@@ -1130,6 +1143,7 @@ const actions = {
   opentv: () => { if(!tvConnected()) openTV(); },
   mute: () => { const m = sfx.toggle(); $$('.mutebtn').forEach(b => b.textContent = m ? '🔇 Sound off' : '🔊 Sound on'); },
   wrong, buzzonly: buzzOnly, unstrike, revealAll,
+  toggleQ: () => { const st = curS(); st.qShown = !qVisible(st); if(!st.qShown && st.awardedTo != null) st.qShown = true; commit(); renderHostBoard(); },
   award0: () => award(0), award1: () => award(1),
   edit0: () => editScore(0), edit1: () => editScore(1),
   prev: () => go(-1), next: () => go(1), final: () => toggleWinner(),
@@ -1155,7 +1169,7 @@ function handleHostKey(e){
   if(screen === 'board' && hasGame()){
     const dm = (e.code || '').match(/^(?:Digit|Numpad)([1-8])$/);
     if(dm){ toggleAnswer(+dm[1] - 1); return true; }
-    const map = {x:wrong, b:buzzOnly, z:unstrike, q:() => award(0), p:() => award(1),
+    const map = {x:wrong, b:buzzOnly, z:unstrike, q:() => award(0), p:() => award(1), v:() => actions.toggleQ(),
                  n:() => go(1), arrowright:() => go(1), arrowleft:() => go(-1)};
     if(map[k]){ map[k](); return true; }
   } else if(screen === 'fast' && k === ' '){ togglePause(); return true; }
@@ -1278,7 +1292,15 @@ function renderBoard(){
   $('#bTitle').textContent = playingGame().title;
   $('#bRound').textContent = `Round ${game.ri+1} of ${game.rounds.length}`;
   const m = $('#bMult'); m.hidden = r.mult < 2; m.textContent = r.mult === 3 ? 'Triple points' : 'Double points';
-  $('#question').textContent = r.q;
+  const qel = $('#question'), qOn = qVisible(st);
+  if(qOn && qel.dataset.q !== r.q){
+    qel.dataset.q = r.q; qel.textContent = r.q;
+    qel.classList.remove('qwait', 'qpop'); void qel.offsetWidth; qel.classList.add('qpop');
+  } else if(!qOn && qel.dataset.q !== '__hidden__' + game.ri){
+    qel.dataset.q = '__hidden__' + game.ri;
+    qel.classList.remove('qpop'); qel.classList.add('qwait');
+    qel.textContent = '🎤 Face-off! Listen to the question...';
+  }
   renderTiles();
   animNum($('#bank'), roundAmount());
   $('#bankLabel').textContent = st.awardedTo == null ? 'Points' : `Went to ${teamName(st.awardedTo)}`;
