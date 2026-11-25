@@ -231,18 +231,18 @@ Bench: From, His & Hers (No. 2 show of the 2025-26 TV season per Nielsen), Love 
 
 Bench: Bobsled (Elana Meyers Taylor's monobob gold at 41)
 
-### Round 5: Name a music artist who had a No. 1 song in 2026. (per Billboard)
+### Round 5: Name a music artist who had a No. 1 song in 2026. (per Billboard and Spotify)
 
 | # | Answer | Pts |
 |---|---|---|
-| 1 | Ella Langley | 64 |
+| 1 | Ella Langley | 35 |
 | 2 | Taylor Swift | 16 |
-| 3 | Bruno Mars | 7 |
-| 4 | Drake | 5 |
-| 5 | Bad Bunny | 2 |
-| 6 | Ariana Grande | 2 |
-| 7 | BTS | 2 |
-| 8 | Harry Styles | 2 |
+| 3 | Bruno Mars | 13 |
+| 4 | Drake | 10 |
+| 5 | Ariana Grande | 9 |
+| 6 | Bad Bunny | 8 |
+| 7 | Harry Styles | 6 |
+| 8 | BTS | 3 |
 | | **Total** | **100** |
 
 ### Round 6: Name a team that won a big championship in 2026. (per Nielsen ratings)
