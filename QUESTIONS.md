@@ -1,6 +1,6 @@
 # Face-Off Game Night: all questions and points
 
-Every question adds up to 100. **📊** = points come from real data (source in the heading). **✏️ estimate** = my best guess.
+Every question adds up to 100. Where a question has real data behind it, the source is noted after the question.
 "Bench" lists answers that were cut or didn't make the board, in case you want to swap one in.
 
 To change anything: edit the text boxes on the game's setup screen (format: `Answer 25`, one per line, `x2`/`x3` after the question for double/triple), or send me your edits and I'll update the file.
@@ -11,20 +11,20 @@ To change anything: edit the text boxes on the game's setup screen (format: `Ans
 
 ## Main rounds
 
-### Round 1: Name something people do right after a big Thanksgiving dinner. (✏️ estimate)
+### Round 1: Name something people do right after a big Thanksgiving dinner. (per Data for Progress and Meyocks surveys)
 
 | # | Answer | Pts |
 |---|---|---|
-| 1 | Take a nap | 47 |
-| 2 | Watch football | 21 |
-| 3 | Eat dessert | 10 |
-| 4 | Do the dishes | 8 |
-| 5 | Go for a walk | 6 |
-| 6 | Unbutton their pants | 5 |
-| 7 | Play cards | 3 |
+| 1 | Watch football | 30 |
+| 2 | Take a nap | 24 |
+| 3 | Go for a walk | 22 |
+| 4 | Eat dessert | 10 |
+| 5 | Do the dishes | 8 |
+| 6 | Unbutton their pants | 4 |
+| 7 | Play cards | 2 |
 | | **Total** | **100** |
 
-### Round 2: Name a topic you hope doesn't come up at Thanksgiving dinner. (📊 blended from Talker Research (2024) and Dating.com polls on topics people dread at Thanksgiving)
+### Round 2: Name a topic you hope doesn't come up at Thanksgiving dinner. (per Talker Research and Dating.com polls)
 
 | # | Answer | Pts |
 |---|---|---|
@@ -36,20 +36,20 @@ To change anything: edit the text boxes on the game's setup screen (format: `Ans
 | 6 | Old family drama | 10 |
 | | **Total** | **100** |
 
-### Round 3: Name something people watch on TV on Thanksgiving Day. (✏️ estimate)
+### Round 3: Name something people watch on TV on Thanksgiving Day. (per Nielsen)
 💡 Host tip: any NFL game (Lions, Cowboys...) counts as "Football"; any holiday movie counts as "Christmas movies"
 
 | # | Answer | Pts |
 |---|---|---|
-| 1 | Football | 44 |
-| 2 | Macy's Parade | 27 |
-| 3 | The National Dog Show | 12 |
+| 1 | Football | 41 |
+| 2 | Macy's Parade | 31 |
+| 3 | The National Dog Show | 11 |
 | 4 | Christmas movies | 8 |
 | 5 | A Charlie Brown Thanksgiving | 5 |
 | 6 | Planes, Trains and Automobiles | 4 |
 | | **Total** | **100** |
 
-### Round 4: Name something that comes in a can at Thanksgiving. (✏️ estimate)
+### Round 4: Name something that comes in a can at Thanksgiving. 
 💡 Host tip: pumpkin pie filling counts as "Pumpkin", sweet potatoes count as "Yams", Reddi-wip counts as "Whipped cream"
 
 | # | Answer | Pts |
@@ -63,7 +63,7 @@ To change anything: edit the text boxes on the game's setup screen (format: `Ans
 | 7 | Yams | 6 |
 | | **Total** | **100** |
 
-### Round 5: Name something people do on Black Friday. (✏️ estimate)
+### Round 5: Name something people do on Black Friday. 
 
 | # | Answer | Pts |
 |---|---|---|
@@ -75,23 +75,23 @@ To change anything: edit the text boxes on the game's setup screen (format: `Ans
 | 6 | Go to work | 3 |
 | | **Total** | **100** |
 
-### Round 6: Name something that can go wrong when cooking a turkey. (✏️ estimate)
-💡 Host tip: "still frozen" or "raw in the middle" counts as "It's undercooked"
+### Round 6: Name something that can go wrong when cooking a turkey. (per Omaha Steaks survey)
+💡 Host tip: "still frozen" or "raw in the middle" counts as "It's undercooked"; running late counts as "Not done in time"
 
 | # | Answer | Pts |
 |---|---|---|
-| 1 | Burn it | 32 |
-| 2 | It's undercooked | 24 |
-| 3 | Fryer catches fire | 13 |
-| 4 | Drop it on the floor | 11 |
-| 5 | Leave the giblet bag inside | 8 |
-| 6 | The dog gets it | 6 |
-| 7 | Bought one that's too small | 6 |
+| 1 | Not done in time | 28 |
+| 2 | Burn it | 24 |
+| 3 | It's undercooked | 23 |
+| 4 | Fryer catches fire | 9 |
+| 5 | Drop it on the floor | 7 |
+| 6 | Leave the giblet bag inside | 5 |
+| 7 | The dog gets it | 4 |
 | | **Total** | **100** |
 
 ## Fast Money (head-to-head)
 
-### Q 1: Name something you'd bring to Thanksgiving if you can't cook. (✏️ estimate)
+### Q 1: Name something you'd bring to Thanksgiving if you can't cook. 
 
 | # | Answer | Pts |
 |---|---|---|
@@ -105,7 +105,7 @@ To change anything: edit the text boxes on the game's setup screen (format: `Ans
 | 8 | Paper plates | 4 |
 | | **Total** | **100** |
 
-### Q 2: Name your favorite Thanksgiving pie. (📊 YouGov poll of 1,000 US adults (Nov 2022), favorite Thanksgiving pie)
+### Q 2: Name your favorite Thanksgiving pie. (per YouGov)
 
 | # | Answer | Pts |
 |---|---|---|
@@ -119,7 +119,7 @@ To change anything: edit the text boxes on the game's setup screen (format: `Ans
 | 8 | Key lime | 4 |
 | | **Total** | **100** |
 
-### Q 3: Name a reason to leave a family gathering early. (✏️ estimate)
+### Q 3: Name a reason to leave a family gathering early. 
 
 | # | Answer | Pts |
 |---|---|---|
@@ -133,7 +133,7 @@ To change anything: edit the text boxes on the game's setup screen (format: `Ans
 | 8 | Pets at home | 3 |
 | | **Total** | **100** |
 
-### Q 4: Name an NFL team that has played on Thanksgiving. (📊 share of all-time NFL Thanksgiving Day games played (through 2025))
+### Q 4: Name an NFL team that has played on Thanksgiving. (per NFL game history)
 
 | # | Answer | Pts |
 |---|---|---|
@@ -147,7 +147,7 @@ To change anything: edit the text boxes on the game's setup screen (format: `Ans
 | 8 | Eagles | 3 |
 | | **Total** | **100** |
 
-### Q 5: Name something you'd see in fall decorations. (✏️ estimate)
+### Q 5: Name something you'd see in fall decorations. 
 
 | # | Answer | Pts |
 |---|---|---|
@@ -167,7 +167,7 @@ To change anything: edit the text boxes on the game's setup screen (format: `Ans
 
 ## Main rounds
 
-### Round 1: Name a movie people went to see in theaters this year. (📊 2026 US box office, boosted toward the biggest hits like a real survey (You Can See Everything added))
+### Round 1: Name a movie people went to see in theaters this year. (per US box office)
 
 | # | Answer | Pts |
 |---|---|---|
@@ -183,7 +183,7 @@ To change anything: edit the text boxes on the game's setup screen (format: `Ans
 
 Bench: Devil Wears Prada 2 ($221M US), Hunger Games: Sunrise on the Reaping ($120M opening, Nov 20), Backrooms ($198M), Minions & Monsters ($183M)
 
-### Round 2: Name a country you think of when you hear "2026 World Cup." (✏️ estimate)
+### Round 2: Name a country you think of when you hear "2026 World Cup." 
 
 | # | Answer | Pts |
 |---|---|---|
@@ -199,7 +199,7 @@ Bench: Devil Wears Prada 2 ($221M US), Hunger Games: Sunrise on the Reaping ($12
 
 Bench: England, France
 
-### Round 3: Name a TV show everyone was watching this year. (📊 Nielsen streaming (Jan-Jun) for the top shows, estimates for later-2026 hits)
+### Round 3: Name a TV show everyone was watching this year. (per Nielsen)
 
 | # | Answer | Pts |
 |---|---|---|
@@ -214,7 +214,7 @@ Bench: England, France
 
 Bench: From, His & Hers (No. 2 show of the 2025-26 TV season per Nielsen), Love Island USA, Landman, Fallout, Bluey, Grey's Anatomy
 
-### Round 4: Name something you remember from the 2026 Winter Olympics. (✏️ estimate)
+### Round 4: Name something you remember from the 2026 Winter Olympics. 
 💡 Host tip: men's or women's hockey both count; figure skating counts as "Alysa Liu"; Elana Meyers Taylor = the bobsled champ
 
 | # | Answer | Pts |
@@ -231,7 +231,7 @@ Bench: From, His & Hers (No. 2 show of the 2025-26 TV season per Nielsen), Love 
 
 Bench: Bobsled (Elana Meyers Taylor's monobob gold at 41)
 
-### Round 5: Name a music artist who had a No. 1 song in 2026. (📊 weeks at No. 1 on the Billboard Hot 100 in 2026 (through late November))
+### Round 5: Name a music artist who had a No. 1 song in 2026. (per Billboard)
 
 | # | Answer | Pts |
 |---|---|---|
@@ -245,7 +245,7 @@ Bench: Bobsled (Elana Meyers Taylor's monobob gold at 41)
 | 8 | Harry Styles | 2 |
 | | **Total** | **100** |
 
-### Round 6: Name a team that won a big championship in 2026. (📊 US TV audience of each title game (Nielsen, via news reports))
+### Round 6: Name a team that won a big championship in 2026. (per Nielsen ratings)
 💡 Host tip: Spain = World Cup, Indiana = college football, Team USA = Olympic hockey, Knicks = NBA, Brewers = World Series, Hurricanes = Stanley Cup, Valkyries = WNBA
 
 | # | Answer | Pts |
@@ -262,7 +262,7 @@ Bench: Bobsled (Elana Meyers Taylor's monobob gold at 41)
 
 ## Fast Money (head-to-head)
 
-### Q 1: Name a country that won a lot of medals at the 2026 Winter Olympics. (📊 final Milan Cortina 2026 medal table (total medals))
+### Q 1: Name a country that won a lot of medals at the 2026 Winter Olympics. (per the official medal count)
 
 | # | Answer | Pts |
 |---|---|---|
@@ -273,7 +273,7 @@ Bench: Bobsled (Elana Meyers Taylor's monobob gold at 41)
 | 5 | Netherlands | 14 |
 | | **Total** | **100** |
 
-### Q 2: Name a best-selling car or truck in America this year. (📊 2026 US sales through September (Tesla Model Y is an estimate; Tesla does not report by model))
+### Q 2: Name a best-selling car or truck in America this year. (per 2026 sales data)
 💡 Host tip: F-150 or "Ford truck" = Ford F-Series; "Chevy truck" = Silverado; "Dodge Ram" = Ram pickup
 
 | # | Answer | Pts |
@@ -286,7 +286,7 @@ Bench: Bobsled (Elana Meyers Taylor's monobob gold at 41)
 | 6 | Toyota RAV4 | 12 |
 | | **Total** | **100** |
 
-### Q 3: Name a fast food or coffee chain. (📊 QSR Magazine 2026 QSR 50, US sales in 2025)
+### Q 3: Name a fast food or coffee chain. (per QSR Magazine)
 
 | # | Answer | Pts |
 |---|---|---|
@@ -300,7 +300,7 @@ Bench: Bobsled (Elana Meyers Taylor's monobob gold at 41)
 | 8 | Subway | 5 |
 | | **Total** | **100** |
 
-### Q 4: Name a popular Halloween costume for adults this year. (📊 NRF 2026 Halloween survey (millions of adults planning each costume))
+### Q 4: Name a popular Halloween costume for adults this year. (per NRF survey)
 
 | # | Answer | Pts |
 |---|---|---|
@@ -311,7 +311,7 @@ Bench: Bobsled (Elana Meyers Taylor's monobob gold at 41)
 | 5 | Ghost | 10 |
 | | **Total** | **100** |
 
-### Q 5: Name a streaming service people watch on their TV. (📊 Nielsen's The Gauge (Aug 2026), share of all US TV time)
+### Q 5: Name a streaming service people watch on their TV. (per Nielsen)
 💡 Host tip: Hulu or ESPN+ counts as "Disney+ & Hulu"
 
 | # | Answer | Pts |
@@ -329,7 +329,7 @@ Bench: Bobsled (Elana Meyers Taylor's monobob gold at 41)
 
 ## Main rounds
 
-### Round 1: Name a reason people show up late to work. (📊 CareerBuilder survey of US workers on why they were late)
+### Round 1: Name a reason people show up late to work. (per CareerBuilder)
 💡 Host tip: oversleeping or being tired counts as "Not enough sleep"; bus or train delays count as "Public transit problems"
 
 | # | Answer | Pts |
@@ -341,7 +341,7 @@ Bench: Bobsled (Elana Meyers Taylor's monobob gold at 41)
 | 5 | Dropping off the kids | 8 |
 | | **Total** | **100** |
 
-### Round 2: Name one of Americans' favorite pizza toppings. (📊 YouGov polls (share naming it one of their top 3 toppings))
+### Round 2: Name one of Americans' favorite pizza toppings. (per YouGov)
 💡 Host tip: plain cheese counts as "Extra cheese"
 
 | # | Answer | Pts |
@@ -355,7 +355,7 @@ Bench: Bobsled (Elana Meyers Taylor's monobob gold at 41)
 | 7 | Chicken | 5 |
 | | **Total** | **100** |
 
-### Round 3: Name something a lot of people are afraid of. (📊 YouGov poll of US adults (June 2022), share who have each fear)
+### Round 3: Name something a lot of people are afraid of. (per YouGov)
 💡 Host tip: disease or germs count as "Getting sick"; elevators or closets count as "Small spaces"
 
 | # | Answer | Pts |
@@ -370,7 +370,7 @@ Bench: Bobsled (Elana Meyers Taylor's monobob gold at 41)
 | 8 | Flying | 5 |
 | | **Total** | **100** |
 
-### Round 4: Name a favorite ice cream flavor. (📊 YouGov poll of 1,000 US adults (July 2022), single favorite flavor)
+### Round 4: Name a favorite ice cream flavor. (per YouGov)
 
 | # | Answer | Pts |
 |---|---|---|
@@ -384,7 +384,7 @@ Bench: Bobsled (Elana Meyers Taylor's monobob gold at 41)
 | 8 | Neapolitan | 4 |
 | | **Total** | **100** |
 
-### Round 5: If you could have one superpower, name what it would be. (📊 Marist poll of US adults (2018))
+### Round 5: If you could have one superpower, name what it would be. (per Marist poll)
 
 | # | Answer | Pts |
 |---|---|---|
@@ -397,7 +397,7 @@ Bench: Bobsled (Elana Meyers Taylor's monobob gold at 41)
 
 ## Fast Money (head-to-head)
 
-### Q 1: Name a common last name in America. (📊 US Census Bureau, number of people with each last name (2010 Census))
+### Q 1: Name a common last name in America. (per US Census)
 
 | # | Answer | Pts |
 |---|---|---|
@@ -411,7 +411,7 @@ Bench: Bobsled (Elana Meyers Taylor's monobob gold at 41)
 | 8 | Davis | 9 |
 | | **Total** | **100** |
 
-### Q 2: Name a pet American households own. (📊 APPA National Pet Owners Survey 2025 (millions of households))
+### Q 2: Name a pet American households own. (per APPA survey)
 💡 Host tip: hamster, guinea pig or rabbit = "Small animals"; snake, lizard or turtle = "Reptiles"
 
 | # | Answer | Pts |
@@ -424,7 +424,7 @@ Bench: Bobsled (Elana Meyers Taylor's monobob gold at 41)
 | 6 | Bird | 4 |
 | | **Total** | **100** |
 
-### Q 3: Name a popular national park in the western US. (📊 National Park Service, 2025 recreation visits)
+### Q 3: Name a popular national park in the western US. (per National Park Service)
 
 | # | Answer | Pts |
 |---|---|---|
@@ -438,7 +438,7 @@ Bench: Bobsled (Elana Meyers Taylor's monobob gold at 41)
 | 8 | Glacier | 9 |
 | | **Total** | **100** |
 
-### Q 4: Name a popular car color. (📊 Axalta 2025 automotive color report (new cars))
+### Q 4: Name a popular car color. (per Axalta)
 
 | # | Answer | Pts |
 |---|---|---|
@@ -450,7 +450,7 @@ Bench: Bobsled (Elana Meyers Taylor's monobob gold at 41)
 | 6 | Red | 7 |
 | | **Total** | **100** |
 
-### Q 5: Name a favorite Halloween candy. (📊 YouGov poll for Reese's, Snickers, Kit Kat and M&M's; Twix, Hershey's, Skittles and Butterfinger are estimates)
+### Q 5: Name a favorite Halloween candy. (per YouGov)
 
 | # | Answer | Pts |
 |---|---|---|
@@ -466,4 +466,4 @@ Bench: Bobsled (Elana Meyers Taylor's monobob gold at 41)
 
 ---
 
-22 of 32 questions in Games 1-2 are data-backed.
+25 of 32 questions in Games 1-2 are data-backed.

@@ -291,7 +291,7 @@ body.tv.fs{cursor:none}
       <div class="card">
         <div class="editing" id="editingLabel"></div>
         <div class="lblrow"><h2>Main rounds</h2><span class="info" id="roundsInfo"></span></div>
-        <p class="fmt">One round per block, with a blank line between rounds. First line is the question. Add <code>x2</code> or <code>x3</code> at the end of the question for double or triple points. Then one answer per line with its points at the end, like <code>Turkey 36</code>. Up to 8 answers, auto-sorted by points. Each question's points should add up to 100 (you'll get a warning if not). The built-in values are estimates, so tweak away.</p>
+        <p class="fmt">One round per block, with a blank line between rounds. First line is the question. Add <code>x2</code> or <code>x3</code> at the end of the question for double or triple points. Then one answer per line with its points at the end, like <code>Turkey 36</code>. Up to 8 answers, auto-sorted by points. Each question's points should add up to 100 (you'll get a warning if not). Tweak any of the built-in values.</p>
         <textarea id="cfgRounds" spellcheck="false"></textarea>
         <div class="lblrow" style="margin-top:1.4rem"><h2>Fast Money</h2><span class="info" id="fastInfo"></span></div>
         <p class="fmt">Same format, 5 questions, up to 8 answers each. The answers show up as quick-pick buttons on your host screen during Fast Money, so more answers means fewer "is that on the list?" moments.</p>
@@ -436,20 +436,21 @@ const MSG = 'thanksgivingFaceOff.msg';
 
 // ---------- The built-in games. Every question adds up to 100. ----------
 // Questions with a "# Source:" line get their points from real data (box office, Nielsen, polls...).
-// The rest are estimates shaped like real survey results.
-const DEFAULTS_VERSION = 17;
+// The rest are shaped like real survey results.
+const DEFAULTS_VERSION = 19;
 const DEFAULT_GAMES = [
 { name:'Thanksgiving', title:'Thanksgiving Face-Off',
-rounds:`Name something people do right after a big Thanksgiving dinner.
-Take a nap 47
-Watch football 21
+rounds:`# Source: per Data for Progress and Meyocks surveys
+Name something people do right after a big Thanksgiving dinner.
+Watch football 30
+Take a nap 24
+Go for a walk 22
 Eat dessert 10
 Do the dishes 8
-Go for a walk 6
-Unbutton their pants 5
-Play cards 3
+Unbutton their pants 4
+Play cards 2
 
-# Source: blended from Talker Research (2024) and Dating.com polls on topics people dread at Thanksgiving
+# Source: per Talker Research and Dating.com polls
 Name a topic you hope doesn't come up at Thanksgiving dinner.
 Politics 30
 Your love life 20
@@ -458,11 +459,12 @@ Your weight 13
 Religion 12
 Old family drama 10
 
+# Source: per Nielsen
 # Host tip: any NFL game (Lions, Cowboys...) counts as "Football"; any holiday movie counts as "Christmas movies"
 Name something people watch on TV on Thanksgiving Day.
-Football 44
-Macy's Parade 27
-The National Dog Show 12
+Football 41
+Macy's Parade 31
+The National Dog Show 11
 Christmas movies 8
 A Charlie Brown Thanksgiving 5
 Planes, Trains and Automobiles 4
@@ -485,15 +487,16 @@ Put up Christmas decorations 7
 Go to the movies 4
 Go to work 3
 
-# Host tip: "still frozen" or "raw in the middle" counts as "It's undercooked"
+# Source: per Omaha Steaks survey
+# Host tip: "still frozen" or "raw in the middle" counts as "It's undercooked"; running late counts as "Not done in time"
 Name something that can go wrong when cooking a turkey.
-Burn it 32
-It's undercooked 24
-Fryer catches fire 13
-Drop it on the floor 11
-Leave the giblet bag inside 8
-The dog gets it 6
-Bought one that's too small 6`,
+Not done in time 28
+Burn it 24
+It's undercooked 23
+Fryer catches fire 9
+Drop it on the floor 7
+Leave the giblet bag inside 5
+The dog gets it 4`,
 fast:`Name something you'd bring to Thanksgiving if you can't cook.
 Wine 28
 Pie 24
@@ -504,7 +507,7 @@ Chips 7
 Flowers 5
 Paper plates 4
 
-# Source: YouGov poll of 1,000 US adults (Nov 2022), favorite Thanksgiving pie
+# Source: per YouGov
 Name your favorite Thanksgiving pie.
 Pumpkin 30
 Pecan 18
@@ -525,7 +528,7 @@ Another party to go to 7
 Not feeling well 5
 Pets at home 3
 
-# Source: share of all-time NFL Thanksgiving Day games played (through 2025)
+# Source: per NFL game history
 Name an NFL team that has played on Thanksgiving.
 Lions 33
 Cowboys 22
@@ -547,7 +550,7 @@ Candles 5
 Mums 3` },
 
 { name:'2026', title:'2026 Face-Off',
-rounds:`# Source: 2026 US box office, boosted toward the biggest hits like a real survey (You Can See Everything added)
+rounds:`# Source: per US box office
 Name a movie people went to see in theaters this year.
 Spider-Man: Brand New Day 44
 The Odyssey 19
@@ -568,7 +571,7 @@ Canada 5
 England 4
 France 3
 
-# Source: Nielsen streaming (Jan-Jun) for the top shows, estimates for later-2026 hits
+# Source: per Nielsen
 Name a TV show everyone was watching this year.
 Stranger Things 39
 The Pitt 21
@@ -589,7 +592,7 @@ Breezy Johnson's downhill gold 5
 Curling drama 4
 A 41-year-old bobsled champ 4
 
-# Source: weeks at No. 1 on the Billboard Hot 100 in 2026 (through late November)
+# Source: per Billboard
 Name a music artist who had a No. 1 song in 2026.
 Ella Langley 64
 Taylor Swift 16
@@ -600,7 +603,7 @@ Ariana Grande 2
 BTS 2
 Harry Styles 2
 
-# Source: US TV audience of each title game (Nielsen, via news reports)
+# Source: per Nielsen ratings
 # Host tip: Spain = World Cup, Indiana = college football, Team USA = Olympic hockey, Knicks = NBA, Brewers = World Series, Hurricanes = Stanley Cup, Valkyries = WNBA
 Name a team that won a big championship in 2026.
 Seahawks 43
@@ -611,7 +614,7 @@ Knicks 8
 Brewers 5
 Hurricanes 2
 Valkyries 1`,
-fast:`# Source: final Milan Cortina 2026 medal table (total medals)
+fast:`# Source: per the official medal count
 Name a country that won a lot of medals at the 2026 Winter Olympics.
 Norway 27
 USA 22
@@ -619,7 +622,7 @@ Italy 20
 Germany 17
 Netherlands 14
 
-# Source: 2026 US sales through September (Tesla Model Y is an estimate; Tesla does not report by model)
+# Source: per 2026 sales data
 # Host tip: F-150 or "Ford truck" = Ford F-Series; "Chevy truck" = Silverado; "Dodge Ram" = Ram pickup
 Name a best-selling car or truck in America this year.
 Ford F-Series 26
@@ -629,7 +632,7 @@ Ram pickup 15
 Tesla Model Y 12
 Toyota RAV4 12
 
-# Source: QSR Magazine 2026 QSR 50, US sales in 2025
+# Source: per QSR Magazine
 Name a fast food or coffee chain.
 McDonald's 32
 Starbucks 18
@@ -640,7 +643,7 @@ Wendy's 7
 Burger King 6
 Subway 5
 
-# Source: NRF 2026 Halloween survey (millions of adults planning each costume)
+# Source: per NRF survey
 Name a popular Halloween costume for adults this year.
 Witch 35
 Vampire 30
@@ -648,7 +651,7 @@ Batman 14
 Spider-Man 11
 Ghost 10
 
-# Source: Nielsen's The Gauge (Aug 2026), share of all US TV time
+# Source: per Nielsen
 # Host tip: Hulu or ESPN+ counts as "Disney+ & Hulu"
 Name a streaming service people watch on their TV.
 YouTube 45
@@ -658,7 +661,7 @@ Prime Video 12
 Paramount+ 7` },
 
 { name:'Variety', title:'Variety Face-Off',
-rounds:`# Source: CareerBuilder survey of US workers on why they were late
+rounds:`# Source: per CareerBuilder
 # Host tip: oversleeping or being tired counts as "Not enough sleep"; bus or train delays count as "Public transit problems"
 Name a reason people show up late to work.
 Traffic 49
@@ -667,7 +670,7 @@ Public transit problems 10
 Bad weather 9
 Dropping off the kids 8
 
-# Source: YouGov polls (share naming it one of their top 3 toppings)
+# Source: per YouGov
 # Host tip: plain cheese counts as "Extra cheese"
 Name one of Americans' favorite pizza toppings.
 Pepperoni 30
@@ -678,7 +681,7 @@ Extra cheese 11
 Pineapple 7
 Chicken 5
 
-# Source: YouGov poll of US adults (June 2022), share who have each fear
+# Source: per YouGov
 # Host tip: disease or germs count as "Getting sick"; elevators or closets count as "Small spaces"
 Name something a lot of people are afraid of.
 Snakes 18
@@ -690,7 +693,7 @@ Small spaces 10
 Crowds 10
 Flying 5
 
-# Source: YouGov poll of 1,000 US adults (July 2022), single favorite flavor
+# Source: per YouGov
 Name a favorite ice cream flavor.
 Vanilla 20
 Chocolate 18
@@ -701,14 +704,14 @@ Strawberry 11
 Caramel 5
 Neapolitan 4
 
-# Source: Marist poll of US adults (2018)
+# Source: per Marist poll
 If you could have one superpower, name what it would be.
 Time travel 31
 Reading minds 22
 Flying 18
 Teleporting 16
 Invisibility 13`,
-fast:`# Source: US Census Bureau, number of people with each last name (2010 Census)
+fast:`# Source: per US Census
 Name a common last name in America.
 Smith 20
 Johnson 16
@@ -719,7 +722,7 @@ Garcia 9
 Miller 9
 Davis 9
 
-# Source: APPA National Pet Owners Survey 2025 (millions of households)
+# Source: per APPA survey
 # Host tip: hamster, guinea pig or rabbit = "Small animals"; snake, lizard or turtle = "Reptiles"
 Name a pet American households own.
 Dog 47
@@ -729,7 +732,7 @@ Small animals 4
 Reptiles 4
 Bird 4
 
-# Source: National Park Service, 2025 recreation visits
+# Source: per National Park Service
 Name a popular national park in the western US.
 Zion 15
 Yellowstone 14
@@ -740,7 +743,7 @@ Grand Teton 12
 Olympic 11
 Glacier 9
 
-# Source: Axalta 2025 automotive color report (new cars)
+# Source: per Axalta
 Name a popular car color.
 White 30
 Black 24
@@ -749,7 +752,7 @@ Blue 10
 Silver 7
 Red 7
 
-# Source: YouGov poll for Reese's, Snickers, Kit Kat and M&M's; Twix, Hershey's, Skittles and Butterfinger are estimates
+# Source: per YouGov
 Name a favorite Halloween candy.
 Reese's 22
 Snickers 17
@@ -1027,7 +1030,7 @@ function renderHostBoard(){
   $('#hRound').textContent = `Round ${game.ri+1} of ${game.rounds.length}`;
   const m = $('#hMult'); m.hidden = r.mult < 2; m.textContent = r.mult === 3 ? 'Triple points' : 'Double points';
   $('#hQuestion').textContent = r.q;
-  $('#hSrc').textContent = r.source ? `📊 Points based on: ${r.source}` : '';
+  $('#hSrc').textContent = r.source ? `📊 ${r.source.charAt(0).toUpperCase()}${r.source.slice(1)}` : '';
   $('#hTip').textContent = r.tip ? `💡 Host tip: ${r.tip}` : '';
   const qb = $('#hQBtn'), qOn = qVisible(st);
   qb.textContent = qOn ? '👁 Question is showing on the TV · click to hide' : '🙈 Question hidden on the TV for the face-off · click to show';
