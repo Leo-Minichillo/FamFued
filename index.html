@@ -78,6 +78,8 @@ body.host .tvonly, body.tv .hostonly{display:none !important}
 .hq{font-family:var(--display);font-size:2.1rem;padding:.2rem 1.6rem .9rem;line-height:1.2}
 .hsrc{font-size:.85rem;font-weight:800;color:var(--team1);padding:0 1.6rem .8rem;margin-top:-.5rem}
 .hsrc:empty{display:none}
+.htip{font-size:.85rem;font-weight:800;color:var(--gold);padding:0 1.6rem .8rem;margin-top:-.4rem}
+.htip:empty{display:none}
 .hqrow{padding:0 1.6rem .9rem;margin-top:-.3rem}
 #hQBtn.hidden{background:rgba(242,181,68,.18);border-color:var(--gold)}
 #hQBtn.shown{background:rgba(76,195,176,.16);border-color:var(--team1)}
@@ -310,6 +312,7 @@ body.tv.fs{cursor:none}
   </header>
   <div class="hq" id="hQuestion"></div>
   <div class="hsrc" id="hSrc"></div>
+  <div class="htip" id="hTip"></div>
   <div class="hqrow"><button class="hbtn small" data-act="toggleQ" id="hQBtn"></button></div>
   <div class="hmain">
     <div class="hanswers" id="hAnswers"></div>
@@ -434,18 +437,10 @@ const MSG = 'thanksgivingFaceOff.msg';
 // ---------- The built-in games. Every question adds up to 100. ----------
 // Questions with a "# Source:" line get their points from real data (box office, Nielsen, polls...).
 // The rest are estimates shaped like real survey results.
-const DEFAULTS_VERSION = 8;
+const DEFAULTS_VERSION = 9;
 const DEFAULT_GAMES = [
 { name:'Thanksgiving', title:'Thanksgiving Face-Off',
-rounds:`# Source: YouGov poll of Thanksgiving celebrants (2019), share of tables serving each dish
-Name a food you'd find on the Thanksgiving table.
-Turkey 24
-Mashed potatoes 21
-Stuffing 20
-Pumpkin pie 18
-Cranberry sauce 17
-
-Name something people do right after a big Thanksgiving dinner.
+rounds:`Name something people do right after a big Thanksgiving dinner.
 Take a nap 47
 Watch football 21
 Eat dessert 10
@@ -454,39 +449,16 @@ Go for a walk 6
 Unbutton their pants 5
 Play cards 3
 
-# Source: Dating.com survey of the most awkward questions asked at Thanksgiving
-Name something you dread relatives asking about at Thanksgiving.
-When are you getting married or having kids? 35
-Your weight 23
-Your job 22
-How much money you make 20
+# Source: blended from Talker Research (2024) and Dating.com polls on topics people dread at Thanksgiving
+Name a topic you hope doesn't come up at Thanksgiving dinner.
+Politics 30
+Your love life 20
+Money 15
+Your weight 13
+Religion 12
+Old family drama 10
 
-# Source: Talker Research poll of 2,000 US adults (2024), topics people want to avoid
-Name a topic you shouldn't bring up at Thanksgiving dinner.
-Politics 27
-Money 18
-Weight or appearance 16
-Religion 15
-Exes 13
-Mental health 11
-
-# Source: YouGov poll (Nov 2019), the one thing people are most thankful for
-Name something you're thankful for. x2
-Family 66
-Health 25
-Friends 7
-My job 2
-
-Name a reason someone shows up late to Thanksgiving dinner. x2
-Traffic 40
-Overslept 17
-Bad weather 13
-Still cooking their dish 11
-Getting the kids ready 9
-Car trouble 6
-Got lost 4
-
-Name something people do on Black Friday. x3
+Name something people do on Black Friday. x2
 Go shopping 63
 Eat leftovers 14
 Sleep in 9
@@ -494,14 +466,15 @@ Put up Christmas decorations 7
 Go to the movies 4
 Go to work 3
 
+# Host tip: "still frozen" or "raw in the middle" counts as "It's undercooked"
 Name something that can go wrong when cooking a turkey. x3
-Burn it 35
-It's undercooked 25
-It's still frozen 15
-Fryer catches fire 10
-Drop it on the floor 7
-Leave the giblet bag inside 5
-The oven breaks 3`,
+Burn it 32
+It's undercooked 24
+Fryer catches fire 13
+Drop it on the floor 11
+Leave the giblet bag inside 8
+The dog gets it 6
+Bought one that's too small 6`,
 fast:`Name something you'd bring to Thanksgiving if you can't cook.
 Wine 28
 Pie 24
@@ -739,6 +712,8 @@ function parseBlocks(text, maxAns){
     if(!lines.length) continue;
     const srcLine = block.split('\n').map(l => l.trim()).find(l => /^#\s*source:/i.test(l));
     const source = srcLine ? srcLine.replace(/^#\s*source:\s*/i, '') : '';
+    const tipLine = block.split('\n').map(l => l.trim()).find(l => /^#\s*host tip:/i.test(l));
+    const tip = tipLine ? tipLine.replace(/^#\s*host tip:\s*/i, '') : '';
     let q = lines[0], mult = 1;
     const m = q.match(/\s*[\[(]?\s*x\s*([123])\s*[\])]?\s*$/i);
     if(m){ mult = +m[1]; q = q.slice(0, m.index).trim(); }
@@ -746,7 +721,7 @@ function parseBlocks(text, maxAns){
       const mm = l.match(/^(.*\S)[\s,:;|=\-–—]+(\d{1,3})$/);
       return mm ? {text:mm[1].trim(), pts:+mm[2]} : {text:l, pts:0};
     }).sort((a, b) => b.pts - a.pts).slice(0, maxAns);
-    out.push({q, mult, answers, source});
+    out.push({q, mult, answers, source, tip});
   }
   return out;
 }
@@ -959,6 +934,7 @@ function renderHostBoard(){
   const m = $('#hMult'); m.hidden = r.mult < 2; m.textContent = r.mult === 3 ? 'Triple points' : 'Double points';
   $('#hQuestion').textContent = r.q;
   $('#hSrc').textContent = r.source ? `📊 Points based on: ${r.source}` : '';
+  $('#hTip').textContent = r.tip ? `💡 Host tip: ${r.tip}` : '';
   const qb = $('#hQBtn'), qOn = qVisible(st);
   qb.textContent = qOn ? '👁 Question is showing on the TV · click to hide' : '🙈 Question hidden on the TV for the face-off · click to show';
   qb.className = 'hbtn small ' + (qOn ? 'shown' : 'hidden');

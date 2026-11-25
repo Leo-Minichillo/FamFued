@@ -11,19 +11,7 @@ To change anything: edit the text boxes on the game's setup screen (format: `Ans
 
 ## Main rounds
 
-### Round 1: Name a food you'd find on the Thanksgiving table.
-📊 **Data:** YouGov poll of Thanksgiving celebrants (2019), share of tables serving each dish
-
-| # | Answer | Pts |
-|---|---|---|
-| 1 | Turkey | 24 |
-| 2 | Mashed potatoes | 21 |
-| 3 | Stuffing | 20 |
-| 4 | Pumpkin pie | 18 |
-| 5 | Cranberry sauce | 17 |
-| | **Total** | **100** |
-
-### Round 2: Name something people do right after a big Thanksgiving dinner.
+### Round 1: Name something people do right after a big Thanksgiving dinner.
 ✏️ **Estimate**
 
 | # | Answer | Pts |
@@ -37,56 +25,20 @@ To change anything: edit the text boxes on the game's setup screen (format: `Ans
 | 7 | Play cards | 3 |
 | | **Total** | **100** |
 
-### Round 3: Name something you dread relatives asking about at Thanksgiving.
-📊 **Data:** Dating.com survey of the most awkward questions asked at Thanksgiving
+### Round 2: Name a topic you hope doesn't come up at Thanksgiving dinner.
+📊 **Data:** blended from Talker Research (2024) and Dating.com polls on topics people dread at Thanksgiving
 
 | # | Answer | Pts |
 |---|---|---|
-| 1 | When are you getting married or having kids? | 35 |
-| 2 | Your weight | 23 |
-| 3 | Your job | 22 |
-| 4 | How much money you make | 20 |
+| 1 | Politics | 30 |
+| 2 | Your love life | 20 |
+| 3 | Money | 15 |
+| 4 | Your weight | 13 |
+| 5 | Religion | 12 |
+| 6 | Old family drama | 10 |
 | | **Total** | **100** |
 
-### Round 4: Name a topic you shouldn't bring up at Thanksgiving dinner.
-📊 **Data:** Talker Research poll of 2,000 US adults (2024), topics people want to avoid
-
-| # | Answer | Pts |
-|---|---|---|
-| 1 | Politics | 27 |
-| 2 | Money | 18 |
-| 3 | Weight or appearance | 16 |
-| 4 | Religion | 15 |
-| 5 | Exes | 13 |
-| 6 | Mental health | 11 |
-| | **Total** | **100** |
-
-### Round 5 (x2 points): Name something you're thankful for.
-📊 **Data:** YouGov poll (Nov 2019), the one thing people are most thankful for
-
-| # | Answer | Pts |
-|---|---|---|
-| 1 | Family | 66 |
-| 2 | Health | 25 |
-| 3 | Friends | 7 |
-| 4 | My job | 2 |
-| | **Total** | **100** |
-
-### Round 6 (x2 points): Name a reason someone shows up late to Thanksgiving dinner.
-✏️ **Estimate**
-
-| # | Answer | Pts |
-|---|---|---|
-| 1 | Traffic | 40 |
-| 2 | Overslept | 17 |
-| 3 | Bad weather | 13 |
-| 4 | Still cooking their dish | 11 |
-| 5 | Getting the kids ready | 9 |
-| 6 | Car trouble | 6 |
-| 7 | Got lost | 4 |
-| | **Total** | **100** |
-
-### Round 7 (x3 points): Name something people do on Black Friday.
+### Round 3 (x2 points): Name something people do on Black Friday.
 ✏️ **Estimate**
 
 | # | Answer | Pts |
@@ -99,18 +51,19 @@ To change anything: edit the text boxes on the game's setup screen (format: `Ans
 | 6 | Go to work | 3 |
 | | **Total** | **100** |
 
-### Round 8 (x3 points): Name something that can go wrong when cooking a turkey.
+### Round 4 (x3 points): Name something that can go wrong when cooking a turkey.
 ✏️ **Estimate**
+💡 Host tip: "still frozen" or "raw in the middle" counts as "It's undercooked"
 
 | # | Answer | Pts |
 |---|---|---|
-| 1 | Burn it | 35 |
-| 2 | It's undercooked | 25 |
-| 3 | It's still frozen | 15 |
-| 4 | Fryer catches fire | 10 |
-| 5 | Drop it on the floor | 7 |
-| 6 | Leave the giblet bag inside | 5 |
-| 7 | The oven breaks | 3 |
+| 1 | Burn it | 32 |
+| 2 | It's undercooked | 24 |
+| 3 | Fryer catches fire | 13 |
+| 4 | Drop it on the floor | 11 |
+| 5 | Leave the giblet bag inside | 8 |
+| 6 | The dog gets it | 6 |
+| 7 | Bought one that's too small | 6 |
 | | **Total** | **100** |
 
 ## Fast Money (head-to-head)
@@ -401,4 +354,4 @@ Empty slot for your own questions. Fill it in on the setup screen (Game 3 tab).
 
 ---
 
-10 of 26 questions in Games 1-2 are data-backed.
+7 of 22 questions in Games 1-2 are data-backed.
