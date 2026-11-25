@@ -200,12 +200,14 @@ Bench: Devil Wears Prada 2 ($221M US), Hunger Games: Sunrise on the Reaping ($12
 
 | # | Answer | Pts |
 |---|---|---|
-| 1 | USA | 30 |
-| 2 | Spain | 23 |
-| 3 | Argentina | 19 |
-| 4 | Mexico | 13 |
-| 5 | Brazil | 9 |
-| 6 | Canada | 6 |
+| 1 | USA | 28 |
+| 2 | Spain | 22 |
+| 3 | Argentina | 18 |
+| 4 | Mexico | 12 |
+| 5 | Brazil | 8 |
+| 6 | Canada | 5 |
+| 7 | England | 4 |
+| 8 | France | 3 |
 | | **Total** | **100** |
 
 Bench: England, France
@@ -228,125 +230,97 @@ Bench: From, His & Hers (No. 2 show of the 2025-26 TV season per Nielsen), Love 
 
 ### Round 4: Name something you remember from the 2026 Winter Olympics.
 ✏️ **Estimate**
+💡 Host tip: figure skating counts as "Alysa Liu"
 
 | # | Answer | Pts |
 |---|---|---|
-| 1 | USA hockey winning gold | 31 |
-| 2 | Figure skating | 21 |
-| 3 | Lindsey Vonn's crash | 17 |
-| 4 | Snowboarding | 10 |
-| 5 | Mikaela Shiffrin | 9 |
-| 6 | It was in Italy | 8 |
-| 7 | Curling | 4 |
+| 1 | USA hockey winning gold | 33 |
+| 2 | Alysa Liu | 23 |
+| 3 | Lindsey Vonn's crash | 18 |
+| 4 | Snowboarding | 11 |
+| 5 | Curling | 8 |
+| 6 | The opening ceremony | 7 |
 | | **Total** | **100** |
 
 Bench: Bobsled (Elana Meyers Taylor's monobob gold at 41)
 
-### Round 5: Name something people talked about after this year's Super Bowl.
-✏️ **Estimate**
+### Round 5: Name a music artist who had a No. 1 song in 2026.
+📊 **Data:** weeks at No. 1 on the Billboard Hot 100 in 2026 (through late November)
 
 | # | Answer | Pts |
 |---|---|---|
-| 1 | Bad Bunny's halftime show | 41 |
-| 2 | The commercials | 25 |
-| 3 | The Seahawks won | 16 |
-| 4 | The MVP | 6 |
-| 5 | The national anthem | 5 |
-| 6 | Ticket prices | 4 |
-| 7 | Their bets | 3 |
+| 1 | Ella Langley | 64 |
+| 2 | Taylor Swift | 16 |
+| 3 | Bruno Mars | 7 |
+| 4 | Drake | 5 |
+| 5 | Bad Bunny | 2 |
+| 6 | Ariana Grande | 2 |
+| 7 | BTS | 2 |
+| 8 | Harry Styles | 2 |
 | | **Total** | **100** |
 
-### Round 6: Name something you'd expect to see at Taylor Swift and Travis Kelce's wedding.
-✏️ **Estimate**
+### Round 6: Name a team that won a big championship in 2026.
+📊 **Data:** US TV audience of each title game (Nielsen, via news reports)
+💡 Host tip: Spain = World Cup, Indiana = college football, Team USA = Olympic hockey, Knicks = NBA, Brewers = World Series, Hurricanes = Stanley Cup
 
 | # | Answer | Pts |
 |---|---|---|
-| 1 | Football players | 24 |
-| 2 | Taylor singing | 18 |
-| 3 | Friendship bracelets | 14 |
-| 4 | Celebrities | 13 |
-| 5 | Jason Kelce crying | 9 |
-| 6 | Cats | 8 |
-| 7 | A giant cake | 8 |
-| 8 | Tons of security | 6 |
-| | **Total** | **100** |
-
-### Round 7: Name a music artist you couldn't escape in 2026.
-✏️ **Estimate**
-
-| # | Answer | Pts |
-|---|---|---|
-| 1 | Taylor Swift | 25 |
-| 2 | Morgan Wallen | 21 |
-| 3 | Ella Langley | 19 |
-| 4 | Bad Bunny | 16 |
-| 5 | Ariana Grande | 8 |
-| 6 | BTS | 6 |
-| 7 | Olivia Dean | 5 |
-| | **Total** | **100** |
-
-Bench: Lady Gaga, Justin Bieber
-
-### Round 8: Name something people use ChatGPT for.
-📊 **Data:** OpenAI/NBER "How People Use ChatGPT" (share of conversations)
-💡 Host tip: homework, recipes and health questions count as "Advice and how-to help"
-
-| # | Answer | Pts |
-|---|---|---|
-| 1 | Advice and how-to help | 31 |
-| 2 | Looking things up | 25 |
-| 3 | Writing and editing | 25 |
-| 4 | Making pictures | 8 |
-| 5 | Chatting and venting | 6 |
-| 6 | Coding and tech help | 5 |
+| 1 | Seahawks | 43 |
+| 2 | Spain | 22 |
+| 3 | Indiana | 10 |
+| 4 | Team USA hockey | 9 |
+| 5 | Knicks | 9 |
+| 6 | Brewers | 5 |
+| 7 | Hurricanes | 2 |
 | | **Total** | **100** |
 
 ## Fast Money (head-to-head)
 
-### Q 1: Name something people planned to do for the Fourth of July and America's 250th.
-📊 **Data:** Reuters/Ipsos and Mecca Bingo surveys of July 4th 2026 plans
+### Q 1: Name a country that won a lot of medals at the 2026 Winter Olympics.
+📊 **Data:** final Milan Cortina 2026 medal table (total medals)
 
 | # | Answer | Pts |
 |---|---|---|
-| 1 | Go to a cookout | 36 |
-| 2 | Watch fireworks | 26 |
-| 3 | Go to a parade | 14 |
-| 4 | Travel | 12 |
-| 5 | Make red, white and blue food | 12 |
+| 1 | Norway | 27 |
+| 2 | USA | 22 |
+| 3 | Italy | 20 |
+| 4 | Germany | 17 |
+| 5 | Netherlands | 14 |
 | | **Total** | **100** |
 
-### Q 2: Name something you'd see at a World Cup watch party.
-✏️ **Estimate**
+### Q 2: Name a social media app.
+📊 **Data:** Pew Research (2025), share of US adults who use each app
 
 | # | Answer | Pts |
 |---|---|---|
-| 1 | Jerseys | 22 |
-| 2 | Flags | 20 |
-| 3 | Beer | 18 |
-| 4 | Face paint | 12 |
-| 5 | People yelling at the TV | 11 |
-| 6 | Snacks | 9 |
-| 7 | A big screen | 5 |
-| 8 | Crying fans | 3 |
+| 1 | YouTube | 24 |
+| 2 | Facebook | 21 |
+| 3 | Instagram | 14 |
+| 4 | TikTok | 11 |
+| 5 | WhatsApp | 9 |
+| 6 | Snapchat | 8 |
+| 7 | Reddit | 7 |
+| 8 | X (Twitter) | 6 |
 | | **Total** | **100** |
 
-### Q 3: Name something people are cutting back on to save money.
-✏️ **Estimate**
+### Q 3: Name a fast food or coffee chain.
+📊 **Data:** QSR Magazine 2026 QSR 50, US sales in 2025
 
 | # | Answer | Pts |
 |---|---|---|
-| 1 | Eating out | 26 |
-| 2 | Groceries | 18 |
-| 3 | Coffee shops | 15 |
-| 4 | Streaming subscriptions | 12 |
-| 5 | Clothes | 11 |
-| 6 | Gas | 8 |
-| 7 | Amazon orders | 6 |
-| 8 | Vacations | 4 |
+| 1 | McDonald's | 32 |
+| 2 | Starbucks | 18 |
+| 3 | Chick-fil-A | 14 |
+| 4 | Taco Bell | 10 |
+| 5 | Dunkin' | 8 |
+| 6 | Wendy's | 7 |
+| 7 | Burger King | 6 |
+| 8 | Subway | 5 |
 | | **Total** | **100** |
 
 ### Q 4: Name a famous athlete people talked about this year.
 ✏️ **Estimate**
+💡 Host tip: estimate for now; will be replaced with Google Trends data
 
 | # | Answer | Pts |
 |---|---|---|
@@ -360,19 +334,17 @@ Bench: Lady Gaga, Justin Bieber
 | 8 | Lindsey Vonn | 6 |
 | | **Total** | **100** |
 
-### Q 5: Name something that got more expensive in 2026.
-✏️ **Estimate**
+### Q 5: Name a streaming service people watch on their TV.
+📊 **Data:** Nielsen's The Gauge (Aug 2026), share of all US TV time
+💡 Host tip: Hulu or ESPN+ counts as "Disney+ & Hulu"
 
 | # | Answer | Pts |
 |---|---|---|
-| 1 | Groceries | 33 |
-| 2 | Gas | 16 |
-| 3 | Rent | 14 |
-| 4 | Concert tickets | 10 |
-| 5 | Eating out | 9 |
-| 6 | Car insurance | 8 |
-| 7 | Coffee | 6 |
-| 8 | Electric bill | 4 |
+| 1 | YouTube | 45 |
+| 2 | Netflix | 22 |
+| 3 | Disney+ & Hulu | 14 |
+| 4 | Prime Video | 12 |
+| 5 | Paramount+ | 7 |
 | | **Total** | **100** |
 
 ---
@@ -383,4 +355,4 @@ Empty slot for your own questions. Fill it in on the setup screen (Game 3 tab).
 
 ---
 
-7 of 24 questions in Games 1-2 are data-backed.
+11 of 22 questions in Games 1-2 are data-backed.
