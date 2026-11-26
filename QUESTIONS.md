@@ -336,18 +336,18 @@ Bench: Bobsled (Elana Meyers Taylor's monobob gold at 41)
 
 ## Main rounds
 
-### Round 1: Name a social media app lots of American adults use. (per Pew Research)
+### Round 1: Name a food lots of Americans say they hate. (per YouGov)
+💡 Host tip: calamari counts as "Squid"; sashimi or raw fish counts as "Sushi"
 
 | # | Answer | Pts |
 |---|---|---|
-| 1 | YouTube | 24 |
-| 2 | Facebook | 21 |
-| 3 | Instagram | 14 |
-| 4 | TikTok | 11 |
-| 5 | WhatsApp | 9 |
-| 6 | Snapchat | 8 |
-| 7 | Reddit | 7 |
-| 8 | X (Twitter) | 6 |
+| 1 | Anchovies | 17 |
+| 2 | Liver | 17 |
+| 3 | Sardines | 16 |
+| 4 | Squid | 13 |
+| 5 | Oysters | 13 |
+| 6 | Blue cheese | 12 |
+| 7 | Sushi | 12 |
 | | **Total** | **100** |
 
 ### Round 2: Name one of Americans' top 3 favorite pizza toppings. (per YouGov)
