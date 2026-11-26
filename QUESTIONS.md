@@ -350,7 +350,7 @@ Bench: Bobsled (Elana Meyers Taylor's monobob gold at 41)
 | 7 | Sushi | 12 |
 | | **Total** | **100** |
 
-### Round 2: Name one of Americans' top 3 favorite pizza toppings. (per YouGov)
+### Round 2: Name one of Americans' favorite pizza toppings. (per YouGov)
 💡 Host tip: plain cheese counts as "Extra cheese"
 
 | # | Answer | Pts |
