@@ -1049,7 +1049,7 @@ function renderHostBoard(){
   $('#hSrc').textContent = r.source ? `📊 ${r.source.charAt(0).toUpperCase()}${r.source.slice(1)}` : '';
   $('#hTip').textContent = r.tip ? `💡 Host tip: ${r.tip}` : '';
   const qb = $('#hQBtn'), qOn = qVisible(st);
-  qb.textContent = qOn ? '👁 Question is showing on the TV · click to hide' : '🙈 Question hidden on the TV for the face-off · click to show';
+  qb.textContent = qOn ? '👁 Question is showing on the TV · click to hide' : '🙈 Question hidden on the TV until the first answer is revealed · click to show now';
   qb.className = 'hbtn small ' + (qOn ? 'shown' : 'hidden');
   const box = $('#hAnswers'); box.innerHTML = '';
   for(let i = 0; i < 8; i++){
@@ -1079,14 +1079,14 @@ function toggleAnswer(i){
   const r = curR(), st = curS();
   if(i >= r.answers.length) return;
   if(st.rev[i]) st.rev[i] = 0;
-  else { st.rev[i] = st.awardedTo == null ? 1 : 2; sfx.ding(); }
+  else { st.rev[i] = st.awardedTo == null ? 1 : 2; st.qShown = true; sfx.ding(); }   // first answer on the board ends the face-off, so show the question
   commit(); renderHostBoard();
 }
 function revealAll(){
   const r = curR(), st = curS(), ri = game.ri;
   r.answers.map((_, i) => i).filter(i => !st.rev[i]).forEach((i, k) => setTimeout(() => {
     if(game.ri !== ri || st.rev[i]) return;
-    st.rev[i] = 2; sfx.soft(); commit(); renderHostBoard();
+    st.rev[i] = 2; st.qShown = true; sfx.soft(); commit(); renderHostBoard();
   }, k * 450));
 }
 function wrong(){
